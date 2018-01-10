@@ -13,14 +13,10 @@ local colours = {
 function DebugPrint:new( level, text )
   if nz.Debug.Mode:isDev() then
     local levelPrint = level:gsub("^%l", string.upper)
-    MsgC( colours[level], "[" .. levelPrint .. "] " .. text .. "\n" )
-  end
-end
+    local outputString = "[" .. levelPrint .. "] " .. text .. "\n"
+    MsgC( colours[level], outputString )
 
-//Test all colours at once
-function DebugPrint:test()
-  for k, v in pairs(colours) do
-    nz.Debug.Print(k, "This is a " .. k .. " test")
+    return outputString
   end
 end
 
