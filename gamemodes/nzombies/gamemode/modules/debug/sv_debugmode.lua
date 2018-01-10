@@ -10,15 +10,19 @@ function DebugMode:set( bool )
 end
 
 function DebugMode:get()
+  if nz.Debug.CurrentMode == null then
+    nz.Debug.CurrentMode = true
+  end
+
   return nz.Debug.CurrentMode
 end
 
 function DebugMode:isDev()
-  return nz.Debug.CurrentMode == true
+  return self.get() == true
 end
 
 function DebugMode:isProd()
-  return nz.Debug.CurrentMode == false
+  return self.get() == false
 end
 
 //Assign the meta table to the nz global

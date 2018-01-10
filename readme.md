@@ -10,3 +10,7 @@ A full recode from scratch of nZombies utilizing [nZombies v3](https://github.co
 Ensure these are installed on both Server & Client
 - Garry's Mod
 - Counter Strike Install
+
+## Running Tests
+- Install [GUnit](https://github.com/DarkRedemption/GUnit) into your server's addons.
+- Type `test-only nzombies5` into server console.
