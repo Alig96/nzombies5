@@ -3,6 +3,9 @@ GM.Author = "Alig96"
 GM.Email = "N/A"
 GM.Website = "N/A"
 
+-- Game Constants
+GAME_INIT = 0
+
 -- Round Constants
 ROUND_INIT = 0
 ROUND_PREP = 1
