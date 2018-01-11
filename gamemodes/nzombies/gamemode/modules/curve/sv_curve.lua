@@ -3,27 +3,24 @@ Curve.__index = Curve
 //Curve
 Curve.Base = 5
 Curve.Difficulty = 1.01
-//Max
-Curve.Max = 100
 
-function Curve:calculateCurve( currentRound )
-  return math.Round(self.Base * math.pow(currentRound, self.Difficulty))
+function Curve:calculatePointOnCurve( currentPoint )
+  return math.Round(self.Base * math.pow(currentPoint, self.Difficulty))
 end
 
-function Curve:new( base, difficulty, max )
+function Curve:new( base, difficulty )
+  //Create a new curve
+  local newCurve = table.Copy( Curve )
+  //Remove the meta data
+  newCurve.new = null
+  newCurve.__index = null
+
   //Check they have inputed variables
-  self.Base = base or self.Base
-  self.Difficulty = difficulty or self.Difficulty
-  self.Max = max or self.Max
+  newCurve.Base = base or self.Base
+  newCurve.Difficulty = difficulty or self.Difficulty
 
-  //Generate the Curve Data
-  local curveData = {}
-  for i = 1, self.Max do
-    curveData[i] = self:calculateCurve(i)
-  end
-
-  return curveData
+  return newCurve
 end
 
 //Assign the meta table to the nz global
-nz.Curve = setmetatable( Curve, { __call = Curve.new } )
+nz.Curve.Create = setmetatable( Curve, { __call = Curve.new } )

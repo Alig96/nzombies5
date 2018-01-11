@@ -5,7 +5,7 @@ local function a_game_cannot_be_created_with_not_enough_players()
   //Create a fake players array with no players
   local allPlayers = {}
   //Create a game
-  local currentGame = nz.Game(allPlayers)
+  local currentGame = nz.Game.Create(allPlayers)
 
   //Assert that the game is false
   GUnit.assert(currentGame):shouldEqual(false)
@@ -15,7 +15,7 @@ local function a_game_can_be_created_with_enough_players()
   //Create a fake players array with 2 players
   local allPlayers = {playerGen:new(), playerGen:new()}
   //Create a game
-  local currentGame = nz.Game(allPlayers)
+  local currentGame = nz.Game.Create(allPlayers)
 
   //Assert that the current round is 0
   GUnit.assert(currentGame.CurrentRound):shouldEqual(0)
@@ -28,12 +28,25 @@ local function a_game_can_be_setup()
   //Create an all players array
   local allPlayers = {player1}
   //Create a game
-  local currentGame = nz.Game(allPlayers)
+  local currentGame = nz.Game.Create(allPlayers)
 
   //Assert that the game has the fake player in its all player array
   GUnit.assert(table.HasValue( currentGame.CurrentPlayers, player1 )):shouldEqual(true)
 end
 
+local function a_game_can_generate_its_rounds()
+  //Create a fake player
+  local player1 = playerGen:new()
+  //Create an all players array
+  local allPlayers = {player1}
+  //Create a game
+  local currentGame = nz.Game.Create(allPlayers)
+
+  //Ensure that the rounds of the game have been generated
+  GUnit.assert(#currentGame.Rounds):greaterThan(0)
+end
+
 gameTest:addSpec("a game cannot be created with not enough players", a_game_cannot_be_created_with_not_enough_players)
 gameTest:addSpec("a game can be created with enough players", a_game_can_be_created_with_enough_players)
 gameTest:addSpec("a game can be setup", a_game_can_be_setup)
+gameTest:addSpec("a game can generate its rounds", a_game_can_generate_its_rounds)

@@ -28,5 +28,10 @@ local function beforeAll()
   nz.Tests = {}
 end
 
+local function afterAll()
+  nz.Tests = null
+end
+
 chatcommandTest:beforeAll(beforeAll)
+chatcommandTest:afterAll(afterAll)
 chatcommandTest:addSpec("can be created", a_chat_command_can_be_created)
