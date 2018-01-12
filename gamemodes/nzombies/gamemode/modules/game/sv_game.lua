@@ -13,7 +13,8 @@ Game.Curves = {
 
 //Defaults
 Game.CurrentState = GAME_INIT
-Game.CurrentRound = 0
+Game.CurrentRound = {}
+Game.CurrentRoundCounter = 0
 
 //Check we can create a game
 function Game:checkPrerequisites()
@@ -24,6 +25,84 @@ function Game:checkPrerequisites()
   end
 
   return true
+end
+
+//Setup the game ready for play
+function Game:setup()
+  //Add all the initial players to the current players game
+  local players = self.InitialPlayers
+
+  for _, player in pairs(players) do
+      self:addPlayer(player)
+  end
+
+  //Set the game to in progress
+  self.CurrentState = GAME_READY
+end
+
+//Start the game
+function Game:start()
+  //Set the game to finished
+  self.CurrentState = GAME_PROG
+  //Advance to the first round
+  self:advanceRound()
+end
+
+//Advance the round
+function Game:advanceRound()
+  //Increase the round counter
+  self.CurrentRoundCounter = self.CurrentRoundCounter + 1
+
+  //Generate this round
+  self:generateRound(self.CurrentRoundCounter)
+
+  //Load the round data of the current round
+  self.CurrentRound = self.Rounds[self.CurrentRoundCounter]
+
+  //Run the prepare function on the round
+  self.CurrentRound:prepare()
+end
+
+//Finish the game
+function Game:finish()
+  //Set the game to finished
+  self.CurrentState = GAME_FINISHED
+end
+
+//The game handler that should be run every second the game is running
+function Game:handler()
+  local currentTime = CurTime()
+
+  //If the game is ready
+  if self.CurrentState == GAME_READY then
+    //Check all the players are ready
+    print('')
+  end
+
+  //If the game is in progress
+  if self.CurrentState == GAME_PROG then
+    //If all current players are dead or non existant, then end the game
+    if false then
+      self:finish()
+    end
+
+    //If the round is preparing
+    if self.CurrentRound.CurrentState == ROUND_PREP then
+      //Check that the current time is more than the round starting timer
+      if currentTime > self.CurrentRound.StartingTime then
+        //Start the round
+        self.CurrentRound:start()
+      end
+    elseif self.CurrentRound.CurrentState == ROUND_PROG then
+      //Check the victory condition of the round
+      if self.CurrentRound:victoryCondition() then
+        //Finish the round
+        self.CurrentRound:finish()
+        //Advance the game to the next round
+        self:advanceRound()
+      end
+    end
+  end
 end
 
 //Add this player to the game
@@ -37,21 +116,6 @@ end
 function Game:generateRound(roundNumber)
   //Generate a specific round, and put it into the game's round table
   self.Rounds[roundNumber] = nz.Round.Create(roundNumber, self.Curves)
-end
-
-//Setup the game ready for play
-function Game:setup()
-  //Generate 100 rounds worth of data
-  for i = 1, 100 do
-    self:generateRound(i)
-  end
-
-  //Add all the initial players to the current players game
-  local players = self.InitialPlayers
-
-  for _, player in pairs(players) do
-      self:addPlayer(player)
-  end
 end
 
 //Create a new game

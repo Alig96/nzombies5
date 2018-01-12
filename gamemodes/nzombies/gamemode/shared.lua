@@ -5,13 +5,15 @@ GM.Website = "N/A"
 
 -- Game Constants
 GAME_INIT = 0
+GAME_READY = 1
+GAME_PROG = 2
+GAME_FINISHED = 3
 
 -- Round Constants
 ROUND_INIT = 0
 ROUND_PREP = 1
 ROUND_PROG = 2
-ROUND_CREATE = 3
-ROUND_GO = 4
+ROUND_FINISHED = 3
 
 --Team Constants
 TEAM_SPECS = 1

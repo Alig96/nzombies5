@@ -17,9 +17,23 @@ local function a_game_can_be_created_with_enough_players()
   //Create a game
   local currentGame = nz.Game.Create(allPlayers)
 
-  //Assert that the current round is 0
-  GUnit.assert(currentGame.CurrentRound):shouldEqual(0)
-  GUnit.assert(currentGame.CurrentState):shouldEqual(GAME_INIT)
+  //Assert that the current game state is in the ready state
+  GUnit.assert(currentGame.CurrentState):shouldEqual(GAME_READY)
+end
+
+local function a_game_can_generate_a_round()
+  //Create a fake player
+  local player1 = playerGen:new()
+  //Create an all players array
+  local allPlayers = {player1}
+  //Create a game
+  local currentGame = nz.Game.Create(allPlayers)
+
+  //Generate a round
+  currentGame:generateRound(1)
+
+  //Ensure that the rounds of the game have been generated
+  GUnit.assert(#currentGame.Rounds):greaterThan(0)
 end
 
 local function a_game_can_be_setup()
@@ -34,7 +48,7 @@ local function a_game_can_be_setup()
   GUnit.assert(table.HasValue( currentGame.CurrentPlayers, player1 )):shouldEqual(true)
 end
 
-local function a_game_can_generate_its_rounds()
+local function a_game_can_be_started()
   //Create a fake player
   local player1 = playerGen:new()
   //Create an all players array
@@ -42,11 +56,34 @@ local function a_game_can_generate_its_rounds()
   //Create a game
   local currentGame = nz.Game.Create(allPlayers)
 
-  //Ensure that the rounds of the game have been generated
-  GUnit.assert(#currentGame.Rounds):greaterThan(0)
+  //Start the game
+  currentGame:start()
+
+  //Assert that the current game state is in the ready state
+  GUnit.assert(currentGame.CurrentState):shouldEqual(GAME_PROG)
+end
+
+local function a_game_can_be_finished()
+  //Create a fake player
+  local player1 = playerGen:new()
+  //Create an all players array
+  local allPlayers = {player1}
+  //Create a game
+  local currentGame = nz.Game.Create(allPlayers)
+
+  //Start the game
+  currentGame:start()
+
+  //End the game
+  currentGame:finish()
+
+  //Assert that the current game state is in the ready state
+  GUnit.assert(currentGame.CurrentState):shouldEqual(GAME_FINISHED)
 end
 
 gameTest:addSpec("a game cannot be created with not enough players", a_game_cannot_be_created_with_not_enough_players)
 gameTest:addSpec("a game can be created with enough players", a_game_can_be_created_with_enough_players)
+gameTest:addSpec("a game can generate a round", a_game_can_generate_a_round)
 gameTest:addSpec("a game can be setup", a_game_can_be_setup)
-gameTest:addSpec("a game can generate its rounds", a_game_can_generate_its_rounds)
+gameTest:addSpec("a game can be started", a_game_can_be_started)
+gameTest:addSpec("a game can be finished", a_game_can_be_finished)
