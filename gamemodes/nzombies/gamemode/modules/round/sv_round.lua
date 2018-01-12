@@ -21,23 +21,30 @@ function Round:prepare()
 
   //Set the ready timer to the current time + delay
   self.StartingTime = CurTime() + self.PrepareTime
+
+  nz.Debug.Print("info", "Round has been prepared & its state has been set to PREP.")
 end
 
 //Start the round
 function Round:start()
   //Set the round state to in progress
   self.CurrentState = ROUND_PROG
+
+  nz.Debug.Print("info", "Round has been started & its state has been set to PROG.")
 end
 
 //Finish the round
 function Round:finish()
   //Set the round state to finished
   self.CurrentState = ROUND_FINISHED
+
+  nz.Debug.Print("info", "Round has finished & its state has been set to FINISHED.")
 end
 
 //This is the victory condition of the round, when this returns true, end the round
 function Round:victoryCondition()
   if self.EnemiesKilled >= self.MaxEnemies then
+    nz.Debug.Print("info", "The round's victory condition has been met")
     return true
   end
 

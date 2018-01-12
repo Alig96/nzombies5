@@ -24,6 +24,7 @@ function Game:checkPrerequisites()
     return false
   end
 
+  nz.Debug.Print("info", "Game passed all prerequisites.")
   return true
 end
 
@@ -38,18 +39,23 @@ function Game:setup()
 
   //Set the game to in progress
   self.CurrentState = GAME_READY
+  nz.Debug.Print("info", "Game was setup & set to READY state.")
 end
 
 //Start the game
 function Game:start()
   //Set the game to finished
   self.CurrentState = GAME_PROG
+  nz.Debug.Print("info", "Game was started & set to IN PROGRESS state.")
   //Advance to the first round
   self:advanceRound()
 end
 
 //Advance the round
 function Game:advanceRound()
+  //Arhive the previous round
+  self.Rounds[self.CurrentRoundCounter] = self.CurrentRound
+
   //Increase the round counter
   self.CurrentRoundCounter = self.CurrentRoundCounter + 1
 
@@ -59,14 +65,19 @@ function Game:advanceRound()
   //Load the round data of the current round
   self.CurrentRound = self.Rounds[self.CurrentRoundCounter]
 
+  nz.Debug.Print("info", "Game has advanced to round: " .. self.CurrentRoundCounter)
+
   //Run the prepare function on the round
   self.CurrentRound:prepare()
+  nz.Debug.Print("info", "Game has triggered the round's prepare function.")
 end
 
 //Finish the game
 function Game:finish()
   //Set the game to finished
   self.CurrentState = GAME_FINISHED
+  nz.Debug.Print("info", "Game has finished & set to FINISHED state.")
+  nz.Debug.Print("info", "This game is finished and safe to destroy its game handler.")
 end
 
 //The game handler that should be run every second the game is running
@@ -75,8 +86,12 @@ function Game:handler()
 
   //If the game is ready
   if self.CurrentState == GAME_READY then
+    nz.Debug.Print("info", "Game is ready and waiting for all current players to ready up.")
     //Check all the players are ready
-    print('')
+    if true then
+      //Start the game
+      self:start()
+    end
   end
 
   //If the game is in progress
@@ -88,12 +103,14 @@ function Game:handler()
 
     //If the round is preparing
     if self.CurrentRound.CurrentState == ROUND_PREP then
+      nz.Debug.Print("info", "Game is waiting for the current round to start.")
       //Check that the current time is more than the round starting timer
       if currentTime > self.CurrentRound.StartingTime then
         //Start the round
         self.CurrentRound:start()
       end
     elseif self.CurrentRound.CurrentState == ROUND_PROG then
+      nz.Debug.Print("info", "Game is waiting for the current round's victory condition to be met.")
       //Check the victory condition of the round
       if self.CurrentRound:victoryCondition() then
         //Finish the round

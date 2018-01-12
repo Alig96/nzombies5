@@ -81,9 +81,42 @@ local function a_game_can_be_finished()
   GUnit.assert(currentGame.CurrentState):shouldEqual(GAME_FINISHED)
 end
 
+local function a_game_can_be_simulated()
+  //Create a fake player
+  local player1 = playerGen:new()
+  //Create an all players array
+  local allPlayers = {player1}
+  //Create a game
+  local currentGame = nz.Game.Create(allPlayers)
+
+  //Simulate the game
+  while currentGame.CurrentState != GAME_FINISHED do
+    //Simulate the timer being triggered
+    currentGame:handler()
+
+    //Simulate the round starting since time doesn't advance during a while loop & we dont want to wait for the default 5 seconds
+    currentGame.CurrentRound.StartingTime = 0
+
+    //Keep the game going until the 2nd round
+    if currentGame.CurrentRoundCounter < 2 then
+      if currentGame.CurrentState == ROUND_PROG then
+        //Set the enemies killed to the max to simulate we finished the round
+        currentGame.CurrentRound.EnemiesKilled = currentGame.CurrentRound.MaxEnemies
+      end
+    else
+      //If we reach round 2 end the game & simulation
+      currentGame:finish()
+    end
+  end
+
+  //Assert that the game ended
+  GUnit.assert(currentGame.CurrentState):shouldEqual(GAME_FINISHED)
+end
+
 gameTest:addSpec("a game cannot be created with not enough players", a_game_cannot_be_created_with_not_enough_players)
 gameTest:addSpec("a game can be created with enough players", a_game_can_be_created_with_enough_players)
 gameTest:addSpec("a game can generate a round", a_game_can_generate_a_round)
 gameTest:addSpec("a game can be setup", a_game_can_be_setup)
 gameTest:addSpec("a game can be started", a_game_can_be_started)
 gameTest:addSpec("a game can be finished", a_game_can_be_finished)
+gameTest:addSpec("a game can be simulated", a_game_can_be_simulated)
