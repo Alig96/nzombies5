@@ -3,12 +3,19 @@ Mode.__index = Mode
 Mode.CurrentState = MODE_PLAY
 
 function Mode:set( modeConst )
-  if modeConst == MODE_PLAY then
-    nz.Mode.CurrentState = modeConst
-    nz.Debug.Print("info", "[Mode] Internal Gamemode set to: Play Mode")
-  elseif modeConst == MODE_CREATIVE then
-    nz.Mode.CurrentState = modeConst
-    nz.Debug.Print("info", "[Mode] Internal Gamemode set to: Creative Mode")
+  if nz.Mode.CurrentState != modeConst then
+    if modeConst == MODE_PLAY then
+      nz.Mode.CurrentState = modeConst
+      nz.Debug.Print("info", "[Mode] Internal Gamemode set to: Play Mode")
+    elseif modeConst == MODE_CREATIVE then
+      nz.Mode.CurrentState = modeConst
+      nz.Debug.Print("info", "[Mode] Internal Gamemode set to: Creative Mode")
+    end
+
+    //Kill all players to reset them
+    for _, ply in pairs(player.GetAll()) do
+      ply:KillSilent()
+    end
   end
 
   return nz.Mode.CurrentState

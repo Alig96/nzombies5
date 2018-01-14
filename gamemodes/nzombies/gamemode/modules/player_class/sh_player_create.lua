@@ -10,16 +10,9 @@ PLAYER.RunSpeed				= 600
 PLAYER.CanUseFlashlight     = true
 
 function PLAYER:Loadout()
-
 	-- Creation Tools
 	self.Player:Give( "weapon_physgun" )
-
-	timer.Simple(0.1, function()
-		if IsValid(self.Player) and !self.Player:HasWeapon( "weapon_physgun" ) then
-			self.Player:Give( "weapon_physgun" )
-		end
-	end)
-
+	self.Player:Give( "nz_multi_tool" )
 end
 
 player_manager.RegisterClass( "player_create", PLAYER, "player_default" )

@@ -12,6 +12,13 @@ local function ChatCommands()
       nz.Mode:set(MODE_CREATIVE)
     end
   end)
+
+  nz.Command.Chat("play", function(ply, params)
+    //Check if they are allowed to do this
+    if ply then
+      nz.Mode:set(MODE_PLAY)
+    end
+  end)
 end
 
 //This is the main entry point to the app
@@ -22,6 +29,9 @@ local function StartServer()
   ConsoleCommands()
   //Set all the custom chat commands
   ChatCommands()
+
+  //While the gamemode is in development, set the default to Creative
+  nz.Mode:set(MODE_CREATIVE)
 end
 
 hook.Add( "RealmLoader.Finished", "Starts NZombies", StartServer )
