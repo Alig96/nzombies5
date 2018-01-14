@@ -3,6 +3,10 @@ GM.Author = "Alig96"
 GM.Email = "N/A"
 GM.Website = "N/A"
 
+-- Mode Constants
+MODE_PLAY = 0
+MODE_CREATIVE = 1
+
 -- Game Constants
 GAME_INIT = 0
 GAME_READY = 1

@@ -6,7 +6,7 @@ local function when_player_spawns_they_are_set_to_spectator()
   player.CreateNextBot( "test_bot" )
 
   //Assert that we have 1 player
-  GUnit.assert(#player.GetBots()):shouldEqual(1)
+  GUnit.assert(#player.GetBots()):greaterThan(1)
 end
 
 botTest:beforeAll(function ()
