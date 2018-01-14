@@ -55,14 +55,14 @@ function Loader:include( currentDir, fileName )
 	end
 end
 
-function Loader:recursiveInclude( currentPath, moduleName )
+function Loader:recursiveInclude( currentPath )
 	-- Scan through the current directory, include any files, and then re run self for any directorys
 	local loadFiles, loadFolders = file.Find(currentPath .. "/*", "LUA")
 
 	if loadFiles != null then
 		-- Check for a constructor module file
 		if table.HasValue(loadFiles, "sh_constructor.lua") then
-			print("Constructing: " .. moduleName)
+			print("Constructing: " .. currentPath)
 			self:include(currentPath, "sh_constructor.lua")
 		end
 
@@ -102,7 +102,7 @@ function Loader:new( includeDir )
 
 	-- Recursively include everything with the module directorys
 	for _, moduleFolder in pairs(initDirs) do
-		self:recursiveInclude(basePath .. moduleFolder, moduleFolder)
+		self:recursiveInclude(basePath .. moduleFolder)
 	end
 
 	print(" ** End List **")
