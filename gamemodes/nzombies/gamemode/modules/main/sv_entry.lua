@@ -14,7 +14,7 @@ end
 //This is the main entry point to the app
 local function StartServer()
   //Set the enviroment
-  nz.Debug.Mode:set(false)
+  nz.Debug.Mode:set(true)
   //Set all the custom console commands
   ConsoleCommands()
   //Set all the custom chat commands
