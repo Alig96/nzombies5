@@ -113,6 +113,11 @@ local function a_game_can_be_simulated()
   GUnit.assert(currentGame.CurrentState):shouldEqual(GAME_FINISHED)
 end
 
+gameTest:beforeAll(function ()
+  //Set it to debug mode
+  nz.Debug.Mode:set(true)
+end)
+
 gameTest:addSpec("a game cannot be created with not enough players", a_game_cannot_be_created_with_not_enough_players)
 gameTest:addSpec("a game can be created with enough players", a_game_can_be_created_with_enough_players)
 gameTest:addSpec("a game can generate a round", a_game_can_generate_a_round)

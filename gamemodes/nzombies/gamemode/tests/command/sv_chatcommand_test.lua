@@ -24,14 +24,13 @@ local function a_chat_command_can_be_created()
   GUnit.assert(nz.Tests.valueToChange):shouldEqual(true)
 end
 
-local function beforeAll()
+chatcommandTest:beforeAll(function ()
   nz.Tests = {}
-end
 
-local function afterAll()
+  //Set it to debug mode
+  nz.Debug.Mode:set(true)
+end)
+chatcommandTest:afterAll(function ()
   nz.Tests = null
-end
-
-chatcommandTest:beforeAll(beforeAll)
-chatcommandTest:afterAll(afterAll)
+end)
 chatcommandTest:addSpec("can be created", a_chat_command_can_be_created)

@@ -36,7 +36,6 @@ local function can_check_if_in_production_mode()
   GUnit.assert(nz.Debug.Mode:isProd()):shouldEqual(true)
 end
 
-
 debugModeTest:addSpec("can get mode without setting it prior", can_get_mode_without_setting)
 debugModeTest:addSpec("can set mode", can_set_mode)
 debugModeTest:addSpec("can check if in dev mode", can_check_if_in_dev_mode)
