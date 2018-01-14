@@ -6,8 +6,11 @@ local function ConsoleCommands()
 end
 
 local function ChatCommands()
-  nz.Command.Chat("qr", function(ply, params)
-    RunConsoleCommand("changelevel", game.GetMap())
+  nz.Command.Chat("create", function(ply, params)
+    //Check if they are allowed to do this
+    if ply then
+      nz.Mode:set(MODE_CREATIVE)
+    end
   end)
 end
 

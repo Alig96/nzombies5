@@ -12,9 +12,8 @@ hook.Add("PlayerSay", "nz.chatcommand.listener", function(ply, text, public)
 
   if nz.Command.ChatListener[triggerChar] and nz.Command.ChatListener[triggerChar][triggerString] then
     local command = nz.Command.ChatListener[triggerChar][triggerString]
+    nz.Debug.Print("info", "[ChatCommand] " .. ply:Nick() .. " ran chat command: " .. triggerString)
     command.customFunction(ply, params)
-    nz.Debug.Print("info", ply:Nick() .. " ran chat command: " .. triggerString)
-
     return false
   end
 end)

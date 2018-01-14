@@ -3,7 +3,14 @@ Mode.__index = Mode
 Mode.CurrentState = MODE_PLAY
 
 function Mode:set( modeConst )
-  nz.Mode.CurrentState = modeConst
+  if modeConst == MODE_PLAY then
+    nz.Mode.CurrentState = modeConst
+    nz.Debug.Print("info", "[Mode] Internal Gamemode set to: Play Mode")
+  elseif modeConst == MODE_CREATIVE then
+    nz.Mode.CurrentState = modeConst
+    nz.Debug.Print("info", "[Mode] Internal Gamemode set to: Creative Mode")
+  end
+
   return nz.Mode.CurrentState
 end
 

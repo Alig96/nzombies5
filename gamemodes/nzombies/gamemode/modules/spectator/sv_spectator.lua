@@ -9,9 +9,15 @@ function GM:PlayerInitialSpawn( ply )
 end
 
 function GM:PlayerDeathThink(ply)
-  if ply:KeyPressed( IN_ATTACK ) then
-    ply:cycleSpectatePlayer()
-  elseif ply:KeyPressed( IN_ATTACK2 ) then
-    ply:cycleSpectateMode()
+  if ply:isSpectator() then
+    if ply:KeyPressed( IN_ATTACK ) then
+      ply:cycleSpectatePlayer()
+    elseif ply:KeyPressed( IN_ATTACK2 ) then
+      ply:cycleSpectateMode()
+    end
+  end
+
+  if nz.Mode:isCreative() then
+    ply:Spawn()
   end
 end
