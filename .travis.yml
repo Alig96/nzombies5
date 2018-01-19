@@ -22,11 +22,12 @@ script:
 # Clone GUnit into our Project
 - cd /home/travis/Steam/steamapps/common/GarrysModDS/garrysmod/addons/
 - git clone https://github.com/Alig96/GUnit.git
+- mv GUnit gunit
 # Move the installed version of nZombies to the addons
 - mkdir nzombies5
 - mv -v /home/travis/build/Alig96/nzombies5/* /home/travis/Steam/steamapps/common/GarrysModDS/garrysmod/addons/nzombies5
 # Run the server & trigger the travis version of the test suite
 - cd /home/travis/Steam/steamapps/common/GarrysModDS
-- ./srcds_run -game garrysmod +maxplayers 12 -noworkshop +map gm_flatgrass +hostname travis.nzombies5
+- ./srcds_run -game garrysmod +gamemode nzombies +maxplayers 12 -noworkshop +map gm_flatgrass +hostname travis.nzombies5
 # Check if we had any errors in the test suite
 - if [ -e /home/travis/Steam/steamapps/common/GarrysModDS/garrysmod/data/gunit-build-status.txt ]; then exit 1; else exit 0; fi
