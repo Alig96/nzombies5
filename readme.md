@@ -1,4 +1,4 @@
-# nZombies 5
+# nZombies 5 [![Build Status](https://travis-ci.org/Alig96/nzombies5.svg?branch=master)](https://travis-ci.org/Alig96/nzombies5)
 
 A full recode from scratch of nZombies utilizing [nZombies v3](https://github.com/Alig96/nzombies) & [nZombies v4](https://github.com/Zet0rz/nzombies) by Zet0rz & Lolleko.
 
