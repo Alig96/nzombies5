@@ -6,12 +6,12 @@ local function when_player_spawns_they_are_set_to_spectator()
   player.CreateNextBot( "test_bot" )
 
   //Assert that we have 1 player
-  GUnit.assert(#player.GetBots()):greaterThan(1)
+  GUnit.assert(#player.GetBots()):greaterThan(0)
 end
 
 botTest:beforeAll(function ()
   //Set it to debug mode
-  nz.Debug.Mode:set(true)
+  nz.Debug.Environment:set(ENV_DEV)
 end)
 
 botTest:afterEach(function ()

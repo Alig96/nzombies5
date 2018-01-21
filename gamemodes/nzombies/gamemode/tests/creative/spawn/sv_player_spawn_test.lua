@@ -1,4 +1,4 @@
-local playerSpawnerTest = GUnit.Test:new("Creative -> Player Spawner")
+local playerSpawnerTest = GUnit.Test:new("Creative > Player Spawner")
 
 local function a_player_spawner_can_be_placed()
   local pos = Vector( 0, 0, 0 );
@@ -24,7 +24,7 @@ end
 
 playerSpawnerTest:beforeAll(function ()
   //Set it to debug mode
-  nz.Debug.Mode:set(true)
+  nz.Debug.Environment:set(ENV_DEV)
 end)
 
 playerSpawnerTest:addSpec("a player spawner can be placed", a_player_spawner_can_be_placed)

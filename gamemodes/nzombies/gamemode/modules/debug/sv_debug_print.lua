@@ -11,7 +11,7 @@ local colours = {
 }
 
 function DebugPrint:new( level, text )
-  if nz.Debug.Mode:isDev() then
+  if nz.Debug.Environment:isDev() then
     local levelPrint = level:gsub("^%l", string.upper)
     local outputString = "[" .. levelPrint .. "] " .. text .. "\n"
     MsgC( colours[level], outputString )

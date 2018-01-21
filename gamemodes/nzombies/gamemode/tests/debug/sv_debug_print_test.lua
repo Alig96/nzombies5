@@ -1,4 +1,4 @@
-local debugPrintTest = GUnit.Test:new("DebugPrint")
+local debugPrintTest = GUnit.Test:new("Debug > Print")
 
 local function can_print_a_primary_message()
   //Create a debug message
@@ -50,7 +50,7 @@ end
 
 debugPrintTest:beforeAll(function ()
   //Set it to debug mode
-  nz.Debug.Mode:set(true)
+  nz.Debug.Environment:set(ENV_DEV)
 end)
 
 debugPrintTest:addSpec("can print a danger message", can_print_a_danger_message)

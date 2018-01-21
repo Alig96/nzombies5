@@ -25,7 +25,7 @@ end
 
 spectatorTest:beforeAll(function ()
   //Set it to debug mode
-  nz.Debug.Mode:set(true)
+  nz.Debug.Environment:set(ENV_DEV)
 end)
 
 spectatorTest:afterEach(function ()

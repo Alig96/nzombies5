@@ -1,4 +1,4 @@
-local chatcommandTest = GUnit.Test:new("ChatCommand")
+local chatcommandTest = GUnit.Test:new("Command > Chat")
 local playerGen = GUnit.Generators.FakePlayer
 
 local function a_chat_command_can_be_created()
@@ -28,7 +28,7 @@ chatcommandTest:beforeAll(function ()
   nz.Tests = {}
 
   //Set it to debug mode
-  nz.Debug.Mode:set(true)
+  nz.Debug.Environment:set(ENV_DEV)
 end)
 chatcommandTest:afterAll(function ()
   nz.Tests = null

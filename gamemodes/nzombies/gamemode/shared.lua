@@ -3,6 +3,11 @@ GM.Author = "Alig96"
 GM.Email = "N/A"
 GM.Website = "N/A"
 
+-- Environments Constants
+ENV_DEV = 0
+ENV_PRIVATE = 1
+ENV_PUBLIC = 2
+
 -- Mode Constants
 MODE_PLAY = 0
 MODE_CREATIVE = 1
