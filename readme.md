@@ -28,7 +28,7 @@ Want to help contribute to nZombies? Follow these instructions.
 
 ### Install a local GMod Server
 - Follow the instructions [here](https://wiki.garrysmod.com/page/Hosting_A_Dedicated_Server).
-- Install [GUnit](https://github.com/DarkRedemption/GUnit) into your server's addons.
+- Install [GUnit](https://github.com/Alig96/GUnit) into your server's addons.
 
 ### Install nZombies (Git)
 - Fork the repository so you can track your changes.
