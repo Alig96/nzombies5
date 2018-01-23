@@ -3,7 +3,6 @@ DebugPrint.__index = DebugPrint
 
 //https://materialuicolors.co/
 local colours = {
-  primary = Color( 156, 39, 17 ),
   success = Color( 76, 175, 80 ),
   info = Color( 3, 169, 244 ),
   warning = Color( 255, 87, 34 ),
@@ -11,7 +10,7 @@ local colours = {
 }
 
 function DebugPrint:new( level, text )
-  if nz.Debug.Environment:isDev() then
+  if nz.Debug.Environment:isDev() or level != "info" then
     local levelPrint = level:gsub("^%l", string.upper)
     local outputString = "[" .. levelPrint .. "] " .. text .. "\n"
     MsgC( colours[level], outputString )

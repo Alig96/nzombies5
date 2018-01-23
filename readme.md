@@ -35,13 +35,16 @@ Want to help contribute to nZombies? Follow these instructions.
 - Open your terminal in the local GMod server's addon folder.
 - Run: `git clone https://github.com/<YOUR USERNAME HERE>/nzombies5.git nzombies5`
 
-### Change nZombies to developer mode
-- Go to nZombies entry point: `addons/nzombies5/gamemodes/nzombies/gamemode/modules/main/sv_entry.lua`
-- In the start server function, call the function `nz.Debug.Mode:set(true)`.
+### Change the nZombies environment to "Developer Mode"
+- Navigate to: `garrysmod/data/nz/env/current_enviroment.txt`
+- Edit this file to mimic: `garrysmod/data/nz/env/examples/dev.txt`
+- If you don't see these files, delete the folder: `garrysmod/data/nz/env/` & launch the server to regenerate the structure.
+- If you were successful in setting up Developer Mode, you should see: `[Success] [Environment] Internal Environment was set to: Development`
+- (Wiki Page for environment files)
 
 ### Running Unit Tests
 - Ensure you have GUnit installed properly.
-- Type `test-only nzombies5` into server console.
+- Type `test-only nzombies5` into server console. (Tip: This is also bound to the console command `qt`)
 - All tests should pass, if they aren't then the version of nZombies is unstable.
 
 ### Feature Development

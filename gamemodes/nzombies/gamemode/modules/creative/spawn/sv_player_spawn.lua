@@ -4,14 +4,14 @@ function nz.Creative.Spawn:addPlayerSpawner(pos)
   ent:SetPos( pos )
   ent:Spawn()
 
-  nz.Debug.Print("info", "[Creative:Spawn] Player Spawner placed at: " .. tostring(pos))
+  nz.Debug.Print("success", "[Creative:Spawn] Player Spawner placed at: " .. tostring(pos))
 
   return ent
 end
 
 function nz.Creative.Spawn:removePlayerSpawner(ent)
   if ent:GetClass() == "nz_player_spawn" then
-    nz.Debug.Print("info", "[Creative:Spawn] Player Spawner removed at: " .. tostring(ent:GetPos()))
+    nz.Debug.Print("success", "[Creative:Spawn] Player Spawner removed at: " .. tostring(ent:GetPos()))
     ent:Remove()
   end
 end

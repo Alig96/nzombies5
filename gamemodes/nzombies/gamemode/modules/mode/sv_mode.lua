@@ -6,10 +6,10 @@ function Mode:set( modeConst )
   if nz.Mode.CurrentState != modeConst then
     if modeConst == MODE_PLAY then
       nz.Mode.CurrentState = modeConst
-      nz.Debug.Print("info", "[Mode] Internal Gamemode set to: Play Mode")
+      nz.Debug.Print("success", "[Mode] Internal Gamemode set to: Play Mode")
     elseif modeConst == MODE_CREATIVE then
       nz.Mode.CurrentState = modeConst
-      nz.Debug.Print("info", "[Mode] Internal Gamemode set to: Creative Mode")
+      nz.Debug.Print("success", "[Mode] Internal Gamemode set to: Creative Mode")
     end
 
     //Kill all players to reset them

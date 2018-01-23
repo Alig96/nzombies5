@@ -1,13 +1,5 @@
 local debugEnvironmentTest = GUnit.Test:new("Debug > Environment")
 
-local function can_get_environment_without_setting()
-  -- Get the current debug environment
-  local debugEnvironment = nz.Debug.Environment:get()
-
-  -- Assert the default is the development environment
-  GUnit.assert(debugEnvironment):shouldEqual(ENV_DEV)
-end
-
 local function can_set_environment()
   -- Set the environment to public
   local debugEnvironment = nz.Debug.Environment:set(ENV_PUBLIC)
@@ -41,7 +33,6 @@ local function can_check_if_in_public_environment()
   GUnit.assert(nz.Debug.Environment:isPublic()):shouldEqual(true)
 end
 
-debugEnvironmentTest:addSpec("can get default environment without setting it prior", can_get_environment_without_setting)
 debugEnvironmentTest:addSpec("can set environment", can_set_environment)
 debugEnvironmentTest:addSpec("can check if in dev environment", can_check_if_in_dev_environment)
 debugEnvironmentTest:addSpec("can check if in private environment", can_check_if_in_private_environment)

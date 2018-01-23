@@ -1,15 +1,5 @@
 local debugPrintTest = GUnit.Test:new("Debug > Print")
 
-local function can_print_a_primary_message()
-  //Create a debug message
-  local debugPrint = nz.Debug.Print("primary", "Test")
-
-  //Assert that it transforms the string
-  GUnit.assert(debugPrint):shouldEqual("[Primary] Test\n")
-end
-
-debugPrintTest:addSpec("can print a primary message", can_print_a_primary_message)
-
 local function can_print_a_success_message()
   //Create a debug message
   local debugPrint = nz.Debug.Print("success", "Test")

@@ -24,7 +24,7 @@ function Game:checkPrerequisites()
     return false
   end
 
-  nz.Debug.Print("info", "[Game] Game passed all prerequisites.")
+  nz.Debug.Print("success", "[Game] Game passed all prerequisites.")
   return true
 end
 

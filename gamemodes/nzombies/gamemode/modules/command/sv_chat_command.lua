@@ -25,7 +25,7 @@ function ChatCommand:addToListener( chatCommand )
   end
 
   nz.Command.ChatListener[chatCommand["triggerSymbol"]][chatCommand["triggerPhrase"]] = chatCommand
-  nz.Debug.Print("info", "[ChatCommand] Added command: " .. chatCommand["triggerSymbol"] .. chatCommand["triggerPhrase"])
+  nz.Debug.Print("success", "[Command:Chat] Added command: " .. chatCommand["triggerSymbol"] .. chatCommand["triggerPhrase"])
 end
 
 //Assign the meta table to the nz global
