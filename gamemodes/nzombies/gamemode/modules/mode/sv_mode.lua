@@ -12,7 +12,7 @@ function Mode:set( modeConst )
       nz.Debug.Print("success", "[Mode] Internal Gamemode set to: Creative Mode")
     end
 
-    //Kill all players to reset them
+    -- Kill all players to reset them
     for _, ply in pairs(player.GetAll()) do
       ply:KillSilent()
     end
@@ -33,5 +33,5 @@ function Mode:isCreative()
   return self.get() == MODE_CREATIVE
 end
 
-//Assign the meta table to the nz global
+-- Assign the meta table to the nz global
 nz.Mode = setmetatable( Mode, { __call = Mode.set } )

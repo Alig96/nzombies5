@@ -14,34 +14,34 @@ Round.MaxEnemies = 1
 Round.MaxHealth = 100
 Round.MaxSpeed = 100
 
-//Prepare the round
+-- Prepare the round
 function Round:prepare()
-  //Set the round state to preparing
+  -- Set the round state to preparing
   self.CurrentState = ROUND_PREP
 
-  //Set the ready timer to the current time + delay
+  -- Set the ready timer to the current time + delay
   self.StartingTime = CurTime() + self.PrepareTime
 
   nz.Debug.Print("info", "[Round] Round has been prepared & its state has been set to PREP.")
 end
 
-//Start the round
+-- Start the round
 function Round:start()
-  //Set the round state to in progress
+  -- Set the round state to in progress
   self.CurrentState = ROUND_PROG
 
   nz.Debug.Print("info", "[Round] Round has been started & its state has been set to PROG.")
 end
 
-//Finish the round
+-- Finish the round
 function Round:finish()
-  //Set the round state to finished
+  -- Set the round state to finished
   self.CurrentState = ROUND_FINISHED
 
   nz.Debug.Print("info", "[Round] Round has finished & its state has been set to FINISHED.")
 end
 
-//This is the victory condition of the round, when this returns true, end the round
+-- This is the victory condition of the round, when this returns true, end the round
 function Round:victoryCondition()
   if self.EnemiesKilled >= self.MaxEnemies then
     nz.Debug.Print("info", "[Round] The round's victory condition has been met")
@@ -51,18 +51,18 @@ function Round:victoryCondition()
   return false
 end
 
-//Create a new Round
+-- Create a new Round
 function Round:new(roundNumber, curves)
-  //Create a new round
+  -- Create a new round
   local newRound = table.Copy( Round )
-  //Remove the meta data
+  -- Remove the meta data
   newRound.new = null
   newRound.__index = null
 
-  //Set the round Id
+  -- Set the round Id
   newRound.RoundId = roundNumber
 
-  //Calculate this rounds data
+  -- Calculate this rounds data
   if curves then
     newRound.MaxEnemies = curves.MaxEnemies:calculatePointOnCurve(roundNumber)
     newRound.MaxHealth = curves.MaxHealth:calculatePointOnCurve(roundNumber)
@@ -72,5 +72,5 @@ function Round:new(roundNumber, curves)
   return newRound
 end
 
-//Assign the meta table to the nz global
+-- Assign the meta table to the nz global
 nz.Round.Create = setmetatable( Round, { __call = Round.new } )

@@ -5,17 +5,17 @@ local function when_player_spawns_they_are_set_to_spectator()
   nz.Debug.Print("info", "[Bot] Spawning bot." )
   player.CreateNextBot( "test_bot" )
 
-  //Assert that we have 1 player
+  -- Assert that we have 1 player
   GUnit.assert(#player.GetBots()):greaterThan(0)
 end
 
 botTest:beforeAll(function ()
-  //Set it to debug mode
+  -- Set it to debug mode
   nz.Debug.Environment:set(ENV_DEV)
 end)
 
 botTest:afterEach(function ()
-  //Kick all bots
+  -- Kick all bots
   for _, bot in pairs(player.GetBots()) do
     bot:Kick()
   end

@@ -4,7 +4,7 @@ local function setPlayerClass(ply)
     player_manager.SetPlayerClass( ply, "player_create" )
   elseif nz.Mode:isPlay() then
     nz.Debug.Print("info", "[PlayerClass] Set " .. ply:Nick() .. " to the Play Class.")
-    //player_manager.SetPlayerClass( ply, "player_sandbox" )
+    -- player_manager.SetPlayerClass( ply, "player_sandbox" )
   end
 end
 

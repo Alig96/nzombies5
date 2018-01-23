@@ -3,10 +3,10 @@ local playerSpawnerTest = GUnit.Test:new("Creative > Player Spawner")
 local function a_player_spawner_can_be_placed()
   local pos = Vector( 0, 0, 0 );
 
-  //Place the spawner
+  -- Place the spawner
   nz.Creative.Spawn:addPlayerSpawner(pos)
 
-  //Assert that we have 1 spawner
+  -- Assert that we have 1 spawner
   GUnit.assert(#ents.FindByClass("nz_player_spawn")):greaterThan(0)
 end
 
@@ -14,16 +14,16 @@ local function a_player_spawner_can_be_removed()
   local pos = Vector( 0, 0, 0 );
   local ent = nz.Creative.Spawn:addPlayerSpawner(pos)
 
-  //Remove the spawner
+  -- Remove the spawner
   nz.Creative.Spawn:removePlayerSpawner(ent)
 
-  //Assert that we have 0 spawners
-  //This doesn't actually work, because the entity is still in the game world while this is being run, so just assert there were no errors.
-  //GUnit.assert(#ents.FindByClass("nz_player_spawn")):shouldEqual(0)
+  -- Assert that we have 0 spawners
+  -- This doesn't actually work, because the entity is still in the game world while this is being run, so just assert there were no errors.
+  -- GUnit.assert(#ents.FindByClass("nz_player_spawn")):shouldEqual(0)
 end
 
 playerSpawnerTest:beforeAll(function ()
-  //Set it to debug mode
+  -- Set it to debug mode
   nz.Debug.Environment:set(ENV_DEV)
 end)
 

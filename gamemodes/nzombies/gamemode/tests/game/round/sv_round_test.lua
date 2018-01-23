@@ -1,43 +1,43 @@
 local roundTest = GUnit.Test:new("Round")
 
 local function a_round_can_be_created()
-  //Create a round
+  -- Create a round
   local round = nz.Round.Create()
 
-  //Assert that the round is in the initial state
+  -- Assert that the round is in the initial state
   GUnit.assert(round.CurrentState):shouldEqual(ROUND_INIT)
 end
 
 local function a_round_can_be_prepared()
-  //Create a round
+  -- Create a round
   local round = nz.Round.Create()
 
-  //Start the round
+  -- Start the round
   round:prepare()
 
-  //Assert that the round is in the 'inprogress' state
+  -- Assert that the round is in the 'inprogress' state
   GUnit.assert(round.CurrentState):shouldEqual(ROUND_PREP)
 end
 
 local function a_round_can_be_started()
-  //Create a round
+  -- Create a round
   local round = nz.Round.Create()
 
-  //Start the round
+  -- Start the round
   round:start()
 
-  //Assert that the round is in the 'inprogress' state
+  -- Assert that the round is in the 'inprogress' state
   GUnit.assert(round.CurrentState):shouldEqual(ROUND_PROG)
 end
 
 local function a_round_can_be_finished()
-  //Create a round
+  -- Create a round
   local round = nz.Round.Create()
 
-  //Finish the round
+  -- Finish the round
   round:finish()
 
-  //Assert that the round is in the finished state
+  -- Assert that the round is in the finished state
   GUnit.assert(round.CurrentState):shouldEqual(ROUND_FINISHED)
 end
 

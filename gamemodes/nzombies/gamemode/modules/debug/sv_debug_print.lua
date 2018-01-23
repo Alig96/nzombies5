@@ -1,7 +1,7 @@
 DebugPrint = {}
 DebugPrint.__index = DebugPrint
 
-//https://materialuicolors.co/
+-- https://materialuicolors.co/
 local colours = {
   success = Color( 76, 175, 80 ),
   info = Color( 3, 169, 244 ),
@@ -19,5 +19,5 @@ function DebugPrint:new( level, text )
   end
 end
 
-//Assign the meta table to the nz global
+-- Assign the meta table to the nz global
 nz.Debug.Print = setmetatable( DebugPrint, { __call = DebugPrint.new } )

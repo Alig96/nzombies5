@@ -10,10 +10,10 @@ function ChatCommand:new( triggerPhrase, customFunction, triggerSymbol )
     customFunction = customFunction or self.defaultFunction,
     triggerSymbol = triggerSymbol or self.defaultTriggerSymbol,
   }
-  //Set it as a meta table
+  -- Set it as a meta table
   setmetatable( newChatCommand, ChatCommand )
 
-  //Add it to the listener
+  -- Add it to the listener
   self:addToListener(newChatCommand)
 
   return newChatCommand
@@ -28,5 +28,5 @@ function ChatCommand:addToListener( chatCommand )
   nz.Debug.Print("success", "[Command:Chat] Added command: " .. chatCommand["triggerSymbol"] .. chatCommand["triggerPhrase"])
 end
 
-//Assign the meta table to the nz global
+-- Assign the meta table to the nz global
 nz.Command.Chat = setmetatable( ChatCommand, { __call = ChatCommand.new } )
