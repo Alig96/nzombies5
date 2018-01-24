@@ -11,7 +11,10 @@ end
 
 function nz.Creative.Spawn:removePlayerSpawner(ent)
   if ent:GetClass() == "nz_player_spawn" then
-    nz.Debug.Print("success", "[Creative:Spawn] Player Spawner removed at: " .. tostring(ent:GetPos()))
+    local posString = tostring(ent:GetPos())
     ent:Remove()
+    ent = nil
+    nz.Debug.Print("success", "[Creative:Spawn] Player Spawner removed at: " .. posString)
+    return ent
   end
 end

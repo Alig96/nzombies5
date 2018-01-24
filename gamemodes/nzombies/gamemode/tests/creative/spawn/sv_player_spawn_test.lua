@@ -15,11 +15,12 @@ local function a_player_spawner_can_be_removed()
   local ent = nz.Creative.Spawn:addPlayerSpawner(pos)
 
   -- Remove the spawner
-  nz.Creative.Spawn:removePlayerSpawner(ent)
+  ent = nz.Creative.Spawn:removePlayerSpawner(ent)
 
   -- Assert that we have 0 spawners
   -- This doesn't actually work, because the entity is still in the game world while this is being run, so just assert there were no errors.
   -- GUnit.assert(#ents.FindByClass("nz_player_spawn")):shouldEqual(0)
+  GUnit.assert(IsValid(ent)):shouldEqual(false)
 end
 
 playerSpawnerTest:beforeAll(function ()
