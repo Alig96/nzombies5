@@ -1,13 +1,17 @@
 local function consoleCommands()
-  -- Quick Reloads the stage, mostly used for testing/debug
-  nz.Command.Console("qr", function()
-  	RunConsoleCommand("changelevel", game.GetMap())
-  end)
+  if nz.Debug.Environment:isDev() then
+    -- Quick Reloads the stage, mostly used for testing/debug
+    nz.Command.Console("qr", function(ply)
+      if ply:IsValid() then return end
+    	RunConsoleCommand("changelevel", game.GetMap())
+    end)
 
-  -- Quick Tests the game, used for testing/debug
-  nz.Command.Console("qt", function()
-    RunConsoleCommand("test-only", "nzombies5")
-  end)
+    -- Quick Tests the game, used for testing/debug
+    nz.Command.Console("qt", function(ply)
+      if ply:IsValid() then return end
+      RunConsoleCommand("test-only", "nzombies5")
+    end)
+  end
 end
 
 local function chatCommands()
