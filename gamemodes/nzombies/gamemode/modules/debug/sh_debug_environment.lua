@@ -3,7 +3,7 @@ DebugEnvironment.__index = DebugEnvironment
 
 function DebugEnvironment:set( envNum )
   if envNum == ENV_DEV or envNum == ENV_PRIVATE or envNum == ENV_PUBLIC then
-    nz.CurrentEnvironment = envNum
+    nz.Debug.CurrentEnvironment = envNum
 
     local environmentString = "null"
     if envNum == ENV_DEV then
@@ -14,14 +14,18 @@ function DebugEnvironment:set( envNum )
       environmentString = "Public"
     end
 
-    nz.Debug.Print("success", "[Environment] Internal Environment was set to: " .. environmentString)
+    nz.Debug.Print("success", "[Environment] Environment was set to: " .. environmentString)
+    if SERVER then
+      -- Send a sync to players
+      nz.fullSyncAll()
+    end
   end
 
-  return nz.CurrentEnvironment
+  return nz.Debug.CurrentEnvironment
 end
 
 function DebugEnvironment:get()
-  return nz.CurrentEnvironment
+  return nz.Debug.CurrentEnvironment
 end
 
 -- Helpers

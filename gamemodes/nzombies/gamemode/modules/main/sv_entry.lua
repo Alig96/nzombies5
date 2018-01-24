@@ -1,4 +1,4 @@
-local function ConsoleCommands()
+local function consoleCommands()
   -- Quick Reloads the stage, mostly used for testing/debug
   nz.Command.Console("qr", function()
   	RunConsoleCommand("changelevel", game.GetMap())
@@ -10,7 +10,7 @@ local function ConsoleCommands()
   end)
 end
 
-local function ChatCommands()
+local function chatCommands()
   nz.Command.Chat("create", function(ply, params)
     -- Check if they are allowed to do this
     if ply then
@@ -27,15 +27,17 @@ local function ChatCommands()
 end
 
 -- This is the main entry point to the app
-local function StartServer()
+local function startServer()
+  -- Annouce it
+  nz.Debug.Print("success", "Starting nZombies Version: v" .. NZ_VERSION)
   -- Load the current enviroment file
   nz.IO.Environment:loadCurrentEnviromentFile()
   -- Set all the custom console commands
-  ConsoleCommands()
+  consoleCommands()
   -- Set all the custom chat commands
-  ChatCommands()
+  chatCommands()
   -- While the gamemode is in development, set the default to Creative
   nz.Mode:set(MODE_CREATIVE)
 end
 
-hook.Add( "RealmLoader.Finished", "Starts NZombies", StartServer )
+hook.Add( "RealmLoader.Finished", "Starts NZombies", startServer )

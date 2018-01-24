@@ -3,6 +3,8 @@ GM.Author = "Alig96"
 GM.Email = "N/A"
 GM.Website = "N/A"
 
+NZ_VERSION = "5.0.0"
+
 -- Environments Constants
 ENV_DEV = 0
 ENV_PRIVATE = 1

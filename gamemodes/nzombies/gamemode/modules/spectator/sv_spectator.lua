@@ -1,6 +1,9 @@
 function GM:PlayerInitialSpawn( ply )
   nz.Debug.Print("info", "[GM] " .. ply:Nick() .. " is Sending Client Info.")
 
+  -- Send the player a full sync
+  nz.fullSyncPlayer(ply)
+
   -- As soon as they spawn, set them to a roaming spectator
   ply:setAsSpectator()
 

@@ -1,3 +1,3 @@
 -- Constructor
 nz.Debug = {}
-nz.CurrentEnvironment = ENV_DEV
+nz.Debug.CurrentEnvironment = ENV_DEV
