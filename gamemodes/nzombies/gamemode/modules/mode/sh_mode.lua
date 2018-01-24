@@ -11,10 +11,14 @@ function Mode:set( modeConst )
       nz.Mode.CurrentState = modeConst
       nz.Debug.Print("success", "[Mode] Internal Gamemode set to: Creative Mode")
     end
+    if SERVER then
+      -- Resync all players
+      nz.fullSyncAll()
 
-    -- Kill all players to reset them
-    for _, ply in pairs(player.GetAll()) do
-      ply:KillSilent()
+      -- Kill all players to reset them
+      for _, ply in pairs(player.GetAll()) do
+        ply:KillSilent()
+      end
     end
   end
 
