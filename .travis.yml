@@ -23,8 +23,7 @@ script:
 - cd /home/travis/Steam/steamapps/common/GarrysModDS/garrysmod/addons/
 - git clone https://github.com/Alig96/GUnit.git gunit
 # Move the installed version of nZombies to the addons
-- mkdir nzombies5
-- mv -v /home/travis/build/Alig96/nzombies5/* /home/travis/Steam/steamapps/common/GarrysModDS/garrysmod/addons/nzombies5
+- mv -v $TRAVIS_BUILD_DIR /home/travis/Steam/steamapps/common/GarrysModDS/garrysmod/addons
 # Run the server & trigger the travis version of the test suite
 - cd /home/travis/Steam/steamapps/common/GarrysModDS
 - ./srcds_run -game garrysmod +gamemode nzombies +maxplayers 12 -noworkshop +map gm_flatgrass +hostname travis.nzombies5
