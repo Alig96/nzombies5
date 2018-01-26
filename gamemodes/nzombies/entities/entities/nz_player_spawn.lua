@@ -20,8 +20,8 @@ end
 
 if CLIENT then
 	function ENT:Draw()
-		-- if nz.Mode:isCreative() then
+		if nz.Mode:isCreative() then
 			self:DrawModel()
-		-- end
+		end
 	end
 end
