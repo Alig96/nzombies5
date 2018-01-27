@@ -1,3 +1,12 @@
+function nz.Broadcast(syncFunctionKey)
+  nz.Debug.Print("info", "[Sync:Broadcast] Broadcasting to all current players: " .. syncFunctionKey)
+  if nz.Sync[syncFunctionKey] then
+    for _, ply in pairs(player.GetAll()) do
+      nz.Sync[syncFunctionKey](ply)
+    end
+  end
+end
+
 -- Loop through and run every sync function registered and send to the player.
 function nz.fullSyncPlayer(ply)
   nz.Debug.Print("info", "[Sync] Sending a full sync to: " .. ply:Nick())

@@ -16,8 +16,8 @@ function DebugEnvironment:set( envNum )
 
     nz.Debug.Print("success", "[Environment] Environment was set to: " .. environmentString)
     if SERVER then
-      -- Send a sync to players
-      nz.fullSyncAll()
+      -- Broadcast it to all players
+      nz.Broadcast("sendDebugEnviroment")
     end
   end
 
