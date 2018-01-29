@@ -42,13 +42,14 @@ function Loader:include( currentDir, fileName )
 			print("Including: " .. fullPath)
 			include(fullPath)
 		elseif CLIENT then
+			print("Including: " .. fullPath)
 			include(fullPath)
 		end
 	elseif realmCode == "cl" then
 		if SERVER then
 			print("Sending: " .. fullPath)
 			AddCSLuaFile(fullPath)
-		else
+		elseif CLIENT then
 			print("Including: " .. fullPath)
 			include(fullPath)
 		end
@@ -62,13 +63,13 @@ function Loader:recursiveInclude( currentPath )
 	if loadFiles != null then
 		-- Check for a constructor module file
 		if table.HasValue(loadFiles, "sh_constructor.lua") then
-			print("Constructing: " .. currentPath)
+			print("Module: " .. currentPath)
 			self:include(currentPath, "sh_constructor.lua")
 		end
 
 		for k, loadFile in pairs(loadFiles) do
 			-- We don't need to reload the constructor, since we loaded it first
-			if loadFile != "sh_constructor" then
+			if loadFile != "sh_constructor.lua" then
 				self:include(currentPath, loadFile)
 			end
 		end

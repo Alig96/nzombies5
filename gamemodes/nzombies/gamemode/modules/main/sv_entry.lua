@@ -16,17 +16,17 @@ end
 
 local function chatCommands()
   nz.Command.Chat("create", function(ply, params)
-    -- Check if they are allowed to do this
-    if ply then
-      nz.Mode:set(MODE_CREATIVE)
-    end
+    -- Send it to the controller
+    nz.Controller.handleChangeMode(ply, {
+      ["requestedMode"] = MODE_CREATIVE,
+    })
   end)
 
   nz.Command.Chat("play", function(ply, params)
-    -- Check if they are allowed to do this
-    if ply then
-      nz.Mode:set(MODE_PLAY)
-    end
+    -- Send it to the controller
+    nz.Controller.handleChangeMode(ply, {
+      ["requestedMode"] = MODE_PLAY,
+    })
   end)
 end
 

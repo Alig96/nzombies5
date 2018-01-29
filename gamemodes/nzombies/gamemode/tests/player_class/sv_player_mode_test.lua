@@ -18,11 +18,6 @@ playerClassTest:beforeAll(function ()
   nz.Debug.Environment:set(ENV_DEV)
 end)
 
-playerClassTest:afterEach(function ()
-  -- Kick all bots
-  for _, bot in pairs(player.GetBots()) do
-    bot:Kick()
-  end
-end)
+playerClassTest:afterEach(GUnit.kickAllBots)
 
 playerClassTest:addSpec("when a player spawns, in create mode, they are given the create mode class", when_a_player_spawns_in_creative_mode_they_are_set_to_the_create_mode_class)

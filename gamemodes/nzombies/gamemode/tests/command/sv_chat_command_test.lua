@@ -30,7 +30,9 @@ chatcommandTest:beforeAll(function ()
   -- Set it to debug mode
   nz.Debug.Environment:set(ENV_DEV)
 end)
+
 chatcommandTest:afterAll(function ()
   nz.Tests = null
 end)
+
 chatcommandTest:addSpec("can be created", a_chat_command_can_be_created)

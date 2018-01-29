@@ -14,11 +14,6 @@ botTest:beforeAll(function ()
   nz.Debug.Environment:set(ENV_DEV)
 end)
 
-botTest:afterEach(function ()
-  -- Kick all bots
-  for _, bot in pairs(player.GetBots()) do
-    bot:Kick()
-  end
-end)
+botTest:afterEach(GUnit.kickAllBots)
 
 botTest:addSpec("a bot can be spawned as a player", when_player_spawns_they_are_set_to_spectator)

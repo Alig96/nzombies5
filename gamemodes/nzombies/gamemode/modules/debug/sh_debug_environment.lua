@@ -1,6 +1,8 @@
 DebugEnvironment = {}
 DebugEnvironment.__index = DebugEnvironment
 
+DebugEnvironment.CurrentEnvironment = ENV_DEV
+
 function DebugEnvironment:set( envNum )
   if envNum == ENV_DEV or envNum == ENV_PRIVATE or envNum == ENV_PUBLIC then
     nz.Debug.CurrentEnvironment = envNum

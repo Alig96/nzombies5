@@ -28,12 +28,7 @@ spectatorTest:beforeAll(function ()
   nz.Debug.Environment:set(ENV_DEV)
 end)
 
-spectatorTest:afterEach(function ()
-  -- Kick all bots
-  for _, bot in pairs(player.GetBots()) do
-    bot:Kick()
-  end
-end)
+spectatorTest:afterEach(GUnit.kickAllBots)
 
 spectatorTest:addSpec("when a player spawns, they are set to spectator", when_player_spawns_they_are_set_to_spectator)
 spectatorTest:addSpec("a player can be set as a permanent spectator", a_player_can_be_set_as_a_permanent_spectator)
