@@ -15,7 +15,7 @@ if SERVER then
 
 	function nz.Request.recieveChangeMode(length, requestingPlayer)
 		if requestingPlayer:IsValid() then
-			nz.Debug.Print("info", "[Sync] Received Change Mode Request from: " .. requestingPlayer:Nick() .. ". Length: " .. length)
+			nz.Debug.Print("info", "[Request] Received Change Mode Request from: " .. requestingPlayer:Nick() .. ". Length: " .. length)
 			local newMode = net.ReadUInt(2)
 
 			-- Send the requst to the controller

@@ -4,7 +4,7 @@ ChatCommand.defaultTriggerSymbol = "/"
 ChatCommand.defaultTriggerPhrase = "hi"
 ChatCommand.defaultFunction = function() end
 
-function ChatCommand:new( triggerPhrase, customFunction, triggerSymbol )
+function ChatCommand:new(triggerPhrase, customFunction, triggerSymbol)
   local newChatCommand = {
     triggerPhrase = triggerPhrase or self.defaultTriggerPhrase ,
     customFunction = customFunction or self.defaultFunction,

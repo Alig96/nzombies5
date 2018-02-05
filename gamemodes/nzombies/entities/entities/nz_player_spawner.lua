@@ -2,7 +2,7 @@ AddCSLuaFile( )
 
 ENT.Type = "anim"
 
-ENT.PrintName		= "player_spawns"
+ENT.PrintName		= "Player Spawner"
 ENT.Author			= "Alig96"
 ENT.Contact			= "Don't"
 ENT.Purpose			= ""

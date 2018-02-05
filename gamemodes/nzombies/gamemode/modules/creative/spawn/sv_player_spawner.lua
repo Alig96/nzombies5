@@ -1,5 +1,5 @@
 function nz.Creative.Spawn:addPlayerSpawner(pos)
-  local ent = ents.Create("nz_player_spawn")
+  local ent = ents.Create("nz_player_spawner")
   pos.z = pos.z - ent:OBBMaxs().z
   ent:SetPos( pos )
   ent:Spawn()
@@ -10,7 +10,7 @@ function nz.Creative.Spawn:addPlayerSpawner(pos)
 end
 
 function nz.Creative.Spawn:removePlayerSpawner(ent)
-  if ent:GetClass() == "nz_player_spawn" then
+  if ent:GetClass() == "nz_player_spawner" then
     local posString = tostring(ent:GetPos())
     ent:Remove()
     ent = nil

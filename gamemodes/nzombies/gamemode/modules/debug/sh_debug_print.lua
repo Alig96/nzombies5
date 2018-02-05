@@ -9,7 +9,7 @@ local colours = {
   danger = Color( 244, 67, 54 ),
 }
 
-function DebugPrint:new( level, text )
+function DebugPrint:new(level, text)
   if nz.Debug.Environment:isDev() or level != "info" then
     local levelPrint = level:gsub("^%l", string.upper)
     local outputString = "[" .. levelPrint .. "] " .. text .. "\n"
