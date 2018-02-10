@@ -31,17 +31,19 @@ local function chatCommands()
 end
 
 -- This is the main entry point to the app
-local function startServer()
-  -- Annouce it
-  nz.Debug.Print("success", "Starting nZombies Version: v" .. NZ_VERSION)
-  -- Load the current enviroment file
-  nz.IO.Environment:loadCurrentEnviromentFile()
-  -- Set all the custom console commands
-  consoleCommands()
-  -- Set all the custom chat commands
-  chatCommands()
-  -- While the gamemode is in development, set the default to Creative
-  nz.Mode:set(MODE_CREATIVE)
+local function startServer(includeDir)
+  if includeDir == "nzombies/gamemode/modules" then
+    -- Annouce it
+    nz.Debug.Print("success", "Starting nZombies Version: v" .. NZ_VERSION)
+    -- Load the current enviroment file
+    nz.IO.Environment:loadCurrentEnviromentFile()
+    -- Set all the custom console commands
+    consoleCommands()
+    -- Set all the custom chat commands
+    chatCommands()
+    -- While the gamemode is in development, set the default to Creative
+    nz.Mode:set(MODE_CREATIVE)
+  end
 end
 
 hook.Add( "RealmLoader.Finished", "Starts NZombies", startServer )

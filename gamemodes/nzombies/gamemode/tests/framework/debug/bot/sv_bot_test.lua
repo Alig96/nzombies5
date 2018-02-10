@@ -1,8 +1,8 @@
-local botTest = GUnit.Test:new("Bot")
+local botTest = GUnit.Test:new("[Framework] Debug > Bot")
 
 local function when_player_spawns_they_are_set_to_spectator()
 
-  nz.Debug.Print("info", "[Bot] Spawning bot." )
+  Log(LOG_INFO, "Spawning bot..." )
   player.CreateNextBot( "test_bot" )
 
   -- Assert that we have 1 player
@@ -10,8 +10,8 @@ local function when_player_spawns_they_are_set_to_spectator()
 end
 
 botTest:beforeAll(function ()
-  -- Set it to debug mode
-  nz.Debug.Environment:set(ENV_DEV)
+  -- Set it to dev mode
+  nz.Framework.Environment:setDev()
 end)
 
 botTest:afterEach(GUnit.kickAllBots)
