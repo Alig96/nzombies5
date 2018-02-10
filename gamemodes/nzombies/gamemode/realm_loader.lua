@@ -1,7 +1,7 @@
-Loader = {}
-Loader.__index = Loader
+realmLoader = {}
+realmLoader.__index = realmLoader
 
-function Loader:determineRealm( fileName )
+function realmLoader:determineRealm(fileName)
 	local sep = string.Explode("_", fileName)
 
 	-- If the file is a server file;
@@ -24,9 +24,9 @@ function Loader:determineRealm( fileName )
 	return null
 end
 
-function Loader:include( currentDir, fileName )
+function realmLoader:include(currentDir, fileName)
 	-- Get the realm code
-	local realmCode = self:determineRealm( fileName )
+	local realmCode = self:determineRealm(fileName)
 	-- Build the full path
 	local fullPath = currentDir .. '/' .. fileName
 	-- Determine where to load the files
@@ -56,7 +56,7 @@ function Loader:include( currentDir, fileName )
 	end
 end
 
-function Loader:recursiveInclude( currentPath )
+function realmLoader:recursiveInclude( currentPath )
 	-- Scan through the current directory, include any files, and then re run self for any directorys
 	local loadFiles, loadFolders = file.Find(currentPath .. "/*", "LUA")
 
@@ -83,7 +83,7 @@ function Loader:recursiveInclude( currentPath )
 
 end
 
-function Loader:new( includeDir )
+function realmLoader:new(includeDir)
 	print("********************")
 	print("Realm Loading: " .. includeDir)
 	print("--------------------")
@@ -95,20 +95,12 @@ function Loader:new( includeDir )
 		print(" ** Client List **")
 	end
 
-	-- Scan through the given directory
-	local _, initDirs = file.Find(includeDir, "LUA")
-
-	-- Remove the astrix from the include directory
-	local basePath = includeDir:gsub("*", "")
-
 	-- Recursively include everything with the module directorys
-	for _, moduleFolder in pairs(initDirs) do
-		self:recursiveInclude(basePath .. moduleFolder)
-	end
+	self:recursiveInclude(includeDir)
 
 	print(" ** End List **")
 	print("********************")
-	hook.Call( "RealmLoader.Finished" )
+	hook.Run("RealmLoader.Finished", includeDir)
 end
 
-setmetatable( Loader, { __call = Loader.new } )
+setmetatable(realmLoader, {__call = realmLoader.new})
