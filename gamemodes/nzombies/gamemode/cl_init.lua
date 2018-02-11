@@ -6,6 +6,7 @@ nz = {}
 nz.Framework = {}
 nz.Framework.Debug = {}
 nz.Framework.Command = {}
+nz.Framework.Request = {}
 
 -- Load the framework's model library
 realmLoader("nzombies/gamemode/framework/models")
