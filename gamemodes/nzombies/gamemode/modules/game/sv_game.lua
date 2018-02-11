@@ -6,9 +6,9 @@ Game.InitialPlayers = {}
 Game.CurrentPlayers = {}
 Game.Rounds = {}
 Game.Curves = {
-  MaxEnemies = nz.Curve.Create(5, 1.01),
-  MaxHealth = nz.Curve.Create(75, 0.4),
-  MaxSpeed = nz.Curve.Create(60, 0.55),
+  MaxEnemies = nz.Framework.newCurve(5, 1.01),
+  MaxHealth = nz.Framework.newCurve(75, 0.4),
+  MaxSpeed = nz.Framework.newCurve(60, 0.55),
 }
 
 -- Defaults
