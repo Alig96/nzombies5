@@ -10,7 +10,7 @@ function nz.Framework.createRequest(id, recieveFunc)
   -- Create a magic method for recieveing a request
   local function receiveRequest(length, requestingPlayer)
     if requestingPlayer:IsValid() then
-      Log(LOG_INFO, "Received Request: '" .. id .. "'' from: " .. requestingPlayer:Nick() .. ". It's length is: " .. length, "Framework:Request")
+      Log(LOG_INFO, "Received Request: '" .. id .. "' from: " .. requestingPlayer:Nick() .. ". It's length is: " .. length, "Framework:Request")
       local requestData = net.ReadTable()
 
       -- Call onReceive function

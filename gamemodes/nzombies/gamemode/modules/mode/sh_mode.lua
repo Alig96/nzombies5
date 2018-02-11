@@ -2,7 +2,7 @@ Mode = {}
 Mode.__index = Mode
 Mode.CurrentState = MODE_PLAY
 
-function Mode:set( modeConst )
+function Mode:set(modeConst)
   if nz.Mode.CurrentState != modeConst then
     if modeConst == MODE_PLAY then
       nz.Mode.CurrentState = modeConst
@@ -13,7 +13,7 @@ function Mode:set( modeConst )
     end
     if SERVER then
       -- Broadcast it to all players
-      --nz.Broadcast("sendMode")
+      nz.Framework.Sync["Mode"]:broadcast()
 
       -- Kill all players to reset them
       for _, ply in pairs(player.GetAll()) do
@@ -23,6 +23,10 @@ function Mode:set( modeConst )
   end
 
   return nz.Mode.CurrentState
+end
+
+function Mode:syncVariables()
+  return {currentMode = self.get()}
 end
 
 function Mode:get()
