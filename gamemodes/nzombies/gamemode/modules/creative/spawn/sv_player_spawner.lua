@@ -4,7 +4,7 @@ function nz.Creative.Spawn:addPlayerSpawner(pos)
   ent:SetPos( pos )
   ent:Spawn()
 
-  nz.Debug.Print("success", "[Creative:Spawn] Player Spawner placed at: " .. tostring(pos))
+  Log(LOG_INFO, "Player Spawner placed at: " .. tostring(pos), "Creative:Spawn")
 
   return ent
 end
@@ -14,7 +14,7 @@ function nz.Creative.Spawn:removePlayerSpawner(ent)
     local posString = tostring(ent:GetPos())
     ent:Remove()
     ent = nil
-    nz.Debug.Print("success", "[Creative:Spawn] Player Spawner removed at: " .. posString)
+    Log(LOG_INFO, "Player Spawner removed at: " .. posString, "Creative:Spawn")
     return ent
   end
 end

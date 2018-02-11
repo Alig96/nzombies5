@@ -114,8 +114,8 @@ local function a_game_can_be_simulated()
 end
 
 gameTest:beforeAll(function ()
-  -- Set it to debug environment
-  nz.Debug.Environment:set(ENV_DEV)
+  -- Set it to dev mode
+  nz.Framework.Environment:setDev()
 end)
 
 gameTest:addSpec("a game cannot be created with not enough players", a_game_cannot_be_created_with_not_enough_players)

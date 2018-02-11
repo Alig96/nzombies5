@@ -1,5 +1,5 @@
 function GM:PlayerInitialSpawn( ply )
-  nz.Debug.Print("info", "[GM] " .. ply:Nick() .. " is Sending Client Info.")
+  Log(LOG_INFO, ply:Nick() .. " is Sending Client Info.")
 
   -- Send the player a full sync
   nz.fullSyncPlayer(ply)

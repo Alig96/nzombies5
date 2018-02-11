@@ -1,5 +1,7 @@
+local logModuleName = "Sync"
+
 function nz.Broadcast(syncFunctionKey)
-  nz.Debug.Print("info", "[Sync:Broadcast] Broadcasting to all current players: " .. syncFunctionKey)
+  Log(LOG_INFO, "Broadcasting to all current players: " .. syncFunctionKey, logModuleName)
   if nz.Sync[syncFunctionKey] then
     for _, ply in pairs(player.GetAll()) do
       nz.Sync[syncFunctionKey](ply)
@@ -9,11 +11,11 @@ end
 
 -- Loop through and run every sync function registered and send to the player.
 function nz.fullSyncPlayer(ply)
-  nz.Debug.Print("info", "[Sync] Sending a full sync to: " .. ply:Nick())
+  Log(LOG_INFO, "Sending a full sync to: " .. ply:Nick(), logModuleName)
   for syncFunctionKey, _ in pairs(nz.Sync) do
     nz.Sync[syncFunctionKey](ply)
   end
-  nz.Debug.Print("info", "[Sync] Finished syncing to: " .. ply:Nick())
+  Log(LOG_INFO, "Finished syncing to: " .. ply:Nick(), logModuleName)
 end
 
 -- lua_run nz.fullSyncAll()

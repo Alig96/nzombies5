@@ -6,14 +6,14 @@ function Mode:set( modeConst )
   if nz.Mode.CurrentState != modeConst then
     if modeConst == MODE_PLAY then
       nz.Mode.CurrentState = modeConst
-      nz.Debug.Print("success", "[Mode] Internal Gamemode set to: Play Mode")
+      Log(LOG_INFO, "Internal Gamemode set to: Play Mode", "Mode")
     elseif modeConst == MODE_CREATIVE then
       nz.Mode.CurrentState = modeConst
-      nz.Debug.Print("success", "[Mode] Internal Gamemode set to: Creative Mode")
+      Log(LOG_INFO, "Internal Gamemode set to: Creative Mode", "Mode")
     end
     if SERVER then
       -- Broadcast it to all players
-      nz.Broadcast("sendMode")
+      --nz.Broadcast("sendMode")
 
       -- Kill all players to reset them
       for _, ply in pairs(player.GetAll()) do

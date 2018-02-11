@@ -1,8 +1,8 @@
 local debugEnvironmentTest = GUnit.Test:new("IO > Debug Enviroment")
 
 debugEnvironmentTest:beforeAll(function ()
-  -- Set it to debug mode
-  nz.Debug.Environment:set(ENV_DEV)
+  -- Set it to dev mode
+  nz.Framework.Environment:setDev()
 end)
 
 local function default_environment_files_can_be_checked()
@@ -32,27 +32,27 @@ end
 
 local function the_current_enviroment_file_can_be_loaded()
   -- Assert that the current enviroment is dev
-  GUnit.assert(nz.Debug.Environment:isDev()):shouldEqual(true)
+  GUnit.assert(nz.Framework.Environment:isDev()):shouldEqual(true)
 
   -- Make a copy of the current enviroment file (if there is one) & delete the current environment file it
   local currentFilePath = "nz/env/current_enviroment.txt"
   local backupFilePath = "nz/env/backup_current_enviroment.txt"
-  if file.Exists( currentFilePath, "DATA" ) then
-    file.Write( backupFilePath, file.Read( currentFilePath, "DATA" ) )
-    file.Delete( currentFilePath )
+  if file.Exists(currentFilePath, "DATA") then
+    file.Write(backupFilePath, file.Read(currentFilePath, "DATA"))
+    file.Delete(currentFilePath)
   end
 
   -- Load the current enviroment file
   nz.IO.Environment:loadCurrentEnviromentFile()
   -- Assert that the current enviroment file exists
-  GUnit.assert(file.Exists( currentFilePath, "DATA" )):shouldEqual(true)
+  GUnit.assert(file.Exists(currentFilePath, "DATA")):shouldEqual(true)
   -- Assert that the current enviroment is now the default of private
-  GUnit.assert(nz.Debug.Environment:isPrivate()):shouldEqual(true)
+  GUnit.assert(nz.Framework.Environment:isPrivate()):shouldEqual(true)
 
   -- Copy the environment file back (if we have a backup) & delete the backup
-  if file.Exists( backupFilePath, "DATA" ) then
-    file.Write( currentFilePath, file.Read( backupFilePath, "DATA" ) )
-    file.Delete( backupFilePath )
+  if file.Exists(backupFilePath, "DATA") then
+    file.Write(currentFilePath, file.Read(backupFilePath, "DATA"))
+    file.Delete(backupFilePath)
   end
 end
 

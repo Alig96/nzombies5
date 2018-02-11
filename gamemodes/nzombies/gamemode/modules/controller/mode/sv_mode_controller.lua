@@ -1,8 +1,10 @@
+local logModuleName = "Controller:Mode"
+
 local function authorizeRequest(ply)
   if ply:IsSuperAdmin() then
     return true
   else
-    nz.Debug.Print("danger", "[Controller:Mode] Could not change mode since " .. ply:Nick() .. " is not authorised.")
+    Log(LOG_ERROR, "Could not change mode since " .. ply:Nick() .. " is not authorised.", logModuleName)
     return false
   end
 end
@@ -14,7 +16,7 @@ local function validateRequest(requestData)
     return true
   end
 
-  nz.Debug.Print("danger", "[Controller:Mode] Could not change mode since the data supplied did not pass validation.")
+  Log(LOG_ERROR, "Could not change mode since the data supplied did not pass validation.", logModuleName)
   return false
 end
 
@@ -27,7 +29,7 @@ function nz.Controller.handleChangeMode(ply, requestData)
 
   -- If both tests pass
   if authorised and validated then
-    nz.Debug.Print("success", "[Controller:Mode] " .. ply:Nick() ..  " has made a successful request to change the mode.")
+    Log(LOG_INFO, ply:Nick() ..  " has made a successful request to change the mode.", logModuleName)
     -- Execute the requests
     nz.Mode:set(requestData["requestedMode"])
 

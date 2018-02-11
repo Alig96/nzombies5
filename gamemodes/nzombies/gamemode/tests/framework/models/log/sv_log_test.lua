@@ -4,7 +4,7 @@ local function can_create_log_model()
   local newLog = nz.Framework.newLog()
 
   -- Assert it has the defaults of the model.
-  GUnit.assert(newLog.moduleName):shouldEqual("General")
+  GUnit.assert(newLog.moduleName):shouldEqual("GM")
 end
 
 logModelTest:addSpec("can create log model", can_create_log_model)

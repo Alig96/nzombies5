@@ -100,7 +100,7 @@ function realmLoader:new(includeDir)
 
 	print(" ** End List **")
 	print("********************")
-	hook.Run("RealmLoader.Finished", includeDir)
+	hook.Run("realmLoader.Finished", includeDir)
 end
 
 setmetatable(realmLoader, {__call = realmLoader.new})

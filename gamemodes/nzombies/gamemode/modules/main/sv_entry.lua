@@ -1,13 +1,13 @@
 local function consoleCommands()
-  if nz.Debug.Environment:isDev() then
+  if nz.Framework.Environment:isDev() then
     -- Quick Reloads the stage, mostly used for testing/debug
-    nz.Command.Console("qr", function(ply)
+    nz.Framework.newConsoleCommand("qr", function(ply)
       if ply:IsValid() then return end
     	RunConsoleCommand("changelevel", game.GetMap())
     end)
 
     -- Quick Tests the game, used for testing/debug
-    nz.Command.Console("qt", function(ply)
+    nz.Framework.newConsoleCommand("qt", function(ply)
       if ply:IsValid() then return end
       RunConsoleCommand("test-only", "nzombies5")
     end)
@@ -15,14 +15,14 @@ local function consoleCommands()
 end
 
 local function chatCommands()
-  nz.Command.Chat("create", function(ply, params)
+  nz.Framework.newChatCommand("create", function(ply, params)
     -- Send it to the controller
     nz.Controller.handleChangeMode(ply, {
       ["requestedMode"] = MODE_CREATIVE,
     })
   end)
 
-  nz.Command.Chat("play", function(ply, params)
+  nz.Framework.newChatCommand("play", function(ply, params)
     -- Send it to the controller
     nz.Controller.handleChangeMode(ply, {
       ["requestedMode"] = MODE_PLAY,
@@ -34,7 +34,7 @@ end
 local function startServer(includeDir)
   if includeDir == "nzombies/gamemode/modules" then
     -- Annouce it
-    nz.Debug.Print("success", "Starting nZombies Version: v" .. NZ_VERSION)
+    print("Starting nZombies Version: v" .. NZ_VERSION)
     -- Load the current enviroment file
     nz.IO.Environment:loadCurrentEnviromentFile()
     -- Set all the custom console commands
@@ -46,4 +46,4 @@ local function startServer(includeDir)
   end
 end
 
-hook.Add( "RealmLoader.Finished", "Starts NZombies", startServer )
+hook.Add("realmLoader.Finished", "nz.startServer", startServer)

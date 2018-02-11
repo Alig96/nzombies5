@@ -1,10 +1,12 @@
+local logModuleName = "Sync"
+
 if SERVER then
 	-- Server to Client (Server)
 	util.AddNetworkString("nz.Mode.Sync")
 
 	function nz.Sync.sendMode(ply)
 		if ply:IsValid() then
-			nz.Debug.Print("info", "[Sync] Sending Mode Sync to: " .. ply:Nick())
+			Log(LOG_INFO, "Sending Mode Sync to: " .. ply:Nick(), logModuleName)
 			net.Start("nz.Mode.Sync")
 				net.WriteUInt(nz.Mode.CurrentState, 2)
 			net.Send(ply)
@@ -16,7 +18,7 @@ end
 if CLIENT then
 	-- Server to Client (Client)
 	function nz.Sync.receiveMode(length)
-		nz.Debug.Print("info", "[Sync] Received Mode Sync. Length: " .. length)
+		Log(LOG_INFO, "Received Mode Sync. Length: " .. length, logModuleName)
 		local currentMode = net.ReadUInt(2)
 
 		-- Set the local version of the environment

@@ -15,6 +15,8 @@ local defaultEnv = {
   },
 }
 
+local logModuleName = "IO:Environment"
+
 -- Default Environment Files
 
 function DebugEnvironment:checkDefaultEnviromentFile(selectedEnvironment)
@@ -22,8 +24,8 @@ function DebugEnvironment:checkDefaultEnviromentFile(selectedEnvironment)
 
   -- Check if the nz/env/envFile file exists, if not, then create it
   if !file.Exists( filePath, "DATA" ) then
-    nz.Debug.Print("warning", "Enviroment File: '" .. selectedEnvironment .. "' was not found, creating from default.")
-  	file.Write( filePath, util.TableToJSON( defaultEnv[selectedEnvironment] ) )
+    Log(LOG_WARN, "Enviroment File: '" .. selectedEnvironment .. "' was not found, creating from default.", logModuleName)
+  	file.Write( filePath, util.TableToJSON( defaultEnv[selectedEnvironment]))
   end
 end
 
@@ -38,17 +40,18 @@ function DebugEnvironment:loadCurrentEnviromentFile()
   local filePath = "nz/env/current_enviroment.txt"
 
   -- Check if the nz/env/envFile file exists, if not, then create it
-  if !file.Exists( filePath, "DATA" ) then
-    nz.Debug.Print("warning", "The current environment file was not found. Cloned the 'Private' environment.")
-  	file.Write( filePath, util.TableToJSON( defaultEnv["private"] ) )
+  if !file.Exists(filePath, "DATA") then
+    Log(LOG_WARN, "The current environment file was not found. Cloned the 'Private' environment.", logModuleName)
+  	file.Write(filePath, util.TableToJSON( defaultEnv["private"]))
   end
 
   -- Load the environment file
-  local environmentData = util.JSONToTable( file.Read( filePath, "DATA" ) )
+  local environmentData = util.JSONToTable(file.Read(filePath, "DATA"))
+
   -- Apply the data from the file
   -- Set the server enviroment
   if environmentData["serverEnviroment"] then
-    nz.Debug.Environment:set(environmentData["serverEnviroment"])
+    nz.Framework.Environment:set(environmentData["serverEnviroment"])
   end
 end
 
