@@ -1,5 +1,5 @@
 function GM:OnReloaded()
-  nz.Debug.Print("warning", "Reloading nZombies5...")
+  Log(LOG_WARN, "Reloading nZombies5...")
   -- Resync all players
   nz.fullSyncAll()
 end

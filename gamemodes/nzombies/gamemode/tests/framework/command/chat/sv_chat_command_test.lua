@@ -27,8 +27,8 @@ end
 chatcommandTest:beforeAll(function ()
   nz.Tests = {}
 
-  -- Set it to debug mode
-  nz.Debug.Environment:set(ENV_DEV)
+  -- Set it to dev mode
+  nz.Framework.Environment:setDev()
 end)
 
 chatcommandTest:afterAll(function ()

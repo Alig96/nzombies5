@@ -6,19 +6,19 @@ local function setAsSpectator(ply, isPermanent)
   end
 
   -- Set them on to the spectator team
-  ply:SetTeam( TEAM_SPECS )
+  ply:SetTeam(TEAM_SPECS)
 
   -- Set their spectate perm
   if isPermanent then
     ply.specPerm = isPermanent
-    nz.Debug.Print("info", "[GM] Permanent Spectator status set to: " .. tostring(isPermanent))
+    Log(LOG_INFO, "Permanent Spectator status set to: " .. tostring(isPermanent))
   end
 
   -- Set them to be able to roam
   ply.SpecType = OBS_MODE_ROAMING
   ply:Spectate( ply.SpecType )
 
-  nz.Debug.Print("info", "[GM] " .. ply:Nick() .. " has been set as a Spectator.")
+  Log(LOG_INFO, ply:Nick() .. " has been set as a Spectator.")
 end
 
 -- Check if the player is a spectator

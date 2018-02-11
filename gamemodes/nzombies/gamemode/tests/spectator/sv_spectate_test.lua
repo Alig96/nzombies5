@@ -25,7 +25,7 @@ end
 
 spectatorTest:beforeAll(function ()
   -- Set it to debug mode
-  nz.Debug.Environment:set(ENV_DEV)
+  nz.Framework.Environment:setDev()
 end)
 
 spectatorTest:afterEach(GUnit.kickAllBots)

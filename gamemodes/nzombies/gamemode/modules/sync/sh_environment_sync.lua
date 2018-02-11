@@ -1,12 +1,14 @@
+local logModuleName = "Sync"
+
 if SERVER then
 	-- Server to Client (Server)
 	util.AddNetworkString("nz.Debug.Environment.Sync")
 
 	function nz.Sync.sendDebugEnviroment(ply)
 		if ply:IsValid() then
-			nz.Debug.Print("info", "[Sync] Sending Debug Sync to: " .. ply:Nick())
+			Log(LOG_INFO, "Sending Debug Sync to: " .. ply:Nick(), logModuleName)
 			net.Start("nz.Debug.Environment.Sync")
-				net.WriteUInt(nz.Debug.CurrentEnvironment, 2)
+				net.WriteUInt(nz.Framework.Environment(), 2)
 			net.Send(ply)
 		end
 	end
@@ -16,11 +18,11 @@ end
 if CLIENT then
 	-- Server to Client (Client)
 	function nz.Sync.receiveDebugEnviroment(length)
-		nz.Debug.Print("info", "[Sync] Received Debug Environment Sync. Length: " .. length)
+		Log(LOG_INFO, "Received Debug Environment Sync. Length: " .. length, logModuleName)
 		local serverEnvironment = net.ReadUInt(2)
 
 		-- Set the local version of the environment
-		nz.Debug.Environment(serverEnvironment)
+		nz.Framework.Environment:set(serverEnvironment)
 	end
 
 	-- Receivers

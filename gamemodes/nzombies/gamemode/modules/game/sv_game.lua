@@ -16,15 +16,17 @@ Game.CurrentState = GAME_INIT
 Game.CurrentRound = {}
 Game.CurrentRoundCounter = 0
 
+local logModuleName = "Game"
+
 -- Check we can create a game
 function Game:checkPrerequisites()
   -- Check that there were enough given players to the Initial players
   if #self.InitialPlayers < 1 then
-    nz.Debug.Print("danger", "[Game] There was not initial players to create a game.")
+    Log(LOG_ERROR, "There was not initial players to create a game.", logModuleName)
     return false
   end
 
-  nz.Debug.Print("success", "[Game] Game passed all prerequisites.")
+  Log(LOG_INFO, "Game passed all prerequisites.", logModuleName)
   return true
 end
 
@@ -39,14 +41,14 @@ function Game:setup()
 
   -- Set the game to in progress
   self.CurrentState = GAME_READY
-  nz.Debug.Print("info", "[Game] Game was setup & set to READY state.")
+  Log(LOG_INFO, "Game was setup & set to READY state.", logModuleName)
 end
 
 -- Start the game
 function Game:start()
   -- Set the game to finished
   self.CurrentState = GAME_PROG
-  nz.Debug.Print("info", "[Game] Game was started & set to IN PROGRESS state.")
+  Log(LOG_INFO, "Game was started & set to IN PROGRESS state.", logModuleName)
   -- Advance to the first round
   self:advanceRound()
 end
@@ -65,19 +67,19 @@ function Game:advanceRound()
   -- Load the round data of the current round
   self.CurrentRound = self.Rounds[self.CurrentRoundCounter]
 
-  nz.Debug.Print("info", "[Game] Game has advanced to round: " .. self.CurrentRoundCounter)
+  Log(LOG_INFO, "Game has advanced to round: " .. self.CurrentRoundCounter, logModuleName)
 
   -- Run the prepare function on the round
   self.CurrentRound:prepare()
-  nz.Debug.Print("info", "[Game] Game has triggered the round's prepare function.")
+  Log(LOG_INFO, "Game has triggered the round's prepare function.", logModuleName)
 end
 
 -- Finish the game
 function Game:finish()
   -- Set the game to finished
   self.CurrentState = GAME_FINISHED
-  nz.Debug.Print("info", "[Game] Game has finished & set to FINISHED state.")
-  nz.Debug.Print("info", "[Game] This game is finished and safe to destroy its game handler.")
+  Log(LOG_INFO, "Game has finished & set to FINISHED state.", logModuleName)
+  Log(LOG_INFO, "This game is finished and safe to destroy its game handler.", logModuleName)
 end
 
 -- The game handler that should be run every second the game is running
@@ -86,7 +88,7 @@ function Game:handler()
 
   -- If the game is ready
   if self.CurrentState == GAME_READY then
-    nz.Debug.Print("info", "[Game] Game is ready and waiting for all current players to ready up.")
+    Log(LOG_INFO, "Game is ready and waiting for all current players to ready up.", logModuleName)
     -- Check all the players are ready
     if true then
       -- Start the game
@@ -103,14 +105,14 @@ function Game:handler()
 
     -- If the round is preparing
     if self.CurrentRound.CurrentState == ROUND_PREP then
-      nz.Debug.Print("info", "[Game] Game is waiting for the current round to start.")
+      Log(LOG_INFO, "Game is waiting for the current round to start.", logModuleName)
       -- Check that the current time is more than the round starting timer
       if currentTime > self.CurrentRound.StartingTime then
         -- Start the round
         self.CurrentRound:start()
       end
     elseif self.CurrentRound.CurrentState == ROUND_PROG then
-      nz.Debug.Print("info", "[Game] Game is waiting for the current round's victory condition to be met.")
+      Log(LOG_INFO, "Game is waiting for the current round's victory condition to be met.", logModuleName)
       -- Check the victory condition of the round
       if self.CurrentRound:victoryCondition() then
         -- Finish the round

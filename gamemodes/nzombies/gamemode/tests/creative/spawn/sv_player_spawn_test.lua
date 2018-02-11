@@ -24,8 +24,8 @@ local function a_player_spawner_can_be_removed()
 end
 
 playerSpawnerTest:beforeAll(function ()
-  -- Set it to debug mode
-  nz.Debug.Environment:set(ENV_DEV)
+  -- Set it to dev mode
+  nz.Framework.Environment:setDev()
 end)
 
 playerSpawnerTest:addSpec("a player spawner can be placed", a_player_spawner_can_be_placed)

@@ -1,7 +1,7 @@
 local prototypeLog = {}
 
 prototypeLog.level = {}
-prototypeLog.moduleName = "General"
+prototypeLog.moduleName = "GM"
 prototypeLog.message = "Ooops. Something went wrong."
 
 -- Register this prototype as a model

@@ -14,8 +14,8 @@ local function when_a_player_spawns_in_creative_mode_they_are_set_to_the_create_
 end
 
 playerClassTest:beforeAll(function ()
-  -- Set it to debug mode
-  nz.Debug.Environment:set(ENV_DEV)
+  -- Set it to dev mode
+  nz.Framework.Environment:setDev()
 end)
 
 playerClassTest:afterEach(GUnit.kickAllBots)
