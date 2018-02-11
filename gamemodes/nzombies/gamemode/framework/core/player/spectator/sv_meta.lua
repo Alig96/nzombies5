@@ -1,5 +1,5 @@
 -- Player Meta Assigning
-playerMeta = FindMetaTable( "Player" )
+playerMeta = FindMetaTable("Player")
 
 -- Set the player as a regular spectator
 function playerMeta:setAsSpectator()
