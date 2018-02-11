@@ -42,7 +42,7 @@ local function startServer(includeDir)
     -- Set all the custom chat commands
     chatCommands()
     -- While the gamemode is in development, set the default to Creative
-    nz.Mode:set(MODE_CREATIVE)
+    --nz.Mode:set(MODE_CREATIVE)
   end
 end
 
