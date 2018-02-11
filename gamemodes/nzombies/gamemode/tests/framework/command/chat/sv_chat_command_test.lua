@@ -1,4 +1,4 @@
-local chatcommandTest = GUnit.Test:new("[Framework] Command > ChatCommand")
+local chatCommandTest = GUnit.Test:new("[Framework] Command > ChatCommand")
 local playerGen = GUnit.Generators.FakePlayer
 
 local function a_chat_command_can_be_created()
@@ -24,15 +24,15 @@ local function a_chat_command_can_be_created()
   GUnit.assert(nz.Tests.valueToChange):shouldEqual(true)
 end
 
-chatcommandTest:beforeAll(function ()
+chatCommandTest:beforeAll(function ()
   nz.Tests = {}
 
   -- Set it to dev mode
   nz.Framework.Environment:setDev()
 end)
 
-chatcommandTest:afterAll(function ()
+chatCommandTest:afterAll(function ()
   nz.Tests = null
 end)
 
-chatcommandTest:addSpec("can be created", a_chat_command_can_be_created)
+chatCommandTest:addSpec("can be created", a_chat_command_can_be_created)

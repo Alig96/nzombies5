@@ -15,6 +15,8 @@ realmLoader("nzombies/gamemode/framework/debug")
 realmLoader("nzombies/gamemode/framework/environment")
 -- Load the framework's command library
 realmLoader("nzombies/gamemode/framework/command")
+-- Load the framework's controller library
+realmLoader("nzombies/gamemode/framework/controller")
 
 -- Load the gamemode modules
 realmLoader("nzombies/gamemode/modules")
