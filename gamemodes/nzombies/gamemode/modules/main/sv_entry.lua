@@ -18,7 +18,7 @@ local function chatCommands()
   nz.Framework.newChatCommand("create", function(ply, params)
     -- Send it to the controller
     nz.Mode.updateController(ply, {
-      ["requestedMode"] = MODE_CREATIVE,
+      ["requestedMode"] = MODE_CREATE,
     })
   end)
 
@@ -43,6 +43,8 @@ local function startServer(includeDir)
     consoleCommands()
     -- Set all the custom chat commands
     chatCommands()
+    -- While in dev, force the game to start in creative
+    nz.Mode:set(MODE_CREATE)
   end
 end
 

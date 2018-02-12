@@ -12,7 +12,7 @@ ENV_PUBLIC = 2
 
 -- Mode Constants
 MODE_PLAY = 0
-MODE_CREATIVE = 1
+MODE_CREATE = 1
 
 -- Game Constants
 GAME_INIT = 0

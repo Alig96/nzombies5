@@ -11,7 +11,7 @@ local function must_authorize_player()
   }
 
   local requestData = {
-    ["requestedMode"] = MODE_CREATIVE,
+    ["requestedMode"] = MODE_CREATE,
   }
 
   -- Send a request with the player and data
@@ -55,7 +55,7 @@ local function can_change_mode_with_valid_request()
 
   -- Create a valid request
   local requestData = {
-    ["requestedMode"] = MODE_CREATIVE,
+    ["requestedMode"] = MODE_CREATE,
   }
 
   -- Send a request with the player and data
