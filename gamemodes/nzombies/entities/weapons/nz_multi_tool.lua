@@ -1,6 +1,6 @@
 SWEP.PrintName = "nZombies Multi Tool"
 SWEP.Author = "Zet0rz, Alig96"
-SWEP.Instructions = "Left mouse to fire a chair!"
+SWEP.Instructions = "Hold Q to change tools."
 
 SWEP.Primary.ClipSize = -1
 SWEP.Primary.DefaultClip = -1
@@ -24,7 +24,7 @@ SWEP.UseHands = true
 
 -- nZ
 SWEP.nextShot = 0
-SWEP.currentTool = "none"
+SWEP.currentTool = nil
 
 
 function SWEP:Precache()
@@ -70,8 +70,10 @@ function SWEP:PrimaryAttack()
 
     -- Do logic for the tool
     if CLIENT then
-      nz.Debug.Print("info", "[Weapon:Multi-Tool] Requesting to trigger: " .. self.currentTool .. "'s Left Click Function.")
-      nz.Tools[self.currentTool].leftClick(trace)
+      if self.currentTool then
+        Log(LOG_INFO, "Requesting to trigger: " .. self.currentTool.name .. "'s Left Click Function.", "Weapon:Multi-Tool")
+        self.currentTool:onLeftClick(trace)
+      end
     end
 
     self.nextShot = CurTime() + 1
@@ -94,8 +96,10 @@ function SWEP:SecondaryAttack()
 
     -- Do logic for the tool
     if CLIENT then
-      nz.Debug.Print("info", "[Weapon:Multi-Tool] Requesting to trigger: " .. self.currentTool .. "'s Right Click Function.")
-      nz.Tools[self.currentTool].rightClick(trace)
+      if self.currentTool then
+        Log(LOG_INFO, "Requesting to trigger: " .. self.currentTool.name .. "'s Right Click Function.", "Weapon:Multi-Tool")
+        self.currentTool:onRightClick(trace)
+      end
     end
 
     self.nextShot = CurTime() + 1
@@ -106,9 +110,12 @@ end
 
 
 if CLIENT then
-  function SWEP:setCurrentTool(idOfTool)
-    self.currentTool = idOfTool
-    nz.Debug.Print("info", "[Weapon:Multi-Tool] Changed tool to: " .. self.currentTool .. ".")
+  function SWEP:loadTool(idOfTool)
+    local toolData = nz.Create.Tool:getTool(idOfTool)
+    if toolData then
+      Log(LOG_INFO, "Changed tool to: " .. toolData.name .. ".", "Weapon:Multi-Tool")
+      self.currentTool = toolData
+    end
   end
 
   -- https://raw.githubusercontent.com/Facepunch/garrysmod/master/garrysmod/gamemodes/sandbox/entities/weapons/gmod_tool/cl_viewscreen.lua
@@ -156,9 +163,13 @@ if CLIENT then
   function SWEP:RenderScreen()
 
   	local TEX_SIZE = 256
-  	local mode = "nz_player_spawner_tool"
   	local oldW = ScrW()
   	local oldH = ScrH()
+    local text = "Select a tool..."
+
+    if self.currentTool then
+      text = self.currentTool.name .. " Tool"
+    end
 
   	-- Set the material of the screen to our render target
   	matScreen:SetTexture( "$basetexture", RTTexture )
@@ -176,7 +187,7 @@ if CLIENT then
     	surface.DrawTexturedRect( 0, 0, TEX_SIZE, TEX_SIZE )
 
       surface.SetFont( "GModToolScreen" )
-      DrawScrollingText( "#tool." .. mode .. ".name", 104, TEX_SIZE )
+      DrawScrollingText( text, 104, TEX_SIZE )
   	cam.End2D()
 
   	render.SetRenderTarget( OldRT )

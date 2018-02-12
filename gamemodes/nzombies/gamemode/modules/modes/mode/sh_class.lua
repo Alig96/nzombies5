@@ -1,13 +1,13 @@
 -- Mode Constants
 MODE_PLAY = 0
-MODE_CREATIVE = 1
+MODE_CREATE = 1
 
 local mode = {}
 mode.__index = mode
 mode.current = MODE_PLAY
 mode.available = {
   [MODE_PLAY] = nz.Framework.newMode(MODE_PLAY, "Play"),
-  [MODE_CREATIVE] = nz.Framework.newMode(MODE_CREATIVE, "Create"),
+  [MODE_CREATE] = nz.Framework.newMode(MODE_CREATE, "Create"),
 }
 
 function mode:validate(modeConstant)
@@ -57,7 +57,7 @@ function mode:isPlay()
 end
 
 function mode:isCreative()
-  return self:get() == MODE_CREATIVE
+  return self:get() == MODE_CREATE
 end
 
 -- Assign the meta table to the nz global

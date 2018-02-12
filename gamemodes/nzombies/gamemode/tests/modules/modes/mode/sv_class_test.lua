@@ -1,8 +1,8 @@
 local modeSwitcherTest = GUnit.Test:new("Modes > Mode > Class")
 
 local function can_set_mode()
-  nz.Mode:set(MODE_CREATIVE)
-  GUnit.assert(nz.Mode:get()):shouldEqual(MODE_CREATIVE)
+  nz.Mode:set(MODE_CREATE)
+  GUnit.assert(nz.Mode:get()):shouldEqual(MODE_CREATE)
 end
 
 local function can_check_if_in_play_mode()
@@ -11,7 +11,7 @@ local function can_check_if_in_play_mode()
 end
 
 local function can_check_if_in_creative_mode()
-  nz.Mode:set(MODE_CREATIVE)
+  nz.Mode:set(MODE_CREATE)
   GUnit.assert(nz.Mode:isCreative()):shouldEqual(true)
 end
 
