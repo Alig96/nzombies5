@@ -71,12 +71,12 @@ function SWEP:PrimaryAttack()
     -- Do logic for the tool
     if CLIENT then
       if self.currentTool then
-        Log(LOG_INFO, "Requesting to trigger: " .. self.currentTool.name .. "'s Left Click Function.", "Weapon:Multi-Tool")
+        Log(LOG_DEBUG, "Requesting to trigger: " .. self.currentTool.name .. "'s Left Click Function.", "Weapon:Multi-Tool")
         self.currentTool:onLeftClick(trace)
       end
     end
 
-    self.nextShot = CurTime() + 1
+    self.nextShot = CurTime() + 0.5
 
     if ( game.SinglePlayer() ) then self:CallOnClient( "PrimaryAttack" ) end
   end
@@ -97,12 +97,12 @@ function SWEP:SecondaryAttack()
     -- Do logic for the tool
     if CLIENT then
       if self.currentTool then
-        Log(LOG_INFO, "Requesting to trigger: " .. self.currentTool.name .. "'s Right Click Function.", "Weapon:Multi-Tool")
+        Log(LOG_DEBUG, "Requesting to trigger: " .. self.currentTool.name .. "'s Right Click Function.", "Weapon:Multi-Tool")
         self.currentTool:onRightClick(trace)
       end
     end
 
-    self.nextShot = CurTime() + 1
+    self.nextShot = CurTime() + 0.5
 
     if ( game.SinglePlayer() ) then self:CallOnClient( "SecondaryAttack" ) end
   end

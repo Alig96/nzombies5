@@ -1,0 +1,2 @@
+-- Constructor
+nz.Create.Spawn = {}
