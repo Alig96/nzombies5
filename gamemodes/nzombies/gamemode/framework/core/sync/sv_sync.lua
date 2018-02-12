@@ -31,4 +31,4 @@ function nz.Framework.createSync(id, recieveFunc, dataFunc)
   return nz.Framework.Sync[id]
 end
 
--- nz.Framework.Sync[id]:sendSync(ply, syncData)
+-- nz.Framework.Sync[id]:sendSync(ply)

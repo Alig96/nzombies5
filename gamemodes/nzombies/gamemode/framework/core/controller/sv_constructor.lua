@@ -4,7 +4,7 @@ function nz.Framework.createController(id, onSuccessFunc, authorizationFunc, val
 
   -- Create a magic method for validating the controller's data
   function controllerModel:validateRequest(requestData)
-    if controllerModel:validate(requestData) then
+    if controllerModel.validate(requestData) then
       return true
     else
       Log(LOG_ERROR, "Data supplied failed validation.", "Controller:" .. controllerModel.id)
@@ -14,7 +14,7 @@ function nz.Framework.createController(id, onSuccessFunc, authorizationFunc, val
 
   -- Create a magic method for authorising a player
   function controllerModel:authroizePlayer(requestingPlayer)
-    if controllerModel:authorize(requestingPlayer) then
+    if controllerModel.authorize(requestingPlayer) then
       return true
     else
       Log(LOG_ERROR, "Player: " .. requestingPlayer:Nick() .. " could not be authroised.", "Controller:" .. controllerModel.id)
@@ -28,7 +28,7 @@ function nz.Framework.createController(id, onSuccessFunc, authorizationFunc, val
       if controllerModel:validateRequest(requestData) and controllerModel:authroizePlayer(requestingPlayer) then
         Log(LOG_INFO, requestingPlayer:Nick() ..  " has made a successful request to Controller.", "Controller:" .. controllerModel.id)
         -- Run the controller's on success function
-        controllerModel:onSuccess(requestingPlayer, requestData)
+        controllerModel.onSuccess(requestingPlayer, requestData)
         return true
       else
         return false

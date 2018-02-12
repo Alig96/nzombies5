@@ -17,14 +17,14 @@ end
 local function chatCommands()
   nz.Framework.newChatCommand("create", function(ply, params)
     -- Send it to the controller
-    nz.Controller.handleChangeMode(ply, {
+    nz.Mode.updateController(ply, {
       ["requestedMode"] = MODE_CREATIVE,
     })
   end)
 
   nz.Framework.newChatCommand("play", function(ply, params)
     -- Send it to the controller
-    nz.Controller.handleChangeMode(ply, {
+    nz.Mode.updateController(ply, {
       ["requestedMode"] = MODE_PLAY,
     })
   end)
@@ -36,13 +36,15 @@ local function startServer(includeDir)
     -- Annouce it
     print("Starting nZombies Version: v" .. NZ_VERSION)
     -- Load the current enviroment file
-    nz.IO.Environment:loadCurrentEnviromentFile()
+    --nz.IO.Environment:loadCurrentEnviromentFile()
     -- Set all the custom console commands
     consoleCommands()
     -- Set all the custom chat commands
     chatCommands()
-    -- While the gamemode is in development, set the default to Creative
-    --nz.Mode:set(MODE_CREATIVE)
+    -- If the gamemode is in development mode, set the default mode to Creative
+    if nz.Framework.Environment:isDev() then
+      nz.Mode:set(MODE_CREATIVE)
+    end
   end
 end
 
