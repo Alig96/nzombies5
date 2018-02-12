@@ -2,7 +2,7 @@ local botTest = GUnit.Test:new("[Framework] Debug > Bot")
 
 local function when_player_spawns_they_are_set_to_spectator()
 
-  Log(LOG_INFO, "Spawning bot..." )
+  Log(LOG_DEBUG, "Spawning bot..." )
   player.CreateNextBot( "test_bot" )
 
   -- Assert that we have 1 player

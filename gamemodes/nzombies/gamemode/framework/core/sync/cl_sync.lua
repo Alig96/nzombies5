@@ -6,7 +6,7 @@ function nz.Framework.createSync(id, recieveFunc)
 
   -- Create a magic method for recieveing a sync
   local function receiveSync(length)
-    Log(LOG_INFO, "Received: '" .. id .. "' from Server. It's length is: " .. length, "Framework:Sync")
+    Log(LOG_DEBUG, "Received: '" .. id .. "' from Server. It's length is: " .. length, "Framework:Sync")
     local syncData = net.ReadTable()
 
     -- Call onReceive function
@@ -17,7 +17,7 @@ function nz.Framework.createSync(id, recieveFunc)
   nz.Framework.Sync[id] = syncModel
   net.Receive(networkString, receiveSync)
 
-  Log(LOG_INFO, "Registered reciever: " .. networkString, "Framework:Sync")
+  Log(LOG_DEBUG, "Registered reciever: " .. networkString, "Framework:Sync")
 
   return nz.Framework.Sync[id]
 end

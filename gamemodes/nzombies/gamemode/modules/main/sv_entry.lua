@@ -36,15 +36,13 @@ local function startServer(includeDir)
     -- Annouce it
     print("Starting nZombies Version: v" .. NZ_VERSION)
     -- Load the current enviroment file
-    --nz.IO.Environment:loadCurrentEnviromentFile()
+    nz.Framework.Config:loadFromFile()
+    -- Set the environment from the config
+    nz.Framework.Environment:updateFromConfig()
     -- Set all the custom console commands
     consoleCommands()
     -- Set all the custom chat commands
     chatCommands()
-    -- If the gamemode is in development mode, set the default mode to Creative
-    if nz.Framework.Environment:isDev() then
-      nz.Mode:set(MODE_CREATIVE)
-    end
   end
 end
 

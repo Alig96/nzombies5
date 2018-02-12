@@ -6,6 +6,10 @@ function environment:get()
   return self.currentEnvironment
 end
 
+function environment:updateFromConfig()
+  self:set(nz.Framework.Config("server", "enviroment"))
+end
+
 function environment:validateInput(envNum)
   if envNum == ENV_DEV or envNum == ENV_PRIVATE or envNum == ENV_PUBLIC then
     return true

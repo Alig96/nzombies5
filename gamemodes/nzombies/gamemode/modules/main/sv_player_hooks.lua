@@ -1,5 +1,5 @@
 function GM:PlayerInitialSpawn(ply)
-  Log(LOG_INFO, ply:Nick() .. " is Sending Client Info.")
+  Log(LOG_DEBUG, ply:Nick() .. " is Sending Client Info.")
 
   -- Send the player a full sync
   ply:fullSync()
