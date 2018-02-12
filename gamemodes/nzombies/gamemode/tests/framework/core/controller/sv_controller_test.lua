@@ -1,10 +1,10 @@
 local controllerTest = GUnit.Test:new("[Framework] Controller")
 local playerGen = GUnit.Generators.FakePlayer
 
-local function onSuccess(controller, requestingPlayer, requestData)
+local function onSuccess(requestingPlayer, requestData)
   nz.Tests.valueToChange = true
   PrintTable(requestData)
-  Log(LOG_INFO, requestingPlayer:Nick() ..  " has changed the test value to true.", "Controller:" .. controller.id)
+  Log(LOG_INFO, requestingPlayer:Nick() ..  " has changed the test value to true.", "TestController")
 end
 
 local function validate(requestData)

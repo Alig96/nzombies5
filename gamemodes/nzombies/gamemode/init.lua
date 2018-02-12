@@ -18,6 +18,8 @@ realmLoader("nzombies/gamemode/framework/models")
 realmLoader("nzombies/gamemode/framework/debug")
 -- Load the framework's core library
 realmLoader("nzombies/gamemode/framework/core")
+-- Load the framework's classes library
+realmLoader("nzombies/gamemode/framework/classes")
 
 -- Load the gamemode modules
 realmLoader("nzombies/gamemode/modules")
