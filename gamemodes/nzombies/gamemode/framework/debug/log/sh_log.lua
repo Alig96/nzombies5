@@ -5,10 +5,10 @@ LOG_ERROR = 3
 
 local debugLog = {}
 debugLog.levels = {
-  [LOG_DEBUG] = nz.Framework.newLogLevel(LOG_DEBUG, "Debug", Color(3, 169, 244)),
-  [LOG_INFO] = nz.Framework.newLogLevel(LOG_INFO, "Info", Color(3, 169, 244)),
-  [LOG_WARN] = nz.Framework.newLogLevel(LOG_WARN, "Warning", Color(3, 169, 244)),
-  [LOG_ERROR] = nz.Framework.newLogLevel(LOG_ERROR, "Error", Color(3, 169, 244)),
+  [LOG_DEBUG] = nz.Framework.newLogLevel(LOG_DEBUG, "Debug", Color(52, 152, 219)),
+  [LOG_INFO] = nz.Framework.newLogLevel(LOG_INFO, "Info", Color(39, 174, 96)),
+  [LOG_WARN] = nz.Framework.newLogLevel(LOG_WARN, "Warning", Color(211, 84, 0)),
+  [LOG_ERROR] = nz.Framework.newLogLevel(LOG_ERROR, "Error", Color(192, 57, 43)),
 }
 
 function debugLog:getLogLevelObject(logLevelId)

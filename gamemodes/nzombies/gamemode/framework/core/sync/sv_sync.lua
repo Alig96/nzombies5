@@ -9,7 +9,7 @@ function nz.Framework.createSync(id, recieveFunc, dataFunc)
 
   -- Create a magic method for recieveing a sync
   function syncModel:sendSync(recieveingPlayer)
-    Log(LOG_INFO, "Sending: '" .. id .. "' Sync to: " .. recieveingPlayer:Nick() .. ".", "Framework:Sync")
+    Log(LOG_DEBUG, "Sending: '" .. id .. "' Sync to: " .. recieveingPlayer:Nick() .. ".", "Framework:Sync")
 
     net.Start(networkString)
       net.WriteTable(self:dataToSync())
@@ -18,7 +18,7 @@ function nz.Framework.createSync(id, recieveFunc, dataFunc)
 
   -- Create a magic method for broadcasting a sync
   function syncModel:broadcast()
-    Log(LOG_INFO, "Broadcasting to all current players: " .. id, "Framework:Sync")
+    Log(LOG_DEBUG, "Broadcasting to all current players: " .. id, "Framework:Sync")
 
     for _, ply in pairs(player.GetAll()) do
       nz.Framework.Sync[id]:sendSync(ply)

@@ -4,7 +4,7 @@ local playerGen = GUnit.Generators.FakePlayer
 local function onSuccess(requestingPlayer, requestData)
   nz.Tests.valueToChange = true
   PrintTable(requestData)
-  Log(LOG_INFO, requestingPlayer:Nick() ..  " has changed the test value to true.", "TestController")
+  Log(LOG_DEBUG, requestingPlayer:Nick() ..  " has changed the test value to true.", "TestController")
 end
 
 local function validate(requestData)

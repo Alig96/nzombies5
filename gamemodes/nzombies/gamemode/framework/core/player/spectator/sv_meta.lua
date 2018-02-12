@@ -12,7 +12,7 @@ function playerMeta:setAsSpectator()
   self.specType = OBS_MODE_ROAMING
   self:Spectate(self.specType)
 
-  Log(LOG_INFO, self:Nick() .. " has been set as a Spectator.", "Framework:Player")
+  Log(LOG_DEBUG, self:Nick() .. " has been set as a Spectator.", "Framework:Player")
 end
 
 -- Check if the player is a spectator

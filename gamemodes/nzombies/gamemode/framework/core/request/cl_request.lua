@@ -6,7 +6,7 @@ function nz.Framework.createRequest(id, recieveFunc)
 
   -- Create a magic method for recieveing a request
   function requestModel:sendRequest(requestData)
-    Log(LOG_INFO, "Sending: '" .. id .. "' Request to server.", "Framework:Request")
+    Log(LOG_DEBUG, "Sending: '" .. id .. "' Request to server.", "Framework:Request")
 
     net.Start(networkString)
       net.WriteTable(requestData)

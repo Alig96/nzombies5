@@ -26,7 +26,7 @@ function nz.Framework.createController(id, onSuccessFunc, authorizationFunc, val
   function controllerModel:handleRequest(requestingPlayer, requestData)
     if requestingPlayer and requestData then
       if controllerModel:validateRequest(requestData) and controllerModel:authroizePlayer(requestingPlayer) then
-        Log(LOG_INFO, requestingPlayer:Nick() ..  " has made a successful request to Controller.", "Controller:" .. controllerModel.id)
+        Log(LOG_DEBUG, requestingPlayer:Nick() ..  " has made a successful request to Controller.", "Controller:" .. controllerModel.id)
         -- Run the controller's on success function
         controllerModel.onSuccess(requestingPlayer, requestData)
         return true
