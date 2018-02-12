@@ -1,4 +1,4 @@
-local text = "nZombies is running in Development Mode."
+local text = "nZombies is running in Development Mode"
 
 local function displayDevEnvironmentMessage()
   -- Draw it
