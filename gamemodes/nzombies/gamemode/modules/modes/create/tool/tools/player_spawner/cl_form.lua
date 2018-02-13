@@ -1,26 +1,32 @@
 local playerSpawnerToolForm = {}
 
 function playerSpawnerToolForm:Init()
-  self.toolTitle = vgui.Create("DLabel", self)
-  self.toolTitle:SetPos(10, 10)
-  self.toolTitle:SetText("Player Spawner Tool")
-  self.toolTitle:SetFont("DermaLarge")
-  self.toolTitle:SizeToContents()
-  self.toolTitle:SetTextColor(Color(25, 25, 25, 255))
+  self.propertiesForm = vgui.Create("DProperties", self)
+  self.propertiesForm:Dock(FILL)
+  self.formData = {}
+  self.attributeRows = {}
 
-  self.toolDescription = vgui.Create("DLabel", self)
-  self.toolDescription:SetPos(10, 50)
-  self.toolDescription:SetText("Left Click: Add Player Spawner.\nRight Click: Remove Player Spawner.")
-  self.toolDescription:SetFont("DermaDefault")
-  self.toolDescription:SizeToContents()
-  self.toolDescription:SetTextColor(Color(25, 25, 25, 255))
+  local formAtrributes = {
+    {
+      categoryId = "Category",
+      id = "genericAtrribute",
+      name = "Generic Atrribute",
+      type = "Generic",
+      defaultValue = "Test",
+    }
+  }
+
+  for _, attribute in pairs(formAtrributes) do
+    self.formData[attribute.id] = attribute.defaultValue
+    self.attributeRows[attribute.id] = self.propertiesForm:CreateRow(attribute.categoryId, attribute.name)
+    self.attributeRows[attribute.id]:Setup(attribute.type)
+    self.attributeRows[attribute.id]:SetValue(self.formData[attribute.id])
+    self.attributeRows[attribute.id].DataChanged = function(panel, newValue) self.formData[attribute.id] = newValue end
+  end
 end
 
 function playerSpawnerToolForm:getFormData()
-  return {
-    -- Just to prove we can use "self" in this context to get all form data and put it into a nice table
-    genericFormData1 = self.toolTitle:GetText()
-  }
+  return self.formData
 end
 
-vgui.Register("nz.Forms.playerSpawnerTool", playerSpawnerToolForm)
+vgui.Register("nz.Forms.playerSpawnerTool", playerSpawnerToolForm, "EditablePanel")
