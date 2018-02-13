@@ -7,7 +7,7 @@ end
 local function validateRequest(requestData)
   local requestedEntity = requestData["requestedEntity"]
 
-  if isentity(requestedEntity) and requestedEntity:GetClass() == "nz_player_spawner" then
+  if isentity(requestedEntity) then -- and requestedEntity:GetClass() == "nz_player_spawner" then
     return true
   end
 
