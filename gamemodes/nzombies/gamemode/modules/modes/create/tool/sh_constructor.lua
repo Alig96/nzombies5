@@ -18,6 +18,8 @@ prototypeTool.instructions = {
   rightClick = "Do Nothing",
 }
 
+prototypeTool.formPanelId = "panel"
+
 function prototypeTool:onLeftClick(trace)
   print("Triggered: On Left Click")
   PrintTable(trace)
@@ -29,4 +31,4 @@ function prototypeTool:onRightClick(trace)
 end
 
 -- Register this prototype as a model
-nz.Framework.registerModel(prototypeTool, "Tool", {"id", "name", "category", "description", "instructions", "onLeftClick", "onRightClick"})
+nz.Framework.registerModel(prototypeTool, "Tool", {"id", "name", "category", "description", "instructions", "onLeftClick", "onRightClick", "formPanelId"})

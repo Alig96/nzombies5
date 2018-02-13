@@ -1,8 +1,9 @@
 function nz.Create.multiTool:setCurrentTool(toolId)
-  -- Find multi tool
+  -- Switch our current weapon to the tool gun
+  RunConsoleCommand("use", "nz_multi_tool")
   local multiTool = LocalPlayer():GetWeapon("nz_multi_tool")
   if multiTool then
     -- Set the tool
-    multiTool:loadTool(toolId)
+    multiTool:setCurrentTool(toolId)
   end
 end

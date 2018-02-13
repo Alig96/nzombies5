@@ -110,7 +110,7 @@ end
 
 
 if CLIENT then
-  function SWEP:loadTool(idOfTool)
+  function SWEP:setCurrentTool(idOfTool)
     local toolData = nz.Create.Tool:getTool(idOfTool)
     if toolData then
       Log(LOG_INFO, "Changed tool to: " .. toolData.name .. ".", "Weapon:Multi-Tool")
@@ -165,7 +165,7 @@ if CLIENT then
   	local TEX_SIZE = 256
   	local oldW = ScrW()
   	local oldH = ScrH()
-    local text = "Select a tool..."
+    local text = "Hold Q to select a tool..."
 
     if self.currentTool then
       text = self.currentTool.name .. " Tool"
