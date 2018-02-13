@@ -3,6 +3,14 @@ local toolClass = {}
 toolClass.categories = {}
 toolClass.tools = {}
 
+function toolClass:getAllCategories()
+  return self.categories
+end
+
+function toolClass:getAllTools()
+  return self.tools
+end
+
 function toolClass:getCategory(id)
   local category = self.categories[id]
   if category then
@@ -30,7 +38,7 @@ function toolClass:getTool(id)
   Log(LOG_ERROR, "Could not find Tool: " .. id, moduleName)
 end
 
-function toolClass:new(id, name, categoryId, description, instructions, shootFunctions)
+function toolClass:new(id, name, categoryId, description, instructions, shootFunctions, formPanelId)
   -- Get the category
   local category = self:getCategory(categoryId)
 
@@ -38,7 +46,7 @@ function toolClass:new(id, name, categoryId, description, instructions, shootFun
   if self.tools[id] then
     Log(LOG_ERROR, "Attempted to register Tool: '" .. name .. "' that already exists.", moduleName)
   else
-    self.tools[id] = nz.Framework.newTool(id, name, category, description, instructions, shootFunctions.onLeftClick, shootFunctions.onRightClick)
+    self.tools[id] = nz.Framework.newTool(id, name, category, description, instructions, shootFunctions.onLeftClick, shootFunctions.onRightClick, formPanelId)
     Log(LOG_DEBUG, "Registered Tool: " .. name, moduleName)
   end
 
