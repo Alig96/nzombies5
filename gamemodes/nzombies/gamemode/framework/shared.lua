@@ -1,10 +1,3 @@
--- Framework
-gel = {}
--- Internal
-gel.Internal = {}
--- External
-gel.fw = {}
-
 -- Globals
 LOG_DEBUG = 0
 LOG_INFO = 1
@@ -21,11 +14,20 @@ function Log(logLevelId, logMessage, moduleName)
   end
 end
 
+print("Now loading Gel Framework...")
+print("  ________       .__    ___________                                                __")
+print(" /  _____/  ____ |  |   \\_   _____/___________    _____   ______  _  _____________|  | __")
+print("/   \\  ____/ __ \\|  |    |    __) \\_  __ \\__  \\  /     \\_/ __ \\ \\/ \\/ /  _ \\_  __ \\  |/ /")
+print("\\    \\_\\  \\  ___/|  |__  |     \\   |  | \\// __ \\|  Y Y  \\  ___/\\     (  <_> )  | \\/    <")
+print(" \\______  /\\___  >____/  \\___  /   |__|  (____  /__|_|  /\\___  >\\/\\_/ \\____/|__|  |__|_ \\")
+print("        \\/     \\/            \\/               \\/      \\/     \\/                        \\/")
+
+
 -- Load the framework's string library
-realmLoader("nzombies/gamemode/framework/critical/string")
+gel.fw:loadDirectory("nzombies/gamemode/framework/critical/string")
 -- Load the framework's database library
-realmLoader("nzombies/gamemode/framework/critical/database")
+gel.fw:loadDirectory("nzombies/gamemode/framework/critical/database")
 -- Load the framework's model library
-realmLoader("nzombies/gamemode/framework/critical/model")
+gel.fw:loadDirectory("nzombies/gamemode/framework/critical/model")
 -- Load the framework's debug library
-realmLoader("nzombies/gamemode/framework/critical/debug")
+gel.fw:loadDirectory("nzombies/gamemode/framework/critical/debug")

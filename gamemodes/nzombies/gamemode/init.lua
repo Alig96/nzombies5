@@ -1,18 +1,12 @@
 include("shared.lua")
-include("realm_loader.lua")
-
 AddCSLuaFile("shared.lua")
-AddCSLuaFile("realm_loader.lua")
 
 -- Framework
-AddCSLuaFile("framework/init.lua")
 include("framework/init.lua")
-
--- Main Tables
-nz = {}
+AddCSLuaFile("framework/init.lua")
 
 -- Load the gamemode modules
-realmLoader("nzombies/gamemode/modules")
+gel.fw:loadDirectory("nzombies/gamemode/modules")
 
 -- Load tests
 include("nzombies/gamemode/tests/sv_gunit.lua")
