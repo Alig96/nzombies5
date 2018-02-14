@@ -66,12 +66,26 @@ local function can_create_then_delete_a_new_model_item()
   GUnit.assert(findTestItem):shouldEqual(nil)
 end
 
+local function can_get_all_items_from_a_model()
+  local testModel = gel.Internal.Model:new("TestModel", {name = "BaseTestModel"}, {"name"})
+
+  testModel:create("newTestItem1")
+  testModel:create("newTestItem2")
+  testModel:create("newTestItem3")
+
+  local allItems = testModel:all()
+
+  -- We should have 3 items returned
+  GUnit.assert(#allItems):shouldEqual(3)
+end
+
 modelClassTest:addSpec("cannot create a new model without an id", cannot_create_a_new_model_without_an_id)
 modelClassTest:addSpec("cannot create a new model without a prototype class", cannot_create_a_new_model_without_a_prototype_class)
 modelClassTest:addSpec("can make new model item with id and prototype", can_make_a_new_model_item_with_id_and_prototype)
 modelClassTest:addSpec("can create then find a new model item in database", can_create_then_find_a_new_model_item)
 modelClassTest:addSpec("can create then update a model item in database", can_create_then_update_a_new_model_item)
 modelClassTest:addSpec("can create then delete a model item in database", can_create_then_delete_a_new_model_item)
+modelClassTest:addSpec("can get all items in database from model", can_get_all_items_from_a_model)
 
 local function afterEach()
   gel.Internal.Database:clearDatabase()

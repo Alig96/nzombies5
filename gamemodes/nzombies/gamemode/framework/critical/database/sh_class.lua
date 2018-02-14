@@ -46,6 +46,14 @@ end
 
 -- Row
 
+function databaseClass:selectAllRows(tableId)
+  if self:tableExists(tableId) then
+    return self.tables[tableId]
+  end
+
+  return nil
+end
+
 function databaseClass:createRow(tableId, rowData, rowId)
   if self:tableExists(tableId) then
     if rowId == nil then

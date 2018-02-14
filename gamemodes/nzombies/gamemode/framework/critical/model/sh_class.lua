@@ -66,6 +66,11 @@ function modelClass:new(modelId, prototypeClass, editableProperites)
       return newItem
     end
 
+    function newModel:all()
+      -- Get all of the results
+      return gel.Internal.Database:selectAllRows(self.tableId)
+    end
+
     function newModel:find(findModelId)
       -- Find it by Id in the database
       return gel.Internal.Database:selectRow(self.tableId, findModelId)
