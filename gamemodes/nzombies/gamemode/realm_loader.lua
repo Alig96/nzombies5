@@ -60,6 +60,12 @@ function realmLoader:recursiveInclude( currentPath )
 	-- Scan through the current directory, include any files, and then re run self for any directorys
 	local loadFiles, loadFolders = file.Find(currentPath .. "/*", "LUA")
 
+	-- If we have a models folder, load that first
+	if table.HasValue(loadFolders, "models") then
+		print("Priortising the models directory: " .. currentPath .. "/" .. "models")
+		self:recursiveInclude(currentPath .. "/" .. "models")
+	end
+
 	if loadFiles != null then
 		-- Check for a constructor module file
 		if table.HasValue(loadFiles, "sh_constructor.lua") then
@@ -77,7 +83,10 @@ function realmLoader:recursiveInclude( currentPath )
 
 	if loadFolders != null then
 		for k, loadFolder in pairs(loadFolders) do
-			self:recursiveInclude(currentPath .. "/" .. loadFolder)
+			-- We don't need to reload the constructor, since we loaded it first
+			if loadFolder != "models" then
+				self:recursiveInclude(currentPath .. "/" .. loadFolder)
+			end
 		end
 	end
 

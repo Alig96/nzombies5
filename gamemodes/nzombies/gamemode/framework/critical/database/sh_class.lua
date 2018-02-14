@@ -4,12 +4,13 @@ databaseClass.tableIdCounter = {}
 
 -- Table
 
-function databaseClass:tableExists(tableId)
+function databaseClass:tableExists(tableId, suppress)
   if self.tables[tableId] then
     return true
   end
-
-  Log(LOG_ERROR, "Table: '" .. tableId .. "' does not exist", "Framework:Database")
+  if suppress == nil then
+    Log(LOG_ERROR, "Table: '" .. tableId .. "' does not exist", "Framework:Database")
+  end
   return false
 end
 
@@ -27,7 +28,7 @@ function databaseClass:updateTableCounter(tableId)
 end
 
 function databaseClass:newTable(tableId, prototypeId)
-  if !self:tableExists(tableId) then
+  if !self:tableExists(tableId, true) then
     -- If we don't provide prototype id then we should make an auto-incrementing id system
     if modelId == nil then
       self.tableIdCounter[tableId] = 1
