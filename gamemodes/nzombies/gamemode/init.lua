@@ -1,9 +1,9 @@
 include("shared.lua")
-AddCSLuaFile("shared.lua")
-
 -- Framework
 include("framework/init.lua")
-AddCSLuaFile("framework/init.lua")
+
+AddCSLuaFile("shared.lua")
+AddCSLuaFile("framework/cl_init.lua")
 
 -- Load the gamemode modules
 gel.fw:loadDirectory("nzombies/gamemode/modules")
