@@ -113,6 +113,6 @@ end
 gel.Internal.Loader = realmLoader
 
 -- Create shortcut
-function gel.fw:loadDirectory(includeDir)
-	gel.Internal.Loader:loadDirectory(includeDir)
+function gel.fw:loadDirectory(...)
+	return gel.Internal.Loader:loadDirectory(...)
 end

@@ -7,4 +7,4 @@ function prototypeCurve:calculateY(x)
 end
 
 -- Register this prototype as a model
-gel.Internal.Model:new("Curve", prototypeCurve, {"constants"})
+gel.fw:newModel("Curve", prototypeCurve, {"constants"})

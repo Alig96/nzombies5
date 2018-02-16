@@ -17,4 +17,4 @@ function prototypeSync:onReceive(syncData)
 end
 
 -- Register this prototype as a model
-gel.Internal.Model:new("Sync", prototypeSync, {"id", "getData", "onReceive"})
+gel.fw:newModel("Sync", prototypeSync, {"id", "getData", "onReceive"})

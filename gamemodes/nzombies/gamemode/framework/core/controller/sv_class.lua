@@ -57,3 +57,8 @@ end
 
 -- Assign the class table to the gel global
 gel.Internal.Controller = controllerClass
+
+-- Make a shortcut to using this library
+function gel.fw:newController(...)
+  return gel.Internal.Controller:new(...)
+end

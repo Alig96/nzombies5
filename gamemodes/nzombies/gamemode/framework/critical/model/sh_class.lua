@@ -119,3 +119,8 @@ end
 
 -- Assign the class table to the gel global
 gel.Internal.Model = modelClass
+
+-- Create shortcut
+function gel.fw:newModel(...)
+  return gel.Internal.Model:new(...)
+end

@@ -8,4 +8,4 @@ function prototypeCommand:onCalled(callingPlayer, additionalParameters)
 end
 
 -- Register this prototype as a model
-gel.Internal.Model:new("Command", prototypeCommand, {"triggerPhrase", "onCalled", "triggerSymbol"})
+gel.fw:newModel("Command", prototypeCommand, {"triggerPhrase", "onCalled", "triggerSymbol"})

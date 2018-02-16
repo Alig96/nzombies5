@@ -21,4 +21,4 @@ function prototypeController:authorize(callingPlayer)
 end
 
 -- Register this prototype as a model
-gel.Internal.Model:new("Controller", prototypeController, {"id", "onSuccess", "validate", "authorize"})
+gel.fw:newModel("Controller", prototypeController, {"id", "onSuccess", "validate", "authorize"})
