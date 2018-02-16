@@ -20,11 +20,12 @@ function logClass:getLogLevel(logLevelId)
 end
 
 function logClass:shouldNotify(logLevelId)
-  -- If we are in dev mode, then show debug messages else don't
-  --if logLevelId == LOG_DEBUG and !nz.Framework.Environment:isDev() then
-  --  return false
-  --end
-
+  -- If the Environment library is loaded then we should check if we should log or not
+  if gel.Internal.Environment then
+    if logLevelId == LOG_DEBUG and !gel.fw:isDev() then
+      return false
+    end
+  end
   return true
 end
 

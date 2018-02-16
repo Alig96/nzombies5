@@ -4,6 +4,11 @@ LOG_INFO = 1
 LOG_WARN = 2
 LOG_ERROR = 3
 
+-- Globals
+ENV_DEV = 0
+ENV_PRIVATE = 1
+ENV_PUBLIC = 2
+
 function Log(logLevelId, logMessage, moduleName)
   -- If the log library has been loaded then use that, if not just print
   -- Because we don't know if the debug library is ready or not
