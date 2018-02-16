@@ -31,6 +31,6 @@ function gel.fw:newCommand(type, ...)
   elseif type == "Chat" then
     gel.Internal.Command:newChatCommand(...)
   else
-    Log(LOG_ERROR, "No Command type of: " .. type, "Framework:Command:Command")
+    Log(LOG_ERROR, "No Command type of: " .. type, "gel:Command")
   end
 end
