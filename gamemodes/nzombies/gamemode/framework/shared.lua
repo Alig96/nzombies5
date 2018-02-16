@@ -35,3 +35,7 @@ gel.fw:loadDirectory("nzombies/gamemode/framework/critical/debug")
 -- Core
 -- Load the framework's core library
 gel.fw:loadDirectory("nzombies/gamemode/framework/core")
+
+-- Classes
+-- Load the framework's additional class libraries
+gel.fw:loadDirectory("nzombies/gamemode/framework/classes")
