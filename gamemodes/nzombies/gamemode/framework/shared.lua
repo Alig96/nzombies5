@@ -22,7 +22,7 @@ print("\\    \\_\\  \\  ___/|  |__  |     \\   |  | \\// __ \\|  Y Y  \\  ___/\\
 print(" \\______  /\\___  >____/  \\___  /   |__|  (____  /__|_|  /\\___  >\\/\\_/ \\____/|__|  |__|_ \\")
 print("        \\/     \\/            \\/               \\/      \\/     \\/                        \\/")
 
-
+-- Critical
 -- Load the framework's string library
 gel.fw:loadDirectory("nzombies/gamemode/framework/critical/string")
 -- Load the framework's database library
@@ -31,3 +31,7 @@ gel.fw:loadDirectory("nzombies/gamemode/framework/critical/database")
 gel.fw:loadDirectory("nzombies/gamemode/framework/critical/model")
 -- Load the framework's debug library
 gel.fw:loadDirectory("nzombies/gamemode/framework/critical/debug")
+
+-- Core
+-- Load the framework's core library
+gel.fw:loadDirectory("nzombies/gamemode/framework/core")

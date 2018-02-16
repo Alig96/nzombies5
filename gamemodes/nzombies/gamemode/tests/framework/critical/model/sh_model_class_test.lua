@@ -1,5 +1,7 @@
 local modelClassTest = GUnit.Test:new("[Framework] Model Class")
 
+local testModelId = "TestModel"
+
 local function cannot_create_a_new_model_without_an_id()
   local newModel = gel.Internal.Model:new()
 
@@ -7,13 +9,13 @@ local function cannot_create_a_new_model_without_an_id()
 end
 
 local function cannot_create_a_new_model_without_a_prototype_class()
-  local newModel = gel.Internal.Model:new("TestModel")
+  local newModel = gel.Internal.Model:new(testModelId)
 
   GUnit.assert(newModel):shouldEqual(false)
 end
 
 local function can_make_a_new_model_item_with_id_and_prototype()
-  local testModel = gel.Internal.Model:new("TestModel", {name = "BaseTestModel"}, {"name"})
+  local testModel = gel.Internal.Model:new(testModelId, {name = "BaseTestModel"}, {"name"})
 
   local newTestItem1 = testModel:make("newTestItem1")
   local newTestItem2 = testModel:make("newTestItem2")
@@ -23,7 +25,7 @@ local function can_make_a_new_model_item_with_id_and_prototype()
 end
 
 local function can_create_then_find_a_new_model_item()
-  local testModel = gel.Internal.Model:new("TestModel", {name = "BaseTestModel"}, {"name"})
+  local testModel = gel.Internal.Model:new(testModelId, {name = "BaseTestModel"}, {"name"})
 
   local newTestItem = testModel:create("newTestItem1")
   local foundItem = testModel:find(newTestItem.id)
@@ -33,7 +35,7 @@ local function can_create_then_find_a_new_model_item()
 end
 
 local function can_create_then_update_a_new_model_item()
-  local testModel = gel.Internal.Model:new("TestModel", {name = "BaseTestModel"}, {"name"})
+  local testModel = gel.Internal.Model:new(testModelId, {name = "BaseTestModel"}, {"name"})
 
   local newTestItem = testModel:create("newTestItem1")
   -- Change this item's name
@@ -50,7 +52,7 @@ local function can_create_then_update_a_new_model_item()
 end
 
 local function can_create_then_delete_a_new_model_item()
-  local testModel = gel.Internal.Model:new("TestModel", {name = "BaseTestModel"}, {"name"})
+  local testModel = gel.Internal.Model:new(testModelId, {name = "BaseTestModel"}, {"name"})
 
   local newTestItem = testModel:create("newTestItem1")
   -- Send a delete
@@ -67,7 +69,7 @@ local function can_create_then_delete_a_new_model_item()
 end
 
 local function can_get_all_items_from_a_model()
-  local testModel = gel.Internal.Model:new("TestModel", {name = "BaseTestModel"}, {"name"})
+  local testModel = gel.Internal.Model:new(testModelId, {name = "BaseTestModel"}, {"name"})
 
   testModel:create("newTestItem1")
   testModel:create("newTestItem2")
@@ -88,7 +90,7 @@ modelClassTest:addSpec("can create then delete a model item in database", can_cr
 modelClassTest:addSpec("can get all items in database from model", can_get_all_items_from_a_model)
 
 local function afterEach()
-  gel.Internal.Database:clearDatabase()
+  gel.Internal.Model:delete(testModelId)
 end
 
 modelClassTest:afterEach(afterEach)

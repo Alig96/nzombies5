@@ -105,5 +105,17 @@ function modelClass:register(modelId, modelObject)
   Log(LOG_INFO, "Registered Model: " .. modelId, "Framework:Model")
 end
 
+function modelClass:delete(modelId)
+  local model = self:get(modelId)
+  if model then
+    -- Remove the database table for the model
+    gel.Internal.Database:deleteTable(model.tableId)
+    -- Unregister the model
+    self.models[modelId] = nil
+    -- Notify
+    Log(LOG_WARN, "Un-Registered  & Deleted Model: " .. modelId, "Framework:Model")
+  end
+end
+
 -- Assign the class table to the gel global
 gel.Internal.Model = modelClass

@@ -15,7 +15,7 @@ function databaseClass:tableExists(tableId, suppress)
 end
 
 function databaseClass:getNextUniqueId(tableId)
-  if self.tables[tableId] then
+  if self:tableExists(tableId) then
     return self.tableIdCounter[tableId]
   end
 end
@@ -39,9 +39,11 @@ function databaseClass:newTable(tableId, prototypeId)
   end
 end
 
-function databaseClass:clearDatabase()
-  self.tables = {}
-  Log(LOG_WARN, "Database has been cleared", "Framework:Database")
+function databaseClass:deleteTable(tableId)
+  if self:tableExists(tableId) then
+    self.tables[tableId] = nil
+    Log(LOG_DEBUG, "Table: '" .. tableId .. "' deleted", "Framework:Database")
+  end
 end
 
 -- Row
