@@ -1,7 +1,7 @@
 local commandClass = {}
 commandClass.chatCommands = {}
 
-local commandModel = gel.Internal.Model:get("Command")
+local commandModel = gel.fw:getModel("Command")
 
 function commandClass:newConsoleCommand(triggerPhrase, customFunction, triggerSymbol)
   -- Make a new console command using the command model

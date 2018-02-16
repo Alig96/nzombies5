@@ -1,4 +1,4 @@
-local environmentModel = gel.Internal.Model:get("Environment")
+local environmentModel = gel.fw:getModel("Environment")
 
 environmentClass = {}
 

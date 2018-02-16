@@ -113,7 +113,7 @@ function modelClass:delete(modelId)
     -- Unregister the model
     self.models[modelId] = nil
     -- Notify
-    Log(LOG_WARN, "Un-Registered  & Deleted Model: " .. modelId, "Framework:Model")
+    Log(LOG_WARN, "Un-Registered & Deleted Model: " .. modelId, "Framework:Model")
   end
 end
 
@@ -123,4 +123,9 @@ gel.Internal.Model = modelClass
 -- Create shortcut
 function gel.fw:newModel(...)
   return gel.Internal.Model:new(...)
+end
+
+-- Create shortcut
+function gel.fw:getModel(...)
+  return gel.Internal.Model:get(...)
 end

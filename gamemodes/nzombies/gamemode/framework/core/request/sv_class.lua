@@ -1,7 +1,7 @@
 local requestClass = {}
 
 -- Get the Request Model
-local requestModel = gel.Internal.Model:get("Request")
+local requestModel = gel.fw:getModel("Request")
 
 function requestClass:new(id, recieveFunc)
   -- Create a new Request object

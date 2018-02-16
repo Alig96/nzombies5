@@ -1,7 +1,7 @@
 local syncClass = {}
 
 -- Get the Sync Model
-local syncModel = gel.Internal.Model:get("Sync")
+local syncModel = gel.fw:getModel("Sync")
 
 function syncClass:new(id, dataFunc, recieveFunc)
   -- Create a new Sync object

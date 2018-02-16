@@ -1,7 +1,7 @@
 local controllerClass = {}
 
 -- Get the Controller Model
-local controllerModel = gel.Internal.Model:get("Controller")
+local controllerModel = gel.fw:getModel("Controller")
 
 function controllerClass:new(controllerId, onSuccessFunc, validationFunc, authorizationFunc)
   -- Create a new controller object
@@ -52,7 +52,7 @@ function controllerClass:new(controllerId, onSuccessFunc, validationFunc, author
 end
 
 function controllerClass:delete(controllerId)
-  local controlerModel = gel.Internal.Model:get("Controller")
+  local controlerModel = gel.fw:getModel("Controller")
   -- Delete the controller
   controlerModel:delete(controllerId)
 end

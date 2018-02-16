@@ -1,6 +1,6 @@
 local logClass = {}
-local logLevelModel = gel.Internal.Model:get("LogLevel")
-local logModel = gel.Internal.Model:get("Log")
+local logLevelModel = gel.fw:getModel("LogLevel")
+local logModel = gel.fw:getModel("Log")
 
 function logClass:createLogLevels()
   if self.levels == nil then

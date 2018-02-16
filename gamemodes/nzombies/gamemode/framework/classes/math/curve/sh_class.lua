@@ -1,6 +1,6 @@
 local curveClass = {}
 
-local curveModel = gel.Internal.Model:get("Curve")
+local curveModel = gel.fw:getModel("Curve")
 
 function curveClass:newExponentialCurve(base, growthRate)
   -- Make a new exponential curve using the curve model
