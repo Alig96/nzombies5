@@ -18,7 +18,8 @@ function syncClass:new(id, dataFunc, recieveFunc)
     local syncObject = syncModel:find(id)
     syncObject:onReceive(syncData)
   end)
-
+  -- Notify
+  Log(LOG_INFO, "Successfully created Sync: " .. newSync.id, "Framework:Sync")
   -- Return the finished sync object
   return newSync
 end

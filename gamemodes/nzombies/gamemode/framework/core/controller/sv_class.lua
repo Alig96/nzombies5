@@ -1,9 +1,9 @@
 local controllerClass = {}
 
-function controllerClass:new(controllerId, onSuccessFunc, validationFunc, authorizationFunc)
-  -- Get the Controller Model
-  local controllerModel = gel.Internal.Model:get("Controller")
+-- Get the Controller Model
+local controllerModel = gel.Internal.Model:get("Controller")
 
+function controllerClass:new(controllerId, onSuccessFunc, validationFunc, authorizationFunc)
   -- Create a new controller object
   local newController = controllerModel:create(controllerId, onSuccessFunc, validationFunc, authorizationFunc)
 
@@ -30,7 +30,7 @@ function controllerClass:new(controllerId, onSuccessFunc, validationFunc, author
   -- Create a magic for authorising a player
   function newController:handleRequest(requestingPlayer, requestData)
     if requestingPlayer and requestData then
-      if self:validateRequest(requestData) and self:authroizePlayer(requestingPlayer) then
+      if self:authroizePlayer(requestingPlayer) and self:validateRequest(requestData) then
         Log(LOG_DEBUG, requestingPlayer:Nick() ..  " has made a successful request to Controller", "Controller:" .. self.id)
         -- Run the controller's on success function
         self:onSuccess(requestingPlayer, requestData)
@@ -45,6 +45,8 @@ function controllerClass:new(controllerId, onSuccessFunc, validationFunc, author
 
   -- Since we added the magic methods, we should update our controller in the database
   controllerModel:update(newController.id, newController)
+  -- Notify
+  Log(LOG_INFO, "Successfully created Controller: " .. newController.id, "Framework:Controller")
   -- Return the finished controller object from the database
   return controllerModel:find(newController.id)
 end
@@ -61,4 +63,17 @@ gel.Internal.Controller = controllerClass
 -- Make a shortcut to using this library
 function gel.fw:newController(...)
   return gel.Internal.Controller:new(...)
+end
+
+-- Make a shortcut to using this library
+function gel.fw:handleController(id, ...)
+  -- Find the controller from the database
+  local controler = controllerModel:find(id)
+  -- If we find it then send the request
+  if controler then
+    return controler:handleRequest(...)
+  else
+    -- Notify
+    Log(LOG_ERROR, "Could not find Controller: " .. id, "Framework:Controller")
+  end
 end

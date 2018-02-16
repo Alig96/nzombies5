@@ -30,6 +30,8 @@ function syncClass:new(id, dataFunc, recieveFunc)
 
   -- Since we added the magic methods, we should update our sync in the database
   syncModel:update(newSync.id, newSync)
+  -- Notify
+  Log(LOG_INFO, "Successfully created Sync: " .. newSync.id, "Framework:Sync")
   -- Return the finished controller object from the database
   return syncModel:find(newSync.id)
 end
@@ -55,4 +57,17 @@ gel.Internal.Sync = syncClass
 -- Create shortcut
 function gel.fw:newSync(...)
   gel.Internal.Sync:new(...)
+end
+
+-- Create shortcut
+function gel.fw:broadcastSync(id)
+  -- Find the sync from the database
+  local sync = syncModel:find(id)
+  -- If we find it then send the request
+  if sync then
+    sync:broadcast()
+  else
+    -- Notify
+    Log(LOG_ERROR, "Could not find Sync: " .. id, "Framework:Sync")
+  end
 end
