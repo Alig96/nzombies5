@@ -28,5 +28,6 @@ end
 
 -- Make a shortcut to using this library
 function gel.fw:getColor(...)
-  return gel.Internal.Color:get(...)
+  -- Just return the color's actual color value
+  return gel.Internal.Color:get(...).color
 end
