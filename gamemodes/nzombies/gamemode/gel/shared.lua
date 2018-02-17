@@ -29,22 +29,22 @@ print("        \\/     \\/            \\/               \\/      \\/     \\/    
 
 -- Critical
 -- Load the framework's string library
-gel.fw:loadDirectory("nzombies/gamemode/framework/critical/string")
+gel.fw:loadDirectory("nzombies/gamemode/gel/critical/string")
 -- Load the framework's database library
-gel.fw:loadDirectory("nzombies/gamemode/framework/critical/database")
+gel.fw:loadDirectory("nzombies/gamemode/gel/critical/database")
 -- Load the framework's model library
-gel.fw:loadDirectory("nzombies/gamemode/framework/critical/model")
+gel.fw:loadDirectory("nzombies/gamemode/gel/critical/model")
 -- Load the framework's debug library
-gel.fw:loadDirectory("nzombies/gamemode/framework/critical/debug")
+gel.fw:loadDirectory("nzombies/gamemode/gel/critical/debug")
 
 -- Core
 -- Load the framework's core library
-gel.fw:loadDirectory("nzombies/gamemode/framework/core")
+gel.fw:loadDirectory("nzombies/gamemode/gel/core")
 
 -- Classes
 -- Load the framework's additional class libraries
-gel.fw:loadDirectory("nzombies/gamemode/framework/classes")
+gel.fw:loadDirectory("nzombies/gamemode/gel/classes")
 
 -- Display
 -- Load the display classes
-gel.fw:loadDirectory("nzombies/gamemode/framework/display")
+gel.fw:loadDirectory("nzombies/gamemode/gel/display")

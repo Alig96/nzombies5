@@ -1,9 +1,10 @@
 include("shared.lua")
 -- Framework
-include("framework/init.lua")
+include("gel/init.lua")
 
 AddCSLuaFile("shared.lua")
-AddCSLuaFile("framework/cl_init.lua")
+-- Framework
+AddCSLuaFile("gel/cl_init.lua")
 
 -- Check the nz folder exists
 if !file.Exists("nz/", "DATA") then
