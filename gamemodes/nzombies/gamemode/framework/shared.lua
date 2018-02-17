@@ -44,3 +44,7 @@ gel.fw:loadDirectory("nzombies/gamemode/framework/core")
 -- Classes
 -- Load the framework's additional class libraries
 gel.fw:loadDirectory("nzombies/gamemode/framework/classes")
+
+-- Display
+-- Load the display classes
+gel.fw:loadDirectory("nzombies/gamemode/framework/display")
