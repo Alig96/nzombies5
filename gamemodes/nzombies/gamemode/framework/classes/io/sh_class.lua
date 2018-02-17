@@ -2,7 +2,7 @@ ioClass = {}
 
 function ioClass:writeTableToFile(filePath, tableData)
 	file.Write(filePath, util.TableToJSON(tableData))
-	Log(LOG_DEBUG, "Successfully wrote table to: " .. filePath, "Framework:io")
+	Log(LOG_INFO, "Successfully wrote table to: " .. filePath, "Framework:io")
 	return true
 end
 
