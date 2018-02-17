@@ -2,12 +2,16 @@
 gel.fw:newFont("Helvetica")
 
 -- Get and edit the font
-local fontObject = gel.fw:getFont("Helvetica")
-fontObject.size = 20
-fontObject.weight = 900
-fontObject.underline = true
+local helvetica = gel.fw:getFont("Helvetica")
+
  -- Use the generate option to register the font
-local fontName = fontObject:generate()
+helvetica.size = 20
+helvetica.weight = 900
+local helvetica20 = helvetica:generate()
+-- Use the generate option to register the font
+helvetica.size = 40
+helvetica.italic = true
+local helvetica40Italic = helvetica:generate()
 
 -- Use the color libary
 local orange = gel.fw:getColor("orange")
@@ -15,12 +19,11 @@ local orange = gel.fw:getColor("orange")
 -- Test
 local text = "v" .. NZ_VERSION
 
-local function displayVersionNumber()
+gel.fw:newHUD("VersionNumber", function()
   -- Draw it
   local x = ScrW() / 2
   local y = ScrH() / 2
 
-  draw.SimpleText(text, fontName, x, y, orange, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
-end
-
-hook.Add("HUDPaint", "nz.Display.Hud.Version", displayVersionNumber)
+  draw.SimpleText(text, helvetica20, x, y, orange, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+  draw.SimpleText(text, helvetica40Italic, x + 100, y, orange, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+end)
