@@ -22,9 +22,24 @@ function qMenuBasePanel:addSheet(idOfSheet, vGuiPanel)
 end
 
 function qMenuBasePanel:createToolsPanel()
-  self.toolsPanel = vgui.Create("EditablePanel", self)
+  self.toolsPanel = vgui.Create("Panel", self)
 
-  self.toolsPanel.textBox = vgui.Create("DTextEntry", self.toolsPanel)
+  self.toolsPanel.form = gel.fw:newForm(self.toolsPanel, {
+    {
+      categoryId = "Category",
+      id = "genericAtrribute",
+      name = "Generic Atrribute",
+      type = "Generic",
+      defaultValue = "Test",
+    },
+    {
+      categoryId = "New Cat",
+      id = "genericAtrribute2",
+      name = "Generic Atrribute2",
+      type = "Generic",
+      defaultValue = "1",
+    },
+  })
 
   -- Any additional properties
   self:addSheet("Tools", self.toolsPanel)
