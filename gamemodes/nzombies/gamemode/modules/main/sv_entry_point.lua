@@ -16,17 +16,17 @@ local function consoleCommands()
 end
 
 local function chatCommands()
-  gel.fw:newCommand("Chat", "create", function(ply, params)
+  gel.fw:newCommand("Chat", "create", function(requestingPlayer, params)
     -- Send it to the controller
-    nz.Mode.updateController(ply, {
-      ["requestedMode"] = MODE_CREATE,
+    gel.fw:handleController("ChangeMode", requestingPlayer, {
+      ["currentMode"] = MODE_CREATE,
     })
   end)
 
-gel.fw:newCommand("Chat", "play", function(ply, params)
+gel.fw:newCommand("Chat", "play", function(requestingPlayer, params)
     -- Send it to the controller
-    nz.Mode.updateController(ply, {
-      ["requestedMode"] = MODE_PLAY,
+    gel.fw:handleController("ChangeMode", requestingPlayer, {
+      ["currentMode"] = MODE_PLAY,
     })
   end)
 end
@@ -47,7 +47,7 @@ local function startServer(includeDir)
     -- Set all the custom chat commands
     chatCommands()
     -- While in dev, force the game to start in creative
-    --nz.Mode:set(MODE_CREATE)
+    nz.Mode:set(MODE_CREATE)
   end
 end
 

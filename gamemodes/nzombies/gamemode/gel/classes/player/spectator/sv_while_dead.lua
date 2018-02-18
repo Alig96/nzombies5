@@ -9,3 +9,10 @@ local function whileDead(killedPlayer)
 end
 
 hook.Add("PlayerDeathThink", "gel.Internal.Player.Spectator.whileDead", whileDead)
+
+local function whenTheyDie(killedPlayer)
+  -- Set them to be a spectator
+  killedPlayer:setAsSpectator()
+end
+
+hook.Add("PostPlayerDeath", "gel.Internal.Player.Spectator.whenTheyDie", whenTheyDie)
