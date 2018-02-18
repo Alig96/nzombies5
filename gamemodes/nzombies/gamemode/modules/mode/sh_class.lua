@@ -39,7 +39,7 @@ function modeClass:set(modeConstant)
 end
 
 -- Semantic Functions
-function modeClass:isPlay()
+function modeClass:isSurvival()
   return modeClass.current == MODE_SURVIVAL
 end
 

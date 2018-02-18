@@ -20,9 +20,15 @@ function ENT:Initialize()
 	self:DrawShadow(false)
 end
 
+function ENT:setLink(link)
+	print("Yay, it worked")
+	print(self)
+	print(link)
+end
+
 if CLIENT then
 	function ENT:Draw()
-		if nz.Mode:isCreative() then
+		if nz.Mode:isCreate() then
 			self:DrawModel()
 		end
 	end

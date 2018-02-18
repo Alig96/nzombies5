@@ -29,6 +29,11 @@ local function chatCommands()
       ["currentMode"] = MODE_SURVIVAL,
     })
   end)
+
+  gel.fw:newCommand("Chat", "ps", function(requestingPlayer, params)
+    local playerSpawner = nz.Spawner:get("player_spawner")
+    playerSpawner:spawn(player.GetByID(1):GetPos(), Angle(0, 0, 0))
+  end)
 end
 
 -- This is the main entry point to the app
