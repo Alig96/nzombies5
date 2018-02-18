@@ -73,17 +73,8 @@ function realmLoader:recursiveInclude(currentDirectory)
 	end
 
 	if loadFiles != null then
-		-- Check for a constructor module file
-		if table.HasValue(loadFiles, "sh_constructor.lua") then
-			print("Module: " .. currentDirectory)
-			self:include(currentDirectory, "sh_constructor.lua")
-		end
-
 		for k, loadFile in pairs(loadFiles) do
-			-- We don't need to reload the constructor, since we loaded it first
-			if loadFile != "sh_constructor.lua" then
-				self:include(currentDirectory, loadFile)
-			end
+			self:include(currentDirectory, loadFile)
 		end
 	end
 
