@@ -12,7 +12,7 @@ if !file.Exists("nz/", "DATA") then
 end
 
 -- Load the gamemode's languages
-gel.fw:loadDirectory("nzombies/gamemode/languages")
+gel.fw:loadDirectory("nzombies/gamemode/client")
 
 -- Load the gamemode modules
 gel.fw:loadDirectory("nzombies/gamemode/modules")

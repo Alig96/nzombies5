@@ -3,6 +3,6 @@ include("shared.lua")
 include("gel/cl_init.lua")
 
 -- Load the gamemode's languages
-gel.fw:loadDirectory("nzombies/gamemode/languages")
+gel.fw:loadDirectory("nzombies/gamemode/client")
 -- Load the gamemode modules
 gel.fw:loadDirectory("nzombies/gamemode/modules")

@@ -21,6 +21,7 @@ function languageClass:new(id, name, isFallbackLanguage)
 
   -- Set the fallback language
   if isFallbackLanguage then
+    self.current = newLanguage.id
     self.fallback = newLanguage.id
     -- Notify
     Log(LOG_INFO, "Set the fallback language to " .. newLanguage.id, "Framework:Language")

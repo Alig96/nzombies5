@@ -94,5 +94,6 @@ end
 
 -- Make a shortcut to using this library
 function gel.fw:getFont(...)
-  return gel.Internal.Font:get(...)
+  -- Get a copy of the font so we can manipulate it later without it affecting anything else
+  return table.Copy(gel.Internal.Font:get(...))
 end
