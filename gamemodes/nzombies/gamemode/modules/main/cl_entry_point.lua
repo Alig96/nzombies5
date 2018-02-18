@@ -4,7 +4,7 @@ local function startClient(includeDir)
     -- Annouce it
     print("Starting nZombies Client Version: v" .. NZ_VERSION)
     -- Set our language
-    gel.fw:setLanguage("german")
+    gel.fw:setLanguage("english")
     -- Print the welcome message
     print(gel.fw:translate("#welcome"))
   end
