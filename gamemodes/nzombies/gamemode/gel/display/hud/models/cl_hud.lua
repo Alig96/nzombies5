@@ -8,5 +8,9 @@ function prototypeHUD:draw()
   draw.SimpleText("You must override the default 'draw' method in HUD object: " .. self.id, "Default", x, y, Color(255,255,255), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
 end
 
+function prototypeHUD:shouldDraw()
+  return true
+end
+
 -- Register this prototype as a model
-gel.fw:newModel("HUD", prototypeHUD, {"id", "draw"})
+gel.fw:newModel("HUD", prototypeHUD, {"id", "draw", "shouldDraw"})

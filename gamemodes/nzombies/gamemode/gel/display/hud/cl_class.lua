@@ -2,12 +2,14 @@ local hudClass = {}
 
 local hudModel = gel.fw:getModel("HUD")
 
-function hudClass:new(id, drawFunc)
+function hudClass:new(id, drawFunc, shouldDrawFunc)
   -- Create a new hud using the model
-  local newHUD = hudModel:create(id, drawFunc)
+  local newHUD = hudModel:create(id, drawFunc, shouldDrawFunc)
   -- Register it with the hook
   hook.Add("HUDPaint", "gel.Display.HUD." .. id, function()
-    newHUD:draw()
+    if newHUD:shouldDraw() then
+      newHUD:draw()
+    end
   end)
   -- Notify
   Log(LOG_INFO, "Successfully created HUD: " .. newHUD.id, "Framework:HUD")
