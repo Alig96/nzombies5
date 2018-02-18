@@ -35,7 +35,7 @@ end
 local function startServer(includeDir)
   if includeDir == "nzombies/gamemode/modules" then
     -- Annouce it
-    print("Starting nZombies Version: v" .. NZ_VERSION)
+    print("Starting nZombies Server Version: v" .. NZ_VERSION)
     -- Setup the gamemode's config
     gel.fw:setConfig("nz/server.txt", serverConfig)
     -- Load the config from the folder

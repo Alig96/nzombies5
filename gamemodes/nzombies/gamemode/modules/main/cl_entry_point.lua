@@ -2,7 +2,7 @@
 local function startClient(includeDir)
   if includeDir == "nzombies/gamemode/modules" then
     -- Annouce it
-    print("Starting nZombies Version: v" .. NZ_VERSION)
+    print("Starting nZombies Client Version: v" .. NZ_VERSION)
     -- Set our language
     gel.fw:setLanguage("german")
     -- Print the welcome message
