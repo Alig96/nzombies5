@@ -1,7 +1,6 @@
 local prototypeInterface = {}
 
 prototypeInterface.id = "BaseInterface"
-prototypeInterface.panelId = "Panel"
 
 prototypeInterface.panel = {}
 prototypeInterface.hangOpen = false
@@ -45,4 +44,4 @@ function prototypeInterface:endKeyFocus(unfocusedPanel)
 end
 
 -- Register this prototype as a model
-gel.fw:newModel("Interface", prototypeInterface, {"id", "panelId"})
+gel.fw:newModel("Interface", prototypeInterface, {"id"})

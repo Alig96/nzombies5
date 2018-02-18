@@ -2,11 +2,13 @@ local interfaceClass = {}
 
 local interfaceModel = gel.fw:getModel("Interface")
 
-function interfaceClass:new(id, panelId)
+function interfaceClass:new(id, panelTable)
+  -- Ensure our interface derives from the EditablePanel
+  panelTable.Base = "EditablePanel"
   -- Create a new interface using the model
-  local newInterface = interfaceModel:create(id, panelId)
+  local newInterface = interfaceModel:create(id)
   -- Create the panel
-  newInterface.panel = vgui.Create(newInterface.panelId)
+  newInterface.panel = vgui.CreateFromTable(panelTable)
   -- Close the new interface
   newInterface:Close()
 
