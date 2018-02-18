@@ -26,7 +26,7 @@ local function chatCommands()
   gel.fw:newCommand("Chat", "play", function(requestingPlayer, params)
     -- Send it to the controller
     gel.fw:handleController("ChangeMode", requestingPlayer, {
-      ["currentMode"] = MODE_PLAY,
+      ["currentMode"] = MODE_SURVIVAL,
     })
   end)
 end

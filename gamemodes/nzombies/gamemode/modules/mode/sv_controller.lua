@@ -9,7 +9,7 @@ function changeModeController:authorizeRequest(requestingPlayer)
 end
 
 function changeModeController:validateRequest(requestData)
-  if requestData["currentMode"] == MODE_PLAY or requestData["currentMode"] == MODE_CREATE then
+  if requestData["currentMode"] == MODE_SURVIVAL or requestData["currentMode"] == MODE_CREATE then
     return true
   end
 

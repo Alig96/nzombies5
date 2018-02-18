@@ -9,7 +9,7 @@ local helvetica20 = helvetica:generate()
 local color = gel.fw:getColor("primary")
 
 gel.fw:newHUD("CurrentMode", function()
-  local text = nz.Mode:get().name .. " Mode"
+  local text = gel.fw:translate(nz.Mode:get().name)
   -- Draw it
   local x = ScrW() / 2
   local y = ScrH() / 2

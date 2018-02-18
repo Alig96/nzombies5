@@ -21,5 +21,5 @@ gel.fw:newHUD("VersionNumber", function()
   local y = ScrH() / 2
 
   draw.SimpleText(text, helvetica20, x, y, color, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
-  draw.SimpleText(gel.fw:translate("welcome"), helvetica40Italic, x, y + 100, color, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+  draw.SimpleText(gel.fw:translate("#welcome"), helvetica40Italic, x, y + 100, color, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
 end)

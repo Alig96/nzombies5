@@ -1,17 +1,17 @@
 -- Mode Constants
-MODE_PLAY = 0
+MODE_SURVIVAL = 0
 MODE_CREATE = 1
 
 -- Get the Controller Model
 local modeModel = gel.fw:getModel("Mode")
 
 local modeClass = {}
-modeClass.current = MODE_PLAY
+modeClass.current = MODE_SURVIVAL
 
 function modeClass:constructor()
   if #modeModel:all() == 0 then
-    modeModel:create(MODE_PLAY, "Play")
-    modeModel:create(MODE_CREATE, "Create")
+    modeModel:create(MODE_SURVIVAL, "#survival_mode")
+    modeModel:create(MODE_CREATE, "#create_mode")
   end
 end
 
@@ -40,7 +40,7 @@ end
 
 -- Semantic Functions
 function modeClass:isPlay()
-  return modeClass.current == MODE_PLAY
+  return modeClass.current == MODE_SURVIVAL
 end
 
 function modeClass:isCreate()
