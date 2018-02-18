@@ -6,7 +6,7 @@ local function startClient(includeDir)
     -- Set our language
     gel.fw:setLanguage("german")
     -- Print the welcome message
-    print(gel.fw:translate("welcome"))
+    print(gel.fw:translate("#welcome"))
   end
 end
 

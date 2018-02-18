@@ -18,22 +18,20 @@ SWEP.DrawCrosshair = true
 
 SWEP.ViewModel = "models/weapons/c_toolgun.mdl"
 SWEP.WorldModel = "models/weapons/w_toolgun.mdl"
-SWEP.ShootSound = Sound( "Airboat.FireGunRevDown" )
+SWEP.ShootSound = Sound("Airboat.FireGunRevDown")
 
 SWEP.UseHands = true
 
 -- nZ
 SWEP.nextShot = 0
-SWEP.currentTool = nil
-
 
 function SWEP:Precache()
-  util.PrecacheModel( SWEP.ViewModel )
-  util.PrecacheModel( SWEP.WorldModel )
-  util.PrecacheSound( self.ShootSound )
+  util.PrecacheModel(SWEP.ViewModel)
+  util.PrecacheModel(SWEP.WorldModel)
+  util.PrecacheSound(self.ShootSound)
 end
 
-function SWEP:DoShootEffect( hitpos, hitnormal, entity, physbone, bFirstTimePredicted )
+function SWEP:DoShootEffect(hitpos, hitnormal, entity, physbone, bFirstTimePredicted)
   self:EmitSound( self.ShootSound	)
   self:SendWeaponAnim( ACT_VM_PRIMARYATTACK )
 
@@ -57,7 +55,7 @@ function SWEP:DoShootEffect( hitpos, hitnormal, entity, physbone, bFirstTimePred
 end
 
 function SWEP:PrimaryAttack()
-  if CurTime() >= self.nextShot and self.currentTool != "none" then
+  if CurTime() >= self.nextShot then
     local tr = util.GetPlayerTrace( self.Owner )
     tr.mask = bit.bor( CONTENTS_SOLID, CONTENTS_MOVEABLE, CONTENTS_MONSTER, CONTENTS_WINDOW, CONTENTS_DEBRIS, CONTENTS_GRATE, CONTENTS_AUX )
     local trace = util.TraceLine( tr )
@@ -70,20 +68,21 @@ function SWEP:PrimaryAttack()
 
     -- Do logic for the tool
     if CLIENT then
-      if self.currentTool then
-        Log(LOG_DEBUG, "Requesting to trigger: " .. self.currentTool.name .. "'s Left Click Function.", "Weapon:Multi-Tool")
-        self.currentTool:onLeftClick(trace)
+      local tool = nz.Tool:get()
+      if tool then
+        Log(LOG_DEBUG, "Requesting to trigger: " .. tool.name .. "'s Left Click Function.", "Weapon:Multi-Tool")
+        tool:onLeftClick(trace)
       end
     end
 
     self.nextShot = CurTime() + 0.5
 
-    if ( game.SinglePlayer() ) then self:CallOnClient( "PrimaryAttack" ) end
+    if game.SinglePlayer() then self:CallOnClient("PrimaryAttack") end
   end
 end
 
 function SWEP:SecondaryAttack()
-  if CurTime() >= self.nextShot and self.currentTool != "none" then
+  if CurTime() >= self.nextShot then
     local tr = util.GetPlayerTrace( self.Owner )
     tr.mask = bit.bor( CONTENTS_SOLID, CONTENTS_MOVEABLE, CONTENTS_MONSTER, CONTENTS_WINDOW, CONTENTS_DEBRIS, CONTENTS_GRATE, CONTENTS_AUX )
     local trace = util.TraceLine( tr )
@@ -96,28 +95,21 @@ function SWEP:SecondaryAttack()
 
     -- Do logic for the tool
     if CLIENT then
-      if self.currentTool then
-        Log(LOG_DEBUG, "Requesting to trigger: " .. self.currentTool.name .. "'s Right Click Function.", "Weapon:Multi-Tool")
-        self.currentTool:onRightClick(trace)
+      local tool = nz.Tool:get()
+      if tool then
+        Log(LOG_DEBUG, "Requesting to trigger: " .. tool.name .. "'s Right Click Function.", "Weapon:Multi-Tool")
+        tool:onRightClick(trace)
       end
     end
 
     self.nextShot = CurTime() + 0.5
 
-    if ( game.SinglePlayer() ) then self:CallOnClient( "SecondaryAttack" ) end
+    if (game.SinglePlayer()) then self:CallOnClient("SecondaryAttack") end
   end
 end
 
 
 if CLIENT then
-  function SWEP:setCurrentTool(idOfTool)
-    local toolData = nz.Create.Tool:getTool(idOfTool)
-    if toolData then
-      Log(LOG_INFO, "Changed tool to: " .. toolData.name .. ".", "Weapon:Multi-Tool")
-      self.currentTool = toolData
-    end
-  end
-
   -- https://raw.githubusercontent.com/Facepunch/garrysmod/master/garrysmod/gamemodes/sandbox/entities/weapons/gmod_tool/cl_viewscreen.lua
   local matScreen = Material( "models/weapons/v_toolgun/screen" )
   local txBackground = surface.GetTextureID( "models/weapons/v_toolgun/screen_bg" )
@@ -165,10 +157,11 @@ if CLIENT then
   	local TEX_SIZE = 256
   	local oldW = ScrW()
   	local oldH = ScrH()
-    local text = "Hold Q to select a tool..."
+    local text = gel.fw:translate("#no_tool_selected")
+    local tool = nz.Tool:get()
 
-    if self.currentTool then
-      text = self.currentTool.name .. " Tool"
+    if tool then
+      text = gel.fw:translate(tool.name)
     end
 
   	-- Set the material of the screen to our render target

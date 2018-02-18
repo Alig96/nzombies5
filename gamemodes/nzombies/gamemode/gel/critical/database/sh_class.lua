@@ -78,7 +78,7 @@ function databaseClass:selectRow(tableId, rowId, suppress)
     local row = self.tables[tableId][rowId]
     if row then
       if suppress == nil then
-        Log(LOG_DEBUG, "Selected Row: '" .. rowId .. "' in table: " .. tableId, "Framework:Database")
+        --Log(LOG_DEBUG, "Selected Row: '" .. rowId .. "' in table: " .. tableId, "Framework:Database")
       end
       return row
     end
