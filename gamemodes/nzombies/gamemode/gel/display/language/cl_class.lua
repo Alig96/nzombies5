@@ -36,6 +36,9 @@ function languageClass:set(id)
   local language = languageModel:find(id)
   if language then
     self.current = id
+    -- Update the config value for it
+    gel.fw:setConfigValue("language", "current", id)
+    return id
   end
 
   Log(LOG_INFO, "Could not find Language: " .. id, "Framework:Language")

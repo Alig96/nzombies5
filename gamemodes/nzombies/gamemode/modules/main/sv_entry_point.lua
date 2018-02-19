@@ -34,6 +34,10 @@ local function chatCommands()
     local playerSpawner = nz.Spawner:get("player_spawner")
     playerSpawner:spawn(player.GetByID(1):GetPos(), Angle(0, 0, 0))
   end)
+
+  gel.fw:newCommand("Chat", "lang", function(requestingPlayer, params)
+    requestingPlayer:SendLua("gel.fw:setLanguage('" .. params[1] .. "')")
+  end)
 end
 
 -- This is the main entry point to the app

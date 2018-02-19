@@ -74,6 +74,8 @@ function databaseClass:createRow(tableId, rowData, rowId)
 end
 
 function databaseClass:selectRow(tableId, rowId, suppress)
+  if rowId == nil then Log(LOG_DEBUG, "No RowID Specified, check function call.", "Framework:Database") return nil end
+
   if self:tableExists(tableId) then
     local row = self.tables[tableId][rowId]
     if row then

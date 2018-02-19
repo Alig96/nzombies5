@@ -6,11 +6,6 @@ AddCSLuaFile("shared.lua")
 -- Framework
 AddCSLuaFile("gel/cl_init.lua")
 
--- Check the nz folder exists
-if !file.Exists("nz/", "DATA") then
-	file.CreateDir("nz")
-end
-
 -- Load the gamemode's languages
 gel.fw:loadDirectory("nzombies/gamemode/client")
 
