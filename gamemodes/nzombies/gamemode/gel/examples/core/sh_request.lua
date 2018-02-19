@@ -1,13 +1,12 @@
-local newRequest = {}
+local exampleRequest = {}
 
-newRequest.id = "NewRequest"
+exampleRequest.id = "exampleRequest"
 
-function newRequest:onReceive(requestingPlayer, requestData)
+function exampleRequest:onReceive(requestingPlayer, requestData)
 	-- Send the requst to the controller
 	local status = gel.fw:handleController("NewController", requestingPlayer, requestData)
 	-- Notify the requesting player if the status of their request passed or not
 end
 
-gel.fw:newRequest(newRequest.id, newRequest.onReceive)
-
--- gel.fw:sendRequest("NewRequest", {"hey"})
+gel.fw:newRequest(exampleRequest)
+-- gel.fw:sendRequest("exampleRequest", {"hey"})

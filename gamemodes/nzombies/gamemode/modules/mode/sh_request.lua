@@ -8,4 +8,4 @@ function changeModeRequest:onReceive(requestingPlayer, requestData)
 	-- Notify the requesting player if the status of their request passed or not
 end
 
-gel.fw:newRequest(changeModeRequest.id, changeModeRequest.onReceive)
+gel.fw:newRequest(changeModeRequest)

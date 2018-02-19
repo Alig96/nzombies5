@@ -3,11 +3,13 @@ local requestClass = {}
 -- Get the Request Model
 local requestModel = gel.fw:getModel("Request")
 
-function requestClass:new(id, recieveFunc)
+function requestClass:new(requestObject)
+  local id = requestObject.id
+  if id == nil then Log(LOG_ERROR, "You must register a request with an ID.", "Framework:Request") return end
   -- Create a new Request object
-  local newRequest = requestModel:create(id, recieveFunc)
+  local newRequest = requestModel:create(id, requestObject.onReceive)
   -- Create the network string
-  local networkString = "gel.Internal.Request." .. id
+  local networkString = "gel.Internal.Request." .. newRequest.id
 
   -- Create a magic method for sending a sync to the
   function newRequest:send(requestData)
