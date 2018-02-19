@@ -1,4 +1,4 @@
-local controllerClassTest = GUnit.Test:new("[Framework] IO Class")
+local ioClassTest = GUnit.Test:new("[Framework] IO Class")
 
 local testFilePath = "test.txt"
 local testTable = {"entry1", "entry2"}
@@ -25,10 +25,10 @@ local function can_read_a_table_from_a_file()
   GUnit.assert(testTable[2]):shouldEqual(fileTable[2])
 end
 
-controllerClassTest:addSpec("can write a table to a file", can_write_a_table_to_a_file)
-controllerClassTest:addSpec("can read a table from a file", can_read_a_table_from_a_file)
+ioClassTest:addSpec("can write a table to a file", can_write_a_table_to_a_file)
+ioClassTest:addSpec("can read a table from a file", can_read_a_table_from_a_file)
 
-controllerClassTest:afterAll(function()
+ioClassTest:afterAll(function()
   -- Clean up the test file
   file.Delete(testFilePath)
 end)

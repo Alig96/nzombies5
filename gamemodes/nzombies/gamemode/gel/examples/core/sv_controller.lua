@@ -1,14 +1,14 @@
-local newController = {}
+local exampleController = {}
 
-newController.id = "NewController"
+exampleController.id = "exampleController"
 
-function newController:authorizeRequest(requestingPlayer)
+function exampleController:authorize(requestingPlayer)
   if requestingPlayer:IsSuperAdmin() then
     return true
   end
 end
 
-function newController:validateRequest(requestData)
+function exampleController:validate(requestData)
   if requestData[1] == "hey" then
     return true
   end
@@ -16,10 +16,9 @@ function newController:validateRequest(requestData)
   return false
 end
 
-function newController:onSuccess(requestingPlayer, requestData)
+function exampleController:onSuccess(requestingPlayer, requestData)
   Log(LOG_INFO, "Yay! " .. requestingPlayer:Nick() ..  "'s request made a it through the contorller", "Controller:" .. self.id)
 end
 
-gel.fw:newController(newController.id, newController.onSuccess, newController.validateRequest, newController.authorizeRequest)
-
+gel.fw:newController(exampleController)
 -- gel.fw:handleController("NewController", requestingPlayer, requestData)

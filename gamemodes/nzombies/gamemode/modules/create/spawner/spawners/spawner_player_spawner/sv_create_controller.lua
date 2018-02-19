@@ -2,13 +2,13 @@ local createPlayerSpawnerController = {}
 
 createPlayerSpawnerController.id = "CreatePlayerSpawner"
 
-function createPlayerSpawnerController:authorizeRequest(requestingPlayer)
+function createPlayerSpawnerController:authorize(requestingPlayer)
   if requestingPlayer:IsSuperAdmin() then
     return true
   end
 end
 
-function createPlayerSpawnerController:validateRequest(requestData)
+function createPlayerSpawnerController:validate(requestData)
   if requestData["requestedPosition"] then
     return true
   end
@@ -22,4 +22,4 @@ function createPlayerSpawnerController:onSuccess(requestingPlayer, requestData)
   playerSpawner:spawn(requestData["requestedPosition"], Angle(0, 0, 0))
 end
 
-gel.fw:newController(createPlayerSpawnerController.id, createPlayerSpawnerController.onSuccess, createPlayerSpawnerController.validateRequest, createPlayerSpawnerController.authorizeRequest)
+gel.fw:newController(createPlayerSpawnerController)

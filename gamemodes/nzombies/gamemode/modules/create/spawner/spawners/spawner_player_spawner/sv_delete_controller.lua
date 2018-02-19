@@ -2,13 +2,13 @@ local deletePlayerSpawnerController = {}
 
 deletePlayerSpawnerController.id = "DeletePlayerSpawner"
 
-function deletePlayerSpawnerController:authorizeRequest(requestingPlayer)
+function deletePlayerSpawnerController:authorize(requestingPlayer)
   if requestingPlayer:IsSuperAdmin() then
     return true
   end
 end
 
-function deletePlayerSpawnerController:validateRequest(requestData)
+function deletePlayerSpawnerController:validate(requestData)
   if requestData["requestedEntity"] then
     return true
   end
@@ -21,4 +21,4 @@ function deletePlayerSpawnerController:onSuccess(requestingPlayer, requestData)
   requestData["requestedEntity"]:Remove()
 end
 
-gel.fw:newController(deletePlayerSpawnerController.id, deletePlayerSpawnerController.onSuccess, deletePlayerSpawnerController.validateRequest, deletePlayerSpawnerController.authorizeRequest)
+gel.fw:newController(deletePlayerSpawnerController)

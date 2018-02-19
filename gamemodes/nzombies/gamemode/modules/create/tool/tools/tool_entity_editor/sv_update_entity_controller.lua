@@ -2,13 +2,13 @@ local updateEntityController = {}
 
 updateEntityController.id = "UpdateEntity"
 
-function updateEntityController:authorizeRequest(requestingPlayer)
+function updateEntityController:authorize(requestingPlayer)
   if requestingPlayer:IsSuperAdmin() then
     return true
   end
 end
 
-function updateEntityController:validateRequest(requestData)
+function updateEntityController:validate(requestData)
   if requestData["requestedEntity"] and requestData["formData"] then
     return true
   end
@@ -23,4 +23,4 @@ function updateEntityController:onSuccess(requestingPlayer, requestData)
   entity:updateEditableProperties(formData)
 end
 
-gel.fw:newController(updateEntityController.id, updateEntityController.onSuccess, updateEntityController.validateRequest, updateEntityController.authorizeRequest)
+gel.fw:newController(updateEntityController)

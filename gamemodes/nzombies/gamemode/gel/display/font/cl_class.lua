@@ -27,7 +27,7 @@ function fontClass:new(id)
     return gel.Internal.Font:generateFont(self:getUniqueId(), self)
   end
 
-  -- Since we added the magic methods, we should update our controller in the database
+  -- Since we added the magic methods, we should update our font in the database
   fontModel:update(newFont.id, newFont)
   -- Notify
   Log(LOG_INFO, "Successfully created Font: " .. newFont.id, "Framework:Font")

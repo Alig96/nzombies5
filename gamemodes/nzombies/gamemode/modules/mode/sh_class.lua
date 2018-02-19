@@ -2,7 +2,7 @@
 MODE_SURVIVAL = 0
 MODE_CREATE = 1
 
--- Get the Controller Model
+-- Get the mode Model
 local modeModel = gel.fw:getModel("Mode")
 
 local modeClass = {}

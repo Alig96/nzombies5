@@ -32,7 +32,7 @@ function syncClass:new(id, dataFunc, recieveFunc)
   syncModel:update(newSync.id, newSync)
   -- Notify
   Log(LOG_INFO, "Successfully created Sync: " .. newSync.id, "Framework:Sync")
-  -- Return the finished controller object from the database
+  -- Return the finished sync object from the database
   return syncModel:find(newSync.id)
 end
 
