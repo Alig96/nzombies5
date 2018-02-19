@@ -3,9 +3,11 @@ local syncClass = {}
 -- Get the Sync Model
 local syncModel = gel.fw:getModel("Sync")
 
-function syncClass:new(id, dataFunc, recieveFunc)
+function syncClass:new(syncObject)
+  local id = syncObject.id
+  if id == nil then Log(LOG_ERROR, "You must register a Sync with an ID", "Framework:Sync") return end
   -- Create a new Sync object
-  local newSync = syncModel:create(id, dataFunc, recieveFunc)
+  local newSync = syncModel:create(id, syncObject.getData, syncObject.onReceive)
   -- Make the network string
   local networkString = "gel.Internal.Sync." .. id
 
@@ -15,9 +17,10 @@ function syncClass:new(id, dataFunc, recieveFunc)
     local syncData = net.ReadTable()
 
     -- Call the onRecieve function for this sync
-    local syncObject = syncModel:find(id)
-    syncObject:onReceive(syncData)
+    local sync = syncModel:find(id)
+    sync:onReceive(syncData)
   end)
+
   -- Notify
   Log(LOG_INFO, "Successfully created Sync: " .. newSync.id, "Framework:Sync")
   -- Return the finished sync object

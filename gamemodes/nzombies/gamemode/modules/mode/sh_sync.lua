@@ -16,9 +16,8 @@ end
 -- On Client Recieveing
 if CLIENT then
   function modeSync:onReceive(requestData)
-    PrintTable(requestData)
     nz.Mode:set(requestData["currentMode"])
   end
 end
 
-gel.fw:newSync(modeSync.id, modeSync.getData, modeSync.onReceive)
+gel.fw:newSync(modeSync)

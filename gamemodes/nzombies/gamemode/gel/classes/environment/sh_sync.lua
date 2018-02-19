@@ -20,4 +20,4 @@ if CLIENT then
   end
 end
 
-gel.fw:newSync(environmentSync.id,  environmentSync.getData, environmentSync.onReceive)
+gel.fw:newSync(environmentSync)

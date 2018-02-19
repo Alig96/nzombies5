@@ -5,7 +5,7 @@ local requestModel = gel.fw:getModel("Request")
 
 function requestClass:new(requestObject)
   local id = requestObject.id
-  if id == nil then Log(LOG_ERROR, "You must register a request with an ID.", "Framework:Request") return end
+  if id == nil then Log(LOG_ERROR, "You must register a Request with an ID", "Framework:Request") return end
   -- Create a new Request object
   local newRequest = requestModel:create(id, requestObject.onReceive)
   -- Create the network string

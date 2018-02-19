@@ -4,9 +4,10 @@ local controllerClass = {}
 local controllerModel = gel.fw:getModel("Controller")
 
 function controllerClass:new(controllerObject)
-  if controllerObject.id == nil then Log(LOG_ERROR, "You must register a controller with an ID.", "Framework:Controller") return end
+  local id = controllerObject.id
+  if id == nil then Log(LOG_ERROR, "You must register a Controller with an ID", "Framework:Controller") return end
   -- Create a new controller object
-  local newController = controllerModel:create(controllerObject.id, controllerObject.authorize, controllerObject.validate, controllerObject.onSuccess)
+  local newController = controllerModel:create(id, controllerObject.authorize, controllerObject.validate, controllerObject.onSuccess)
 
   -- Create a magic method for validating the controller's data
   function newController:validateRequest(requestData)

@@ -1,10 +1,10 @@
-local newSync = {}
+local exampleSync = {}
 
-newSync.id = "NewSync"
+exampleSync.id = "NewSync"
 
 -- Data from the server to sync
 if SERVER then
-  function newSync:getData()
+  function exampleSync:getData()
     local data = {"hi"}
 
     return data
@@ -13,11 +13,10 @@ end
 
 -- On Client Recieveing
 if CLIENT then
-  function newSync:onReceive(requestData)
+  function exampleSync:onReceive(requestData)
     PrintTable(requestData)
   end
 end
 
-gel.fw:newSync(newSync.id,  newSync.getData, newSync.onReceive)
-
+gel.fw:newSync(exampleSync)
 -- gel.fw:broadcastSync("NewSync")
