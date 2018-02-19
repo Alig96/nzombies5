@@ -19,6 +19,8 @@ function toolClass:set(id)
   if tool then
     toolClass.current = id
     Log(LOG_INFO, "Set current tool to: " .. gel.fw:translate(tool.name), "Tool")
+    -- Get the tool gun out
+    RunConsoleCommand("use", "nz_multi_tool")
   end
 end
 

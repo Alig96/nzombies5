@@ -9,12 +9,22 @@ function formClass:new(parentPanel, attributes)
     self.formData = {}
     self.attributeRows = {}
 
-    for _, attribute in pairs(attributes) do
-      self.formData[attribute.id] = attribute.defaultValue
-      self.attributeRows[attribute.id] = self:CreateRow(attribute.categoryId, attribute.name)
-      self.attributeRows[attribute.id]:Setup(attribute.type)
-      self.attributeRows[attribute.id]:SetValue(self.formData[attribute.id])
-      self.attributeRows[attribute.id].DataChanged = function(panel, newValue) self.formData[attribute.id] = newValue end
+    for id, attribute in pairs(attributes) do
+      self.formData[id] = attribute.default
+      self.attributeRows[id] = self:CreateRow(attribute.category, attribute.name)
+      self:setupRow(self.attributeRows[id], attribute)
+      self.attributeRows[id]:SetValue(self.formData[id])
+      self.attributeRows[id].DataChanged = function(panel, newValue) self.formData[id] = newValue end
+    end
+  end
+
+  function formPanel:setupRow(rowPanel, attribute)
+    if attribute.type == "Bool" then
+      rowPanel:Setup("Boolean")
+    elseif attribute.type == "Float" or attribute.type == "Int" then
+      rowPanel:Setup(attribute.type, {min = attribute.min, max = attribute.max})
+    else
+      rowPanel:Setup("Generic")
     end
   end
 

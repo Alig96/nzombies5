@@ -18,10 +18,6 @@ function spawnerClass:new(id, entityName, defaultProperties)
     position.z = position.z - ent:OBBMaxs().z
     ent:SetPos(position)
     ent:SetAngles(angle)
-    for k, v in pairs(self.properties) do
-      -- Run the set functions on the entity
-      ent["set" .. k](ent, v)
-    end
     ent:Spawn()
   end
 

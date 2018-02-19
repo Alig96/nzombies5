@@ -1,9 +1,21 @@
 AddCSLuaFile()
 
 ENT.Type = "anim"
+ENT.Base = "nz_editable_entity"
 ENT.PrintName = "Player Spawner"
 
 ENT.viewModel = "models/player/odessa.mdl"
+
+ENT.editableProperties = {
+	["Order"] = {
+		category = "General",
+		name = "Player ID Spawning",
+		type = "Int",
+		default = 1,
+		min = 1,
+		max = 64
+	}
+}
 
 function ENT:Precache()
 	util.PrecacheModel(self.viewModel)
@@ -18,12 +30,6 @@ function ENT:Initialize()
 	self:SetCollisionGroup(COLLISION_GROUP_WEAPON)
 	self:SetColor(0, 255, 0, 255)
 	self:DrawShadow(false)
-end
-
-function ENT:setLink(link)
-	print("Yay, it worked")
-	print(self)
-	print(link)
 end
 
 if CLIENT then
