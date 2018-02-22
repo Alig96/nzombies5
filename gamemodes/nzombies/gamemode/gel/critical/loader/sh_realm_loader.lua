@@ -81,8 +81,10 @@ function realmLoader:recursiveInclude(currentDirectory)
 	if loadFolders != null then
 		for k, loadFolder in pairs(loadFolders) do
 			-- We don't need to reload the constructor, since we loaded it first
-			if loadFolder != "models" or loadFolder != "panels" then
+			if loadFolder != "models" and loadFolder != "panels" then
 				self:recursiveInclude(currentDirectory .. "/" .. loadFolder)
+			else
+				print("Skipping the " .. loadFolder .. " folder")
 			end
 		end
 	end

@@ -5,6 +5,7 @@ databaseClass.tableIdCounter = {}
 -- Table
 
 function databaseClass:tableExists(tableId, suppress)
+  if tableId == nil then Log(LOG_ERROR, "You must provide the tableId", "Framework:Database") return end
   if self.tables[tableId] then
     return true
   end
@@ -30,7 +31,7 @@ end
 function databaseClass:newTable(tableId, prototypeId)
   if !self:tableExists(tableId, true) then
     -- If we don't provide prototype id then we should make an auto-incrementing id system
-    if modelId == nil then
+    if prototypeId == nil then
       self.tableIdCounter[tableId] = 1
     end
     Log(LOG_DEBUG, "Table: '" .. tableId .. "' created", "Framework:Database")

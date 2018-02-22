@@ -2,6 +2,7 @@ local prototypeTool = {}
 
 prototypeTool.id = "BaseTool"
 prototypeTool.name = "#base_tool_name"
+prototypeTool.category = "General"
 prototypeTool.description = "#base_tool_description"
 prototypeTool.instructions = {
   leftClick = "#base_tool_instructions_left",
