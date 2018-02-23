@@ -30,9 +30,9 @@ local function chatCommands()
     })
   end)
 
-  gel.fw:newCommand("Chat", "ps", function(requestingPlayer, params)
-    local playerSpawner = nz.Spawner:get("player_spawner")
-    playerSpawner:spawn(player.GetByID(1):GetPos(), Angle(0, 0, 0))
+  gel.fw:newCommand("Chat", "pr", function(requestingPlayer, params)
+    local propManager = nz.entityManager:get("prop_manager")
+    propManager:spawn(requestingPlayer:GetPos(), Angle(0, 0, 0))
   end)
 
   gel.fw:newCommand("Chat", "lang", function(requestingPlayer, params)

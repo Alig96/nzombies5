@@ -5,6 +5,7 @@ function toolPanel:Init()
   self.toolList = vgui.Create("DCategoryList", self)
   self:SetLeft(self.toolList)
   -- Create the tool Info panel
+  self.toolList.buttons = {}
   self.toolList.categories = {}
   self.toolList.contentPanels = {}
   self.currentContentPanel = vgui.Create("DPanel", self)
@@ -35,8 +36,8 @@ function toolPanel:addTool(tool)
   local category = self:getCategory(tool.category)
   self:createToolContentPanel(tool)
   -- Create a new button
-  local button = category:Add(gel.fw:translate(tool.name))
-  button.DoClick = function()
+  self.toolList.buttons[tool.id] = category:Add(gel.fw:translate(tool.name))
+  self.toolList.buttons[tool.id].DoClick = function()
     -- Change the current content panel
     self:setCurrentContentPanel(tool.id)
     -- Set the user's current tool to the selected tool

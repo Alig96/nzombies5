@@ -2,7 +2,8 @@
 local toolModel = gel.fw:getModel("Tool")
 
 local toolClass = {}
-toolClass.current = nil
+toolClass.currentId = nil
+toolClass.currentToolData = {}
 
 function toolClass:new(toolObject)
   -- Create a new tool object
@@ -17,7 +18,7 @@ function toolClass:set(id)
   -- Find the tool
   local tool = self:get(id)
   if tool then
-    toolClass.current = id
+    toolClass.currentId = id
     Log(LOG_INFO, "Set current tool to: " .. gel.fw:translate(tool.name), "Tool")
     -- Get the tool gun out
     RunConsoleCommand("use", "nz_multi_tool")
@@ -25,7 +26,7 @@ function toolClass:set(id)
 end
 
 function toolClass:get(id)
-  if id == nil then id = self.current end
+  if id == nil then id = self.currentId end
   if id == nil then return end
   -- Find the tool
   local tool = toolModel:find(id)
@@ -34,6 +35,19 @@ function toolClass:get(id)
   end
 
   Log(LOG_ERROR, "Could not get Tool: " .. id, "Tool")
+end
+
+function toolClass:setToolData(newToolData)
+  if toolClass.currentToolData["currentId"] != self.currentId then
+    toolClass.currentToolData = {}
+  end
+
+  toolClass.currentToolData["id"] = self.currentId
+  table.Merge(toolClass.currentToolData, newToolData)
+end
+
+function toolClass:getToolData()
+  return self.currentToolData
 end
 
 -- Assign this class to the global nz table

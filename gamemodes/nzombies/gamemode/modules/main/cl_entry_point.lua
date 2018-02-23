@@ -18,6 +18,8 @@ local function startClient(includeDir)
     gel.fw:setLanguage(gel.fw:getConfigValue("language", "current"))
     -- Populate our tool menu so we get the latest lang
     hook.Run("nz.Interface.populateToolMenu")
+    -- Populate our prop menu so we get the latest lang
+    hook.Run("nz.Interface.populatePropMenu")
   end
 end
 

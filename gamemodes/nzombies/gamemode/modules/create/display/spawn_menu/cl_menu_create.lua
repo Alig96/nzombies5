@@ -29,16 +29,16 @@ end
 
 function createMenu:createPropsPanel()
   -- Create the Prop Sheet
-  self.leftSheet.sheets["Props"] = vgui.Create("DPanel", self.leftSheet)
+  self.leftSheet.sheets["Props"] = vgui.Create("nz_panel_props", self.leftSheet)
   -- Add it to the left panel
-  self.leftSheet:AddSheet("Props", self.leftSheet.sheets["Props"], "icon16/cross.png")
+  self.leftSheet:AddSheet("Props", self.leftSheet.sheets["Props"], "icon16/lightbulb.png")
 end
 
 function createMenu:createEntitiesPanel()
   -- Create the Entities Sheet
   self.leftSheet.sheets["Entities"] = vgui.Create("DPanel", self.leftSheet)
   -- Add it to the left panel
-  self.leftSheet:AddSheet("Entities", self.leftSheet.sheets["Entities"], "icon16/cross.png")
+  self.leftSheet:AddSheet("Entities", self.leftSheet.sheets["Entities"], "icon16/script_lightning.png")
 end
 
 function createMenu:addRightPanel()
