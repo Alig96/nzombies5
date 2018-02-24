@@ -1,6 +1,7 @@
 AddCSLuaFile()
 
 ENT.Type = "anim"
+ENT.category = "General"
 
 --ENT.editableProperties = {}
 

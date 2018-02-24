@@ -16,3 +16,8 @@ hook.Add("nz.Interface.populatePropMenu", "ffewfwf", function()
   local interface = gel.fw:getInterface("CreateMenu")
   interface.panel.leftSheet.sheets["Props"]:populate()
 end)
+
+hook.Add("InitPostEntity", "dasda", function()
+  local interface = gel.fw:getInterface("CreateMenu")
+  interface.panel.leftSheet.sheets["Entities"]:populate()
+end)

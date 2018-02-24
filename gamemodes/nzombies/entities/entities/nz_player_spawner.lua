@@ -4,7 +4,8 @@ ENT.Type = "anim"
 ENT.Base = "nz_editable_entity"
 ENT.PrintName = "Player Spawner"
 
-ENT.viewModel = "models/player/odessa.mdl"
+ENT.model = "models/player/odessa.mdl"
+ENT.category = "Spawners"
 
 ENT.editableProperties = {
 	["Order"] = {
@@ -18,13 +19,13 @@ ENT.editableProperties = {
 }
 
 function ENT:Precache()
-	util.PrecacheModel(self.viewModel)
+	util.PrecacheModel(self.model)
 end
 
 function ENT:Initialize()
 	self:Precache()
 
-	self:SetModel(self.viewModel)
+	self:SetModel(self.model)
 	self:SetMoveType(MOVETYPE_NONE)
 	self:SetSolid(SOLID_VPHYSICS)
 	self:SetCollisionGroup(COLLISION_GROUP_WEAPON)

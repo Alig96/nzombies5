@@ -52,7 +52,7 @@ function entityManagerClass:new(managerObject)
   -- Notify
   Log(LOG_INFO, "Successfully created EntityManager: " .. newEntityManager.id, "EntityManager")
   -- Return the finished entityManager object from the database
-  return self:get(id)
+  return self:get(managerObject.id)
 end
 
 function entityManagerClass:get(id)
