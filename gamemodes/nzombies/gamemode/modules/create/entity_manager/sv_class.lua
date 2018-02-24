@@ -3,28 +3,28 @@ local entityManagerModel = gel.fw:getModel("EntityManager")
 
 local entityManagerClass = {}
 
-function entityManagerClass:new(managerObject)
+function entityManagerClass:new(managerId)
   -- Create a new entityManager object
-  local newEntityManager = entityManagerModel:create(managerObject.id, managerObject.entityClass, managerObject.onCreate)
+  local newEntityManager = entityManagerModel:create(managerId)
 
   -- Create a magic method for getting all entitys of this entityManager
   function newEntityManager:all()
-    return ents.FindByClass(self.entityName)
+    return ents.FindByClass(self.id)
   end
 
   -- Create a magic method for creating the entity
-  function newEntityManager:create(position, angle, entityData)
-    local ent = ents.Create(self.entityName)
-    if entityData.model then
-      ent:SetModel(entityData.model)
+  function newEntityManager:create(position, angle, model)
+    local ent = ents.Create(self.id)
+    if model then
+      ent:SetModel(model)
     end
+    -- Move the position up
+    position.z = position.z + ent:OBBMaxs().z
     ent:SetPos(position)
     ent:SetAngles(angle)
     ent:Spawn()
 
-    self:onCreate(ent, entityData)
-
-    Log(LOG_INFO, "Created entity: " .. ent:GetClass() .. " in Manager: " .. self.id)
+    Log(LOG_INFO, "Created entity: " .. ent:GetClass(), "EntityManager:" .. self.id)
     return ent
   end
 
@@ -35,10 +35,10 @@ function entityManagerClass:new(managerObject)
 
   -- Create a magic method for deleting the entity
   function newEntityManager:delete(ent)
-    if ent:GetClass() == self.entityName then
+    if ent:GetClass() == self.id then
       ent:Remove()
     else
-      Log(LOG_ERROR, "Can't remove entity: " .. ent:GetClass() .. " in Manager: " .. self.id)
+      Log(LOG_ERROR, "Can't remove entity: " .. ent:GetClass(), "EntityManager:" .. self.id)
     end
   end
 
@@ -48,11 +48,11 @@ function entityManagerClass:new(managerObject)
   end
 
   -- Since we added the magic methods, we should update our entityManager in the database
-  entityManagerModel:update(newEntityManager.id, newEntityManager)
+  entityManagerModel:update(managerId, newEntityManager)
   -- Notify
-  Log(LOG_INFO, "Successfully created EntityManager: " .. newEntityManager.id, "EntityManager")
+  Log(LOG_INFO, "Successfully created EntityManager: " .. managerId, "EntityManager")
   -- Return the finished entityManager object from the database
-  return self:get(managerObject.id)
+  return self:get(managerId)
 end
 
 function entityManagerClass:get(id)

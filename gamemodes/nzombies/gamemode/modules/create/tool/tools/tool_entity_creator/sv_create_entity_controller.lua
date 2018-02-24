@@ -24,7 +24,7 @@ function createEntityController:onSuccess(requestingPlayer, requestData)
   local entityManager = nz.entityManager:get(entityId)
 
   if entityManager then
-    entityManager:spawn(pos, Angle(0,0,0), toolData)
+    entityManager:spawn(pos, Angle(0,0,0), toolData.model)
   end
   --Log(LOG_INFO, requestingPlayer:Nick() .. " is updating entity: " .. entity.PrintName .. entity:EntIndex(), "Controller:" .. self.id)
   --entity:updateEditableProperties(formData)
