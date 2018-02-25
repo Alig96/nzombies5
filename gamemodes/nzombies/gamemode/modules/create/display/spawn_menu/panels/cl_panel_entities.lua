@@ -47,7 +47,9 @@ function entityPanel:addEntity(entity)
 
     -- Set this up on the entity creator
     -- Add what ever entity data we want to the data table, for now we dont need anything
-    nz.Tool:setToolData({entity = entity.ClassName, data = {}})
+    nz.Tool:setToolData({entity = entity.ClassName, data = {
+      name = entity.PrintName
+    }})
   end
 
   tileLayout:Add(entityIcon)
