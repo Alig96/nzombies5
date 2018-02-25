@@ -25,8 +25,8 @@ gel.fw:newHUD("ToolHelp", function()
 
   local toolData = nz.Tool:getToolData()
   y = y + 50
-  if toolData.id == "tool_entity_creator" then
-    if toolData.data.name then
+  if toolMeta.id == "tool_entity_creator" then
+    if toolData.entity then
       local entityType = "Entity"
       if toolData.entity == "nz_prop" then
         entityType = "Prop"

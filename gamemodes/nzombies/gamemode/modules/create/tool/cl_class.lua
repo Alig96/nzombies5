@@ -22,6 +22,8 @@ function toolClass:set(id)
     Log(LOG_INFO, "Set current tool to: " .. gel.fw:translate(tool.name), "Tool")
     -- Get the tool gun out
     RunConsoleCommand("use", "nz_multi_tool")
+    -- Clear the current tool data
+    self:setToolData({})
   end
 end
 
@@ -38,12 +40,7 @@ function toolClass:get(id)
 end
 
 function toolClass:setToolData(newToolData)
-  if toolClass.currentToolData["currentId"] != self.currentId then
-    toolClass.currentToolData = {}
-  end
-
-  toolClass.currentToolData["id"] = self.currentId
-  table.Merge(toolClass.currentToolData, newToolData)
+  self.currentToolData = newToolData
 end
 
 function toolClass:getToolData()
