@@ -4,7 +4,7 @@ ENT.Type = "anim"
 ENT.Base = "nz_editable_entity"
 ENT.PrintName = "Enemy Spawner"
 
-ENT.model = "models/player/odessa.mdl"
+ENT.model = "models/player/charple.mdl"
 ENT.category = "Spawners"
 
 ENT.editableProperties = {

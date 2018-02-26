@@ -10,7 +10,7 @@ entityCreatorTool.instructions = {
 
 function entityCreatorTool:onLeftClick(trace)
   local toolData = nz.Tool:getToolData()
-  if toolData.id then
+  if toolData.entity then
     -- Send an update
     gel.fw:sendRequest("CreateEntity", {requestedPosition = trace.HitPos, requestedEntity = toolData.entity, toolData = toolData.data})
   end

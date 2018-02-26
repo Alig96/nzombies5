@@ -17,9 +17,9 @@ function entityManagerClass:new(managerId)
     local ent = ents.Create(self.id)
     if model then
       ent:SetModel(model)
+      -- Move the position up
+      position.z = position.z - ent:OBBMins().z
     end
-    -- Move the position up
-    position.z = position.z + ent:OBBMaxs().z
     ent:SetPos(position)
     ent:SetAngles(angle)
     ent:Spawn()
