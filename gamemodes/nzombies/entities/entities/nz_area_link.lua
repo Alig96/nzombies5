@@ -2,18 +2,17 @@ AddCSLuaFile()
 
 ENT.Type = "anim"
 ENT.Base = "nz_editable_entity"
-ENT.PrintName = "Enemy Spawner"
+ENT.PrintName = "Area Link"
 
-ENT.model = "models/player/charple.mdl"
-ENT.category = "Spawners"
-ENT.isLinkable = true
+ENT.model = "models/hunter/blocks/cube05x05x05.mdl"
+ENT.category = "Areas"
 
 ENT.editableProperties = {
-	["LinkEntity"] = {
-		category = "General",
-		name = "Link Area",
-		type = "Entity",
-		display = "AreaName"
+	["AreaName"] = {
+		category = "Area",
+		name = "Name",
+		type = "String",
+		default = "Generic Area"
 	}
 }
 

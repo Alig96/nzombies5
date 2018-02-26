@@ -35,6 +35,10 @@ gel.fw:newHUD("ToolHelp", function()
     else
       draw.SimpleText("Select an entity from the Q menu...", toolDescription, x, y, white, TEXT_ALIGN_LEFT, TEXT_ALIGN_BOTTOM)
     end
+  elseif toolMeta.id == "tool_area_linker" then
+    if toolData.entity then
+      draw.SimpleText("Current Link: " .. toolData.entity:GetAreaName(), toolDescription, x, y, white, TEXT_ALIGN_LEFT, TEXT_ALIGN_BOTTOM)
+    end
   end
 end, function()
   if LocalPlayer():GetActiveWeapon():GetClass() == "nz_multi_tool" then

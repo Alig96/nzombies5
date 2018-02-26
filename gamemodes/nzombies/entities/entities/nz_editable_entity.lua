@@ -20,7 +20,9 @@ function ENT:SetupDataTables()
 	-- Setup the attributes
 	for id, attribute in pairs(self.editableProperties) do
 		self:NetworkVar(attribute.type, usedSlots[attribute.type], id)
-		self["Set" .. id](self, attribute.default)
+		if attribute.default then
+			self["Set" .. id](self, attribute.default)
+		end
 		usedSlots[attribute.type] = usedSlots[attribute.type] + 1
 	end
 end
@@ -38,8 +40,14 @@ if SERVER then
 	-- Update the data
 	function ENT:updateEditableProperties(newProperties)
 		for id, attribute in pairs(self.editableProperties) do
-			self["Set" .. id](self, newProperties[id])
+			-- Cannot update an entity via form
+			if attribute.type != "Entity" then
+				self["Set" .. id](self, newProperties[id])
+			end
 		end
-		Log(LOG_INFO, "Entity Updated", "Entity:" .. self:GetClass() .. ":" .. self:EntIndex())
+		if self.onUpdated then
+			self:onUpdated()
+		end
+		Log(LOG_INFO, "Updated via Editable Properties", self:__tostring())
 	end
 end

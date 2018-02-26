@@ -13,7 +13,19 @@ function formClass:new(parentPanel, attributes)
       self.formData[id] = attribute.default
       self.attributeRows[id] = self:CreateRow(attribute.category, attribute.name)
       self:setupRow(self.attributeRows[id], attribute)
-      self.attributeRows[id]:SetValue(self.formData[id])
+      if attribute.type == "Entity" then
+        local entity = self.formData[id]
+        -- Get the entity's display value
+        if attribute.display and IsValid(entity) then
+          self.attributeRows[id]:SetValue(entity["Get" .. attribute.display](entity))
+        else
+          self.attributeRows[id]:SetValue(entity:__tostring())
+        end
+        -- Disable the input of the text box
+        -- Wasted too much time trying to work out how to disable this, low priority right now
+      else
+        self.attributeRows[id]:SetValue(self.formData[id])
+      end
       self.attributeRows[id].DataChanged = function(panel, newValue) self.formData[id] = newValue end
     end
   end
