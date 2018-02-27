@@ -41,7 +41,7 @@ gel.fw:newHUD("ToolHelp", function()
     end
   end
 end, function()
-  if LocalPlayer():GetActiveWeapon():GetClass() == "nz_multi_tool" then
+  if nz.Mode:isCreate() and LocalPlayer():GetActiveWeapon():GetClass() == "nz_multi_tool" and nz.Tool:get() then
     return true
   end
 end)
