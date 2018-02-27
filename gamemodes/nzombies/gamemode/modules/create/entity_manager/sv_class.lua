@@ -36,7 +36,9 @@ function entityManagerClass:new(managerId)
   -- Create a magic method for deleting the entity
   function newEntityManager:delete(ent)
     if ent:GetClass() == self.id then
+      local pos = ent:GetPos()
       ent:Remove()
+      Log(LOG_INFO, "Removed entity at: " .. pos:__tostring(), "EntityManager:" .. self.id)
     else
       Log(LOG_ERROR, "Can't remove entity: " .. ent:GetClass(), "EntityManager:" .. self.id)
     end
